@@ -29,9 +29,9 @@ export function Footer() {
   return (
     <footer style={{ backgroundColor: "#E9E9E9" }} className="mt-24 text-ink">
       <Container className="py-12">
-        <div className="grid gap-10 lg:grid-cols-[auto_1fr_1fr_1fr_1fr] lg:gap-8 -ml-32">
+       <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[auto_1fr_1fr_1fr_1fr] lg:gap-8 lg:-ml-32">
           {/* Logo */}
-          <div className="flex justify-center lg:block">
+          {/* <div className="flex justify-center lg:block">
             <Image
               src="/Footerlogo-pics.jpg"
               alt={`${site.name} logo`}
@@ -39,7 +39,17 @@ export function Footer() {
               height={240}
               className="h-60 w-60 object-contain rounded-full"
             />
-          </div>
+          </div> */}
+
+          <div className="flex justify-center sm:col-span-2 lg:col-span-1 lg:block">
+  <Image
+    src="/Footerlogo-pics.jpg"
+    alt={`${site.name} logo`}
+    width={240}
+    height={240}
+    className="h-40 w-40 rounded-full object-contain sm:h-48 sm:w-48 lg:h-60 lg:w-60"
+  />
+</div>
 
           {/* Weekly Services */}
           <div>

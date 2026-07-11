@@ -76,10 +76,18 @@ const overlay =
 
       {/* ---- Main nav: tabs sit inside the hero ---- */}
       <Container>
-        <div className="flex h-36 items-center justify-between">
-          <Link href="/" aria-label={site.name} className="-ml-20">
+        <div className="flex min-h-[5rem] items-center justify-between lg:h-36">
+          {/* <Link href="/" aria-label={site.name} className="-ml-20">
             <Logo size={250}  />
-          </Link>
+          </Link> */}
+          <Link href="/" aria-label={site.name} className="lg:-ml-20">
+  <span className="block lg:hidden">
+    <Logo size={140} />
+  </span>
+  <span className="hidden lg:block">
+    <Logo size={250} />
+  </span>
+</Link>
 
           {/* Desktop tabs */}
           <nav className="hidden items-center gap-1 lg:flex">
@@ -166,6 +174,11 @@ const overlay =
                   )}
                 </div>
               ))}
+               <Link href="/contact" onClick={() => setMobileOpen(false)}
+                 className="mt-3 inline-flex items-center justify-center rounded-full border border-cream-50 px-6 py-2.5 text-sm font-semibold text-cream-50">
+                  Contact Us
+               </Link>
+
               <Link href={site.giveUrl} onClick={() => setMobileOpen(false)}
                 className="mt-3 inline-flex items-center justify-center rounded-full bg-wine-600 px-6 py-2.5 text-sm font-semibold text-cream-50">
                 Donate

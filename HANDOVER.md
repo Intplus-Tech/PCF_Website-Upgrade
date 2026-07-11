@@ -220,4 +220,10 @@ Sanity; staff is still dummy data.
 - **Responsiveness:** desktop is complete and matches the Figma. Mobile/tablet
   responsiveness is in progress at time of writing.
 
-  
+  ## Domain
+- Live domain: pcfministries.org (expires 2027-02-27)
+- Registrar: Domain Monster / Mesh Digital Limited (domainmonster.com)
+- DNS managed at: GoDaddy — nameservers ns65/ns66.domaincontrol.com
+- Repointing to the new site (Vercel) is done in the GoDaddy DNS panel,
+  as the FINAL step after deployment + testing. Requires GoDaddy account access.
+- Domain has standard registrar locks (client transfer/update prohibited) — normal.
