@@ -1,0 +1,112 @@
+export const ministries = [
+  {
+    slug: "creche",
+    name: "Crèche",
+    tagline: "Loving care for our littlest members",
+    image: "/creche-pics.png",
+    meetingTime: "Sundays during all services",
+    leader: "Sister Ada Nwosu",
+    layout: "checklist",
+    description:
+      "Our Kids Ministry provides a safe, joyful environment where children can experience God's love in creative and engaging ways. Through music, stories, and hands-on activities, kids learn timeless truths from the Bible while building friendships and confidence in their faith.",
+    highlights: [
+      "Interactive Bible lessons and crafts",
+      "Programs for preschool through 5th grade",
+      "Fun games that teach teamwork and kindness",
+      "Loving volunteers and safe classrooms",
+    ],
+    gallery: ["/crechepage-pics.jpg"],
+  },
+  {
+    slug: "sunday-school",
+    name: "Sunday School",
+    tagline: "Where children discover the story of faith",
+    image: "/sundayschool-pics.png",
+    meetingTime: "Sundays, 11:45 AM",
+    leader: "Brother Samuel Okoro",
+    layout: "expect",
+    description:
+      "PCF Sunday School runs every week from mid-August to end of June, for all primary school-aged children. While parents enjoy the morning service, a dedicated team brings Bible stories to life through interactive teaching, visual aids, and fun activities — laying gospel foundations that last a lifetime.",
+    infoPills: [
+      "Peoples Church, West Bridge Street, Falkirk",
+      "Ages 5–11",
+      "11:45 AM – 12:30 PM · Sunday",
+    ],
+    expect: [
+      { title: "Learn", text: "Bible stories taught simply and creatively — using visual aids, puppets, and hands-on activities that make scripture come alive." },
+      { title: "Remember", text: "Every week children take home a Bible verse to memorise — building truth into their hearts one week at a time." },
+      { title: "Grow", text: "From nativity performances to Bible competitions — children discover their gifts, make friends, and grow in confidence." },
+    ],
+    highlights: [],
+    team: [
+    "/sundayone-pics.png",
+    "/sundaytwo-pics.png",
+    "/sundaythree-pics.png",
+    "/sundayfour-pics.png",
+    "/sundayfive-pics.png",   // ← center (large) image
+    "/sundaysix-pics.png",
+    "/sundayseven-pics.png",
+    "/sundayeight-pics.png",
+    "/sundaynine-pics.png",
+  ],
+  },
+  {
+    slug: "mens-ministry",
+    name: "Men's Ministry",
+    tagline: "Building men of character and conviction",
+    image: "/menministry-pics.png",
+    meetingTime: "First Saturday monthly, 8:00 AM",
+    leader: "Deacon Emeka Balogun",
+    layout: "cards",
+    description:
+      "PCF Men — New Dimension is a brotherhood built on faith, friendship, and growth. We believe men are stronger together — sharpened by honest conversation, grounded in scripture, and challenged to become who God made them to be. Whether you're new to faith or have walked with God for years, there's a place for you here.",
+    features: [
+      { title: "Grow Together", text: "Bible stories taught simply and creatively — using visual aids, puppets, and hands-on activities that make scripture come alive." },
+      { title: "Show Up Together", text: "From breakfast gatherings to sports events, we make time to have fun, build friendships, and do life alongside each other." },
+      { title: "Go Further Together", text: "Conferences, outside events, and opportunities to be stretched — because becoming a mighty man of God doesn't happen alone." },
+    ],
+    highlights: [],
+  },
+  {
+    slug: "womens-ministry",
+    name: "Women's Ministry",
+    tagline: "Encouraging women to flourish in faith",
+    image: "/womenministry-pics.png",
+    meetingTime: "Second Saturday monthly, 10:00 AM",
+    leader: "Elaine Morrison",
+    layout: "cards",
+    description:
+      "Extravagant was born from a simple but powerful belief — that every woman carries a God-given destiny worth stepping into. We exist to see women rise up, grow in confidence, and discover just how extraordinary God's plan for their life truly is.",
+    features: [
+      { title: "Discover Your Worth", text: "Rooted in Ephesians 2:10 — you are God's finest work, created with purpose and intention. Come and be reminded of who you truly are." },
+      { title: "Grow Together", text: "From guest speakers to testimony nights, every gathering is designed to inspire, encourage, and equip you for the life you were made to live." },
+      { title: "Experience Community", text: "Movie nights, community outreaches, theme nights — real friendships built around real faith and lots of laughter." },
+    ],
+    highlights: [],
+    gallery: ["/womenmin-pics.png"],
+  },
+  {
+    slug: "seniors-ministry",
+    name: "Seniors Ministry",
+    tagline: "Honouring a lifetime of faith",
+    image: "/seniorministry-pics.png",
+    meetingTime: "Last Wednesday of every month, 11:30 AM",
+    leader: "Mother Grace Adeyemi",
+    layout: "cards",
+    description:
+      "PCF Seniors has been a place of fellowship, faith, and friendship since 2005. Every month we gather to worship, share testimonies, hear God's Word, and simply enjoy each other's company — because no one should do life alone, regardless of age. We also take the ministry beyond our walls, visiting care homes monthly with a short service, because God's love reaches everywhere.",
+    infoPills: [
+      "Last Wednesday of Every Month",
+      "Hi-Tea",
+      "11:30 AM – 1:00 PM",
+    ],
+    features: [
+      { title: "Fellowship", text: "A warm, welcoming gathering every month — with singing, testimonies, prayer, scripture, and a guest speaker bringing God's Word to life." },
+      { title: "Community", text: "Tea, coffee, a light snack, and great conversation. A place where friendships are built and nobody feels forgotten." },
+      { title: "Reaching Out", text: "Every month we bring a short service to senior citizens in local care homes — because the Good Shepherd leaves no one behind." },
+    ],
+    quote: "\"God so loved the world that He gave His only Son — that whoever believes in Him shall not perish but have everlasting life.\" — John 3:16",
+    highlights: [],
+    gallery: ["/seniorone-pics.png", "/seniortwo-pics.png", "/seniorthree-pics.png"],
+  },
+];
