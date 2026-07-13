@@ -33,7 +33,7 @@ export default async function MediaPage() {
           {/* Image + overlapping video card */}
           <div className="relative">
             <div className="relative aspect-[5/4] w-full overflow-hidden rounded-xl">
-              <Image src="/media-pics.png" alt="PCF family" fill className="object-cover" sizes="50vw" />
+              <Image src="/media-pics.png" alt="PCF family" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
             </div>
            <div className="relative z-10 mx-auto -mt-16 w-56 sm:-mt-24 sm:w-64 lg:ml-auto lg:mr-4">
               <VideoModal label="Watch Our Video" poster="/mediaholy-pics.jpg" />
@@ -89,7 +89,7 @@ export default async function MediaPage() {
           {/* Featured series */}
           <div className="mt-10 grid items-center gap-10 lg:grid-cols-2">
             <div className="relative aspect-[4/3] overflow-hidden rounded-xl">
-              <Image src="/media-pics.png" alt="The Book Of Plan" fill className="object-cover" sizes="50vw" />
+              <Image src="/media-pics.png" alt="The Book Of Plan" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
               <div className="absolute inset-0 bg-gradient-to-t from-wine-900/70 to-transparent" />
               <div className="absolute bottom-6 left-6 text-cream-50">
                 <p className="text-sm uppercase tracking-[0.3em]">Featured Series</p>
@@ -149,7 +149,7 @@ export default async function MediaPage() {
               </button>
             </div>
             <div className="relative aspect-[4/3] overflow-hidden rounded-xl lg:order-2">
-              <Image src="/media-pics.png" alt="Building on the Rock" fill className="object-cover" sizes="50vw" />
+              <Image src="/media-pics.png" alt="Building on the Rock" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
               <div className="absolute inset-0 bg-gradient-to-t from-wine-900/70 to-transparent" />
               <div className="absolute bottom-6 left-6 text-cream-50">
                 <p className="text-sm uppercase tracking-[0.3em]">Featured Series</p>

@@ -42,11 +42,11 @@ const overlay =
       {/* ---- Top utility bar: only "Plan Your Visit" (pinned to top) ---- */}
  {isHome &&  (     
 <div
-  // style={{ backgroundColor: "#6C1317" }}
+  style={{ backgroundColor: "#6C1317" }}
   className="fixed inset-x-0 top-0 z-[60] border-b border-cream-50/10"
 >
   <Container>
-    <div className="flex h-14 items-center justify-center">
+    <div className="flex h-14 items-center justify-center" >
       <div className="relative" onMouseLeave={() => setPlanOpen(false)}>
         <button
           onClick={() => setPlanOpen((v) => !v)}
@@ -134,6 +134,8 @@ const overlay =
                  Contact Us
               </Link>
             <Link href={site.giveUrl}
+            target="_blank"
+  rel="noopener noreferrer"
               className="hidden rounded-xl bg-wine-600 px-6 py-2.5 text-sm font-semibold text-cream-50 transition-colors hover:bg-wine-500 sm:inline-flex">
               Donate
             </Link>

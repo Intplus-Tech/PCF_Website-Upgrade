@@ -202,7 +202,7 @@ export default async function MinistryDetailPage({
             {/* Feature image (Crèche / Women's / Seniors gallery) */}
             {ministry.gallery && ministry.gallery.length === 1 && (
               <div className="relative mt-8 aspect-[16/9] overflow-hidden rounded-xl">
-                <Image src={ministry.gallery[0]} alt={ministry.name} fill className="object-cover" sizes="70vw" />
+                <Image src={ministry.gallery[0]} alt={ministry.name} fill className="object-cover" sizes="(max-width: 768px) 100vw, 70vw" />
               </div>
             )}
            {ministry.gallery && ministry.gallery.length > 1 && (
