@@ -122,7 +122,7 @@ export default async function HomePage() {
       <section className="relative isolate overflow-hidden">
        <div className="absolute inset-0 -z-10">
         <Image
-          src="/findpeople-pics.png"
+          src="/Findpeople-pics.png"
           alt="Congregation worshipping with hands raised"
           fill
           className="object-cover"
