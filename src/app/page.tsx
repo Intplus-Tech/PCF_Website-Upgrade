@@ -20,7 +20,7 @@ export default async function HomePage() {
             muted
             loop
             playsInline
-            poster="https://images.unsplash.com/photo-1438032005730-c779502df39b?auto=format&fit=crop&w=2000&q=80"
+             poster="/pcf-poster.jpg"
             className="h-full w-full object-cover"
           >
             <source src="/pcf-video.mp4" type="video/mp4" />
