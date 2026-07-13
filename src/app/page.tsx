@@ -120,15 +120,16 @@ export default async function HomePage() {
       {/* Closing CTA */}
       <div style={{ backgroundColor: "#F5F5F5" }}>
       <section className="relative isolate overflow-hidden">
-        <div className="absolute inset-0 -z-10">
-          <Image
-            src="/findpeople-pics.png"
-            alt="Congregation worshipping with hands raised"
-            fill
-            className="object-cover"
-          />
-        </div>
-        <Container className="py-28 text-center text-cream-50">
+       <div className="absolute inset-0 -z-10">
+        <Image
+          src="/findpeople-pics.png"
+          alt="Congregation worshipping with hands raised"
+          fill
+          className="object-cover"
+          sizes="100vw"
+        />
+  </div>
+        <Container className="py-28 text-center text-cream-50 sm:py-28">
           <h2 className="mx-auto max-w-3xl font-body text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl md:text-6xl">
             Find your people. Find your purpose.
           </h2>
