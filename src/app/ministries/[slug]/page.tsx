@@ -79,40 +79,7 @@ export default async function MinistryDetailPage({
 
       <section className="py-16 lg:py-20 bg-[#FFFFFF]">
         <Container size="wide" className="grid items-start gap-8 lg:grid-cols-[300px_1fr]">
-          {/* Sidebar — all ministries */}
-          {/* <aside className="space-y-4">
-            {ministries.map((m) => {
-              const active = m.slug === ministry.slug;
-              return (
-                <Link
-                  key={m.slug}
-                  href={`/ministries/${m.slug}`}
-                  className="group relative block h-24 overflow-hidden rounded-xl"
-                >
-                  <Image
-                    src={m.image}
-                    alt={m.name}
-                    fill
-                    className="object-cover"
-                    sizes="260px"
-                  />
-                  <div
-                    className={
-                      active
-                        ? "absolute inset-0 bg-wine-900/40"
-                        : "absolute inset-0 bg-wine-900/65 transition-colors group-hover:bg-wine-900/50"
-                    }
-                  />
-                  <span className="absolute inset-0 flex items-center justify-center text-lg font-semibold text-cream-50">
-                    {m.name}
-                  </span>
-                  {active && (
-                    <span className="absolute inset-0 rounded-xl ring-2 ring-cream-50/70" />
-                  )}
-                </Link>
-              );
-            })}
-          </aside> */}
+          
 
           <MinistrySidebar ministries={ministries} activeSlug={ministry.slug} />
 
@@ -129,12 +96,12 @@ export default async function MinistryDetailPage({
             {/* Info pills (service time / age / location) */}
            {/* Info pills (location / age / time) */}
 {ministry.infoPills && (
- <div className="mt-6 flex gap-3 overflow-x-auto w-full">
+<div className="mt-6 flex flex-wrap gap-2 w-full">
   {ministry.infoPills.map((pill, i) => (
     <span
       key={pill}
       // className="inline-flex items-center gap-2 whitespace-nowrap rounded-full border border-wine-700/30 px-4 py-2 text-sm font-medium uppercase tracking-wide text-wine-700"
-      className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full border border-wine-700/30 px-3 py-1.5 text-xs font-medium uppercase tracking-wide text-wine-700"
+      className="inline-flex items-center gap-2 rounded-full border border-wine-700/30 px-4 py-2 text-xs font-medium uppercase tracking-wide text-wine-700"
     >
       <PillIcon index={i} />
       {pill}
@@ -199,23 +166,23 @@ export default async function MinistryDetailPage({
               </blockquote>
             )}
 
+         
             {/* Team members (Sunday School) */}
-            {/* Team members (Sunday School) */}
-{ministry.layout === "expect" && ministry.team && (
-  <div className="mt-8">
-    <h3 className="mb-4 text-lg font-bold text-ink">Team Member</h3>
-    <div className="flex items-stretch gap-3">
-  {/* left 2x2 */}
-  <div className="grid flex-1 grid-cols-2 gap-3">
-    {ministry.team.slice(0, 4).map((src, i) => (
-      <div key={i} className="relative aspect-square overflow-hidden rounded-lg">
-        <Image src={src} alt={`Team member ${i + 1}`} fill className="object-cover" sizes="15vw" />
-      </div>
-    ))}
-  </div>
+            {ministry.layout === "expect" && ministry.team && (
+              <div className="mt-8">
+                <h3 className="mb-4 text-lg font-bold text-ink">Team Member</h3>
+                <div className="flex flex-wrap items-stretch justify-center gap-3 sm:flex-nowrap">
+              {/* left 2x2 */}
+            <div className="grid min-w-0 flex-1 grid-cols-2 gap-3">
+                {ministry.team.slice(0, 4).map((src, i) => (
+                  <div key={i} className="relative aspect-square overflow-hidden rounded-lg">
+                    <Image src={src} alt={`Team member ${i + 1}`} fill className="object-cover" sizes="15vw" />
+                  </div>
+                ))}
+              </div>
 
   {/* center large — wider, but same height as the side clusters */}
-  <div className="relative flex-[1.4] overflow-hidden rounded-lg">
+<div className="relative min-w-0 flex-[1.4] overflow-hidden rounded-lg">
     <Image src={ministry.team[4]} alt="Ministry leader" fill className="object-cover" sizes="25vw" />
   </div>
 
@@ -239,7 +206,7 @@ export default async function MinistryDetailPage({
               </div>
             )}
            {ministry.gallery && ministry.gallery.length > 1 && (
-  <div className="mt-8 grid gap-4 sm:grid-cols-3">
+  <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
     {ministry.gallery.map((src, i) => (
       <div key={i} className="relative aspect-[3/4] overflow-hidden">
         <Image

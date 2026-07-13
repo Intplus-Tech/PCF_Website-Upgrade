@@ -28,13 +28,14 @@ export default async function MediaPage() {
    
       {/* Section 1 — Your Destiny feature */}
       <section className="py-16 lg:py-20">
+        {/* <Container size="wide" className="grid items-center gap-10 overflow-hidden lg:grid-cols-[1.3fr_1fr]"> */}
         <Container size="wide" className="grid items-center gap-10 lg:grid-cols-[1.3fr_1fr]">
           {/* Image + overlapping video card */}
           <div className="relative">
             <div className="relative aspect-[5/4] w-full overflow-hidden rounded-xl">
               <Image src="/media-pics.png" alt="PCF family" fill className="object-cover" sizes="50vw" />
             </div>
-            <div className="relative z-10 -mt-62 ml-auto mr-4 w-64 sm:mr-8">
+           <div className="relative z-10 mx-auto -mt-16 w-56 sm:-mt-24 sm:w-64 lg:ml-auto lg:mr-4">
               <VideoModal label="Watch Our Video" poster="/mediaholy-pics.jpg" />
             </div>
           </div>
@@ -44,7 +45,7 @@ export default async function MediaPage() {
   <span className="block h-0.5 w-10 bg-ink/70" />
   <h2 className="mt-4 font-body text-3xl font-extrabold leading-tight tracking-tight text-ink sm:text-4xl">
   Your Destiny -<br />
-  <span className="whitespace-nowrap">Tuesday &amp; Thursday Evenings</span>
+  <span className="sm:whitespace-nowrap">Tuesday &amp; Thursday Evenings</span>
 </h2>
   <p className="mt-4 max-w-md leading-relaxed text-muted">
     Looking to go deeper? &ldquo;Your Destiny&rdquo; is our mid-week

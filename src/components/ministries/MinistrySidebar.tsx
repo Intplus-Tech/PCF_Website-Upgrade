@@ -54,5 +54,6 @@ export function MinistrySidebar({
         );
       })}
     </aside>
+
   );
 }
