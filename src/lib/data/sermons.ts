@@ -8,7 +8,7 @@ export const sermons: Sermon[] = [
     speaker: "David Morrison",
     date: "2026-06-28",
     series: "Foundations",
-    duration: "42 min",
+ 
     image:
       "https://images.unsplash.com/photo-1507692049790-de58290a4334?auto=format&fit=crop&w=1200&q=80",
   },
@@ -18,7 +18,7 @@ export const sermons: Sermon[] = [
     speaker: "David Morrison",
     date: "2026-06-21",
     series: "Foundations",
-    duration: "38 min",
+  
     image:
       "https://images.unsplash.com/photo-1504052434569-70ad5836ab65?auto=format&fit=crop&w=1200&q=80",
   },
@@ -28,7 +28,7 @@ export const sermons: Sermon[] = [
     speaker: "Elaine Morrison",
     date: "2026-06-14",
     series: "Foundations",
-    duration: "45 min",
+  
     image:
       "https://images.unsplash.com/photo-1490127252417-7c393f993ee4?auto=format&fit=crop&w=1200&q=80",
   },
@@ -38,7 +38,7 @@ export const sermons: Sermon[] = [
     speaker: "David Morrison",
     date: "2026-06-07",
     series: "The Sermon on the Mount",
-    duration: "40 min",
+  
     image:
       "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1200&q=80",
   },

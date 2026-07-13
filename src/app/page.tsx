@@ -26,7 +26,9 @@ export default async function HomePage() {
             <source src="/pcf-video.mp4" type="video/mp4" />
           </video>
         </div>
-        <Container className="flex min-h-screen flex-col justify-start space-y-6 pb-24 pt-72 text-cream-50">
+        {/* <Container className="flex min-h-screen flex-col justify-start space-y-6 pb-24 pt-72 text-cream-50"> */
+        }
+        <Container className="flex min-h-screen flex-col justify-start space-y-6 pb-24 pt-56 sm:pt-40 lg:pt-72 text-cream-50">
           <h1 className="max-w-3xl font-body text-5xl font-extrabold leading-[1.03] tracking-tight sm:text-6xl md:text-7xl">
             A Place Where Worship Inspires.
           </h1>
