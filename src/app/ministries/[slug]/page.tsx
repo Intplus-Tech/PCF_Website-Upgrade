@@ -1,11 +1,11 @@
 import Image from "next/image";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { Container } from "@/components/layout/Container";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { getMinistries, getMinistry } from "@/lib/api";
 import { MinistrySidebar } from "@/components/ministries/MinistrySidebar";
+import { Reveal } from "@/components/motion/Reveal";
 
 type Params = { slug: string };
 
@@ -31,7 +31,6 @@ function CheckIcon() {
 function PillIcon({ index }: { index: number }) {
   const common = { width: 15, height: 15, viewBox: "0 0 24 24", fill: "none", "aria-hidden": true, className: "shrink-0" } as const;
 
-  // 0 = location pin, 1 = calendar, 2 = clock
   if (index === 0) {
     return (
       <svg {...common}>
@@ -70,156 +69,173 @@ export default async function MinistryDetailPage({
 
   return (
     <>
-      {/* Shared ministries hero on every sub-page */}
       <PageHeader
         title="Ministries"
         subtitle="Our ministries gives you the opportunity to get involved and make a difference."
         image="/ministries-pics.png"
       />
 
-      <section className="py-16 lg:py-20 bg-[#FFFFFF]">
+      <section className="bg-[#FFFFFF] py-16 lg:py-20">
         <Container size="wide" className="grid items-start gap-8 lg:grid-cols-[300px_1fr]">
-          
-
+          {/* Sidebar — left un-animated to protect its flex-fill heights */}
           <MinistrySidebar ministries={ministries} activeSlug={ministry.slug} />
 
           {/* Detail panel */}
           <div className="flex min-h-[720px] flex-col rounded-2xl bg-[#F5F5F5] p-8 lg:p-10">
-            <span className="block h-0.5 w-10 bg-ink/70" />
-           <h2 className="mt-4 font-body text-4xl font-extrabold tracking-tight text-ink sm:text-5xl">
-              {ministry.name}
-            </h2>
-           <p className="mt-5  text-2xl leading-relaxed text-muted">
-              {ministry.description}
-            </p>
+            <Reveal>
+              <span className="block h-0.5 w-10 bg-ink/70" />
+              <h2 className="mt-4 font-body text-4xl font-extrabold tracking-tight text-ink sm:text-5xl">
+                {ministry.name}
+              </h2>
+            </Reveal>
 
-            {/* Info pills (service time / age / location) */}
-           {/* Info pills (location / age / time) */}
-{ministry.infoPills && (
-<div className="mt-6 flex flex-wrap gap-2 w-full">
-  {ministry.infoPills.map((pill, i) => (
-    <span
-      key={pill}
-      // className="inline-flex items-center gap-2 whitespace-nowrap rounded-full border border-wine-700/30 px-4 py-2 text-sm font-medium uppercase tracking-wide text-wine-700"
-      className="inline-flex items-center gap-2 rounded-full border border-wine-700/30 px-4 py-2 text-xs font-medium uppercase tracking-wide text-wine-700"
-    >
-      <PillIcon index={i} />
-      {pill}
-    </span>
-  ))}
-</div>
-)}
+            <Reveal delay={0.15}>
+              <p className="mt-5 text-2xl leading-relaxed text-muted">
+                {ministry.description}
+              </p>
+            </Reveal>
 
-            {/* Layout A: simple checklist (Crèche) */}
+            {/* Info pills — whole group wrapped in ONE Reveal (not each pill) */}
+            {ministry.infoPills && (
+              <Reveal delay={0.25}>
+                <div className="mt-6 flex w-full flex-wrap gap-2">
+                  {ministry.infoPills.map((pill, i) => (
+                    <span
+                      key={pill}
+                      className="inline-flex items-center gap-2 rounded-full border border-wine-700/30 px-4 py-2 text-xs font-medium uppercase tracking-wide text-wine-700"
+                    >
+                      <PillIcon index={i} />
+                      {pill}
+                    </span>
+                  ))}
+                </div>
+              </Reveal>
+            )}
+
+            {/* Layout A: checklist (Crèche) */}
             {ministry.layout === "checklist" && (
-              <div className="mt-8">
-                <h3 className="text-2xl font-bold text-ink">What To Expect?</h3>
-                <ul className="mt-4 space-y-3">
-                  {ministry.highlights.map((h) => (
-                    <li key={h} className="flex items-start gap-3 text-sm text-ink">
-                      <CheckIcon />
-                      {h}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <Reveal delay={0.1}>
+                <div className="mt-8">
+                  <h3 className="text-2xl font-bold text-ink">What To Expect?</h3>
+                  <ul className="mt-4 space-y-3">
+                    {ministry.highlights.map((h) => (
+                      <li key={h} className="flex items-start gap-3 text-sm text-ink">
+                        <CheckIcon />
+                        {h}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </Reveal>
             )}
 
-            {/* Layout B: What To Expect with bold lead-ins (Sunday School) */}
+            {/* Layout B: What To Expect (Sunday School) */}
             {ministry.layout === "expect" && ministry.expect && (
-              <div className="mt-8">
-                <h3 className="text-xl font-bold text-ink">What To Expect?</h3>
-                <ul className="mt-4 space-y-4">
-                  {ministry.expect.map((e) => (
-                    <li key={e.title} className="flex items-start gap-3 text-base text-muted">
-                      <CheckIcon />
-                      <span>
-                        <span className="font-bold text-ink">{e.title}:</span> {e.text}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <Reveal delay={0.1}>
+                <div className="mt-8">
+                  <h3 className="text-xl font-bold text-ink">What To Expect?</h3>
+                  <ul className="mt-4 space-y-4">
+                    {ministry.expect.map((e) => (
+                      <li key={e.title} className="flex items-start gap-3 text-base text-muted">
+                        <CheckIcon />
+                        <span>
+                          <span className="font-bold text-ink">{e.title}:</span> {e.text}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </Reveal>
             )}
 
-            {/* Layout C: 3 feature cards (Men's / Women's) */}
+            {/* Layout C: feature cards — staggered */}
             {ministry.layout === "cards" && ministry.features && (
               <div className="mt-8 grid gap-4 sm:grid-cols-3">
-                {ministry.features.map((f) => (
-                  <div key={f.title} className="rounded-xl bg-cream-50 p-5 shadow-sm">
-                    <p className="flex items-center gap-2 text-base font-bold text-ink">
-                      <span className="flex h-4 w-4 items-center justify-center rounded-full bg-wine-700 text-cream-50">
-                        <svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" strokeWidth="3"/></svg>
-                      </span>
-                      {f.title}
-                    </p>
-                  <p className="mt-2 text-sm leading-relaxed text-muted">{f.text}</p>
-                  </div>
+                {ministry.features.map((f, i) => (
+                  <Reveal key={f.title} delay={i * 0.12}>
+                    <div className="rounded-xl bg-cream-50 p-5 shadow-sm">
+                      <p className="flex items-center gap-2 text-base font-bold text-ink">
+                        <span className="flex h-4 w-4 items-center justify-center rounded-full bg-wine-700 text-cream-50">
+                          <svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" strokeWidth="3"/></svg>
+                        </span>
+                        {f.title}
+                      </p>
+                      <p className="mt-2 text-sm leading-relaxed text-muted">{f.text}</p>
+                    </div>
+                  </Reveal>
                 ))}
               </div>
             )}
 
-            {/* Optional scripture quote */}
+            {/* Scripture quote */}
             {ministry.quote && (
-              <blockquote className="mt-8 border-l-2 border-wine-700 pl-4 text-sm italic leading-relaxed text-muted">
-                {ministry.quote}
-              </blockquote>
+              <Reveal>
+                <blockquote className="mt-8 border-l-2 border-wine-700 pl-4 text-sm italic leading-relaxed text-muted">
+                  {ministry.quote}
+                </blockquote>
+              </Reveal>
             )}
 
-         
-            {/* Team members (Sunday School) */}
+            {/* Team members — whole cluster wrapped in ONE Reveal; inner flex UNTOUCHED */}
             {ministry.layout === "expect" && ministry.team && (
-              <div className="mt-8">
-                <h3 className="mb-4 text-lg font-bold text-ink">Team Member</h3>
-                <div className="flex flex-wrap items-stretch justify-center gap-3 sm:flex-nowrap">
-              {/* left 2x2 */}
-            <div className="grid min-w-0 flex-1 grid-cols-2 gap-3">
-                {ministry.team.slice(0, 4).map((src, i) => (
-                  <div key={i} className="relative aspect-square overflow-hidden rounded-lg">
-                    <Image src={src} alt={`Team member ${i + 1}`} fill className="object-cover" sizes="15vw" />
+              <Reveal>
+                <div className="mt-8">
+                  <h3 className="mb-4 text-lg font-bold text-ink">Team Member</h3>
+                  <div className="flex flex-wrap items-stretch justify-center gap-3 sm:flex-nowrap">
+                    {/* left 2x2 */}
+                    <div className="grid min-w-0 flex-1 grid-cols-2 gap-3">
+                      {ministry.team.slice(0, 4).map((src, i) => (
+                        <div key={i} className="shine relative aspect-square overflow-hidden rounded-lg">
+                          <Image src={src} alt={`Team member ${i + 1}`} fill className="object-cover" sizes="15vw" />
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* center large */}
+                    <div className="shine relative min-w-0 flex-[1.4] overflow-hidden rounded-lg">
+                      <Image src={ministry.team[4]} alt="Ministry leader" fill className="object-cover" sizes="25vw" />
+                    </div>
+
+                    {/* right 2x2 */}
+                    <div className="grid flex-1 grid-cols-2 gap-3">
+                      {ministry.team.slice(5, 9).map((src, i) => (
+                        <div key={i} className="shine relative aspect-square overflow-hidden rounded-lg">
+                          <Image src={src} alt={`Team member ${i + 6}`} fill className="object-cover" sizes="15vw" />
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                ))}
-              </div>
-
-  {/* center large — wider, but same height as the side clusters */}
-<div className="relative min-w-0 flex-[1.4] overflow-hidden rounded-lg">
-    <Image src={ministry.team[4]} alt="Ministry leader" fill className="object-cover" sizes="25vw" />
-  </div>
-
-  {/* right 2x2 */}
-  <div className="grid flex-1 grid-cols-2 gap-3">
-    {ministry.team.slice(5, 9).map((src, i) => (
-      <div key={i} className="relative aspect-square overflow-hidden rounded-lg">
-        <Image src={src} alt={`Team member ${i + 6}`} fill className="object-cover" sizes="15vw" />
-      </div>
-    ))}
-  </div>
-</div>
-  </div>
-)}
-
-
-            {/* Feature image (Crèche / Women's / Seniors gallery) */}
-            {ministry.gallery && ministry.gallery.length === 1 && (
-              <div className="relative mt-8 aspect-[16/9] overflow-hidden rounded-xl">
-                <Image src={ministry.gallery[0]} alt={ministry.name} fill className="object-cover" sizes="(max-width: 768px) 100vw, 70vw" />
-              </div>
+                </div>
+              </Reveal>
             )}
-           {ministry.gallery && ministry.gallery.length > 1 && (
-  <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
-    {ministry.gallery.map((src, i) => (
-      <div key={i} className="relative aspect-[3/4] overflow-hidden">
-        <Image
-          src={src}
-          alt={`${ministry.name} ${i + 1}`}
-          fill
-          className="object-cover"
-          sizes="30vw"
-        />
-      </div>
-    ))}
-  </div>
-)}
+
+            {/* Single feature image */}
+            {ministry.gallery && ministry.gallery.length === 1 && (
+              <Reveal>
+                <div className="shine relative mt-8 aspect-[16/9] overflow-hidden rounded-xl">
+                  <Image src={ministry.gallery[0]} alt={ministry.name} fill className="object-cover" sizes="(max-width: 768px) 100vw, 70vw" />
+                </div>
+              </Reveal>
+            )}
+
+            {/* Multi-image gallery — container in ONE Reveal, shine on each image */}
+            {ministry.gallery && ministry.gallery.length > 1 && (
+              <Reveal>
+                <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
+                  {ministry.gallery.map((src, i) => (
+                    <div key={i} className="shine relative aspect-[3/4] overflow-hidden">
+                      <Image
+                        src={src}
+                        alt={`${ministry.name} ${i + 1}`}
+                        fill
+                        className="object-cover"
+                        sizes="30vw"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </Reveal>
+            )}
           </div>
         </Container>
       </section>

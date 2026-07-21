@@ -48,9 +48,19 @@ function mapMinistry(doc: any): Ministry {
   };
 }
 
+// export async function getMinistries(): Promise<Ministry[]> {
+//   const docs = await client.fetch(`*[_type == "ministry"] | order(order asc)`);
+//   return docs.map(mapMinistry);
+// }
+
 export async function getMinistries(): Promise<Ministry[]> {
-  const docs = await client.fetch(`*[_type == "ministry"] | order(order asc)`);
-  return docs.map(mapMinistry);
+  try {
+    const docs = await client.fetch(`*[_type == "ministry"] | order(order asc)`);
+    return docs.map(mapMinistry);
+  } catch (err) {
+    console.error("getMinistries failed:", err);
+    return [];
+  }
 }
 
 export async function getMinistry(slug: string): Promise<Ministry | null> {
@@ -77,17 +87,41 @@ function mapEvent(doc: any): ChurchEvent {
   };
 }
 
+// export async function getEvents(): Promise<ChurchEvent[]> {
+//   const docs = await client.fetch(`*[_type == "event"] | order(date asc)`);
+//   return docs.map(mapEvent);
+// }
+
 export async function getEvents(): Promise<ChurchEvent[]> {
-  const docs = await client.fetch(`*[_type == "event"] | order(date asc)`);
-  return docs.map(mapEvent);
+  try {
+    const docs = await client.fetch(`*[_type == "event"] | order(date asc)`);
+    return docs.map(mapEvent);
+  } catch (err) {
+    console.error("getEvents failed:", err);
+    return []; // fail gracefully — header just shows no events instead of crashing
+  }
 }
 
+// export async function getMemories(): Promise<string[]> {
+//   const docs = await client.fetch(
+//     `*[_type == "memory"] | order(order asc){ image }`,
+//   );
+//   return docs.map((d: any) => urlFor(d.image).width(1000).url());
+// }
+
 export async function getMemories(): Promise<string[]> {
-  const docs = await client.fetch(
-    `*[_type == "memory"] | order(order asc){ image }`,
-  );
-  return docs.map((d: any) => urlFor(d.image).width(1000).url());
+  try {
+    const docs = await client.fetch(
+      `*[_type == "memory"] | order(order asc){ image }`,
+    );
+    return docs.map((d: any) => urlFor(d.image).width(1000).url());
+  } catch (err) {
+    console.error("getMemories failed:", err);
+    return [];
+  }
 }
+
+
 
 /* ----------------------------------------------------------------
  *  SERMONS — from Sanity
@@ -109,9 +143,19 @@ function mapSermon(doc: any): Sermon {
   };
 }
 
+// export async function getSermons(): Promise<Sermon[]> {
+//   const docs = await client.fetch(`*[_type == "sermon"] | order(order asc)`);
+//   return docs.map(mapSermon);
+// }
+
 export async function getSermons(): Promise<Sermon[]> {
-  const docs = await client.fetch(`*[_type == "sermon"] | order(order asc)`);
-  return docs.map(mapSermon);
+  try {
+    const docs = await client.fetch(`*[_type == "sermon"] | order(order asc)`);
+    return docs.map(mapSermon);
+  } catch (err) {
+    console.error("getSermons failed:", err);
+    return [];
+  }
 }
 
 /* ----------------------------------------------------------------

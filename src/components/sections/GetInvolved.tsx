@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/layout/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { Reveal } from "../motion/Reveal";
 
 function CalendarIcon() {
   return (
@@ -32,7 +33,7 @@ const getInvolved = [
     dateNum: "16",
     text: "Come as you are. Leave with something real — worship that moves you and truth that anchors you.",
     image: "/morning-worship.png",
-    href: "/visit",
+    href: "/events",
   },
   {
     title: "GOSPEL CELEBRATION",
@@ -42,7 +43,7 @@ const getInvolved = [
     dateNum: "16",
     text: "Loud worship. Open hearts. One message that transforms lives, families, and communities.",
     image: "/Gospel-cele.png",
-    href: "/visit",
+    href: "/events",
   },
   {
     title: "IMPACT – Your Destiny",
@@ -52,7 +53,7 @@ const getInvolved = [
     dateNum: "16",
     text: "Every person carries a destiny. Discover yours — with people who'll walk the journey with you.",
     image: "/impact-destiny.jpg",
-    href: "/ministries",
+    href: "/events",
   },
 ];
 
@@ -68,6 +69,7 @@ export function GetInvolved() {
   };
 
   return (
+    
     <section className="py-20">
       <Container>
         <div className="flex items-end justify-between gap-4">
@@ -105,51 +107,54 @@ export function GetInvolved() {
           ref={trackRef}
           className="mt-12 flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
-          {getInvolved.map((card) => (
-            <article
-              key={card.title}
-              className="group flex w-[85%] shrink-0 snap-start flex-col overflow-hidden rounded-card border border-wine-700/10 bg-cream-50 shadow-sm transition-shadow hover:shadow-md sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]"
-            >
-              <div className="relative aspect-[4/3] overflow-hidden">
-                <Image
-                  src={card.image}
-                  alt={card.title}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  sizes="(max-width: 768px) 85vw, 33vw"
-                />
-                <div className="absolute right-3 top-3 flex flex-col items-center rounded-lg bg-cream-50 px-2.5 py-1 text-center shadow-md">
-                  <span className="text-[10px] font-semibold uppercase tracking-wide text-wine-600">{card.month}</span>
-                  <span className="text-lg font-bold leading-none text-ink">{card.dateNum}</span>
-                </div>
-              </div>
+          {getInvolved.map((card, i) => (
 
-              <div className="flex flex-1 flex-col p-5">
-                <div className="flex items-center justify-between gap-2">
-                  <span className="inline-flex items-center gap-1.5 rounded-full bg-wine-700/8 px-2.5 py-1 text-[11px] font-medium uppercase tracking-wide text-wine-700">
-                    <CalendarIcon />
-                    {card.when}
-                  </span>
-                  <span className="inline-flex items-center gap-1.5 rounded-full bg-wine-700/8 px-2.5 py-1 text-[11px] font-medium uppercase tracking-wide text-wine-700">
-                    <ClockIcon />
-                    {card.time}
-                  </span>
-                </div>
+  <Reveal key={card.title} delay={i * 0.15}
+    
+      className="group flex w-[85%] shrink-0 snap-start flex-col overflow-hidden rounded-card border border-wine-700/10 bg-cream-50 shadow-sm transition-shadow hover:shadow-md sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]"
+    >
+      <div className="shine relative aspect-[4/3] overflow-hidden">
+        <Image
+          src={card.image}
+          alt={card.title}
+          fill
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          sizes="(max-width: 768px) 85vw, 33vw"
+        />
+        <div className="absolute right-3 top-3 flex flex-col items-center rounded-lg bg-cream-50 px-2.5 py-1 text-center shadow-md">
+          <span className="text-[10px] font-semibold uppercase tracking-wide text-wine-600">{card.month}</span>
+          <span className="text-lg font-bold leading-none text-ink">{card.dateNum}</span>
+        </div>
+      </div>
 
-                <h3 className="mt-3 text-xl font-bold text-[#14422D]">{card.title}</h3>
-                <p className="mt-2 flex-1 text-sm leading-relaxed text-muted">{card.text}</p>
+      <div className="flex flex-1 flex-col p-5">
+        <div className="flex items-center justify-between gap-2">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-wine-700/8 px-2.5 py-1 text-[11px] font-medium uppercase tracking-wide text-wine-700">
+            <CalendarIcon />
+            {card.when}
+          </span>
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-wine-700/8 px-2.5 py-1 text-[11px] font-medium uppercase tracking-wide text-wine-700">
+            <ClockIcon />
+            {card.time}
+          </span>
+        </div>
 
-                <Link
-                  href={card.href}
-                  className="mt-5 inline-flex w-fit rounded-lg bg-wine-700 px-4 py-2 text-sm font-medium text-cream-50 transition-colors hover:bg-wine-800"
-                >
-                  Learn more
-                </Link>
-              </div>
-            </article>
-          ))}
+        <h3 className="mt-3 text-xl font-bold text-[#14422D]">{card.title}</h3>
+        <p className="mt-2 flex-1 text-sm leading-relaxed text-muted">{card.text}</p>
+
+        <Link
+          href={card.href}
+          className="mt-5 inline-flex w-fit rounded-lg bg-wine-700 px-4 py-2 text-sm font-medium text-cream-50 transition-colors hover:bg-wine-800"
+        >
+          Learn more
+        </Link>
+      </div>
+   
+  </Reveal>
+))}
         </div>
       </Container>
     </section>
+   
   );
 }

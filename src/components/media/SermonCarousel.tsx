@@ -3,15 +3,8 @@
 import { useRef } from "react";
 import Image from "next/image";
 import type { Sermon } from "@/types";
-
-// type Sermon = {
-//   id: string;
-//   title: string;
-//   speaker: string;
-//   ago: string;
-//   text: string;
-//   image: string;
-// };
+import { Reveal } from "@/components/motion/Reveal";
+import { RevealText } from "@/components/motion/RevealText";
 
 export function SermonCarousel({ sermons }: { sermons: Sermon[] }) {
   const trackRef = useRef<HTMLDivElement>(null);
@@ -26,28 +19,38 @@ export function SermonCarousel({ sermons }: { sermons: Sermon[] }) {
   return (
     <div>
       <div className="flex items-start justify-between gap-4">
-        <div>
-          <span className="block h-0.5 w-10 bg-ink/70" />
-          <h2 className="mt-4 font-body text-4xl font-extrabold leading-tight tracking-tight text-ink sm:text-5xl">
-            Your Sermon.<br />Your Moment.
-          </h2>
-        </div>
-        <div className="hidden shrink-0 gap-2 sm:flex">
-          <button onClick={() => scroll("prev")} aria-label="Previous"
-            className="flex h-11 w-11 items-center justify-center rounded-full bg-cream-100 text-ink transition-colors hover:bg-wine-700 hover:text-cream-50">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-          </button>
-          <button onClick={() => scroll("next")} aria-label="Next"
-            className="flex h-11 w-11 items-center justify-center rounded-full bg-cream-100 text-ink transition-colors hover:bg-wine-700 hover:text-cream-50">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-          </button>
-        </div>
+        <Reveal>
+          <div>
+            <span className="block h-0.5 w-10 bg-ink/70" />
+            <h2 className="mt-4 font-body text-4xl font-extrabold leading-tight tracking-tight text-ink sm:text-5xl">
+              <RevealText text="Your Sermon." />
+              <br />
+              <RevealText text="Your Moment." />
+            </h2>
+          </div>
+        </Reveal>
+        <Reveal delay={0.2}>
+          <div className="hidden shrink-0 gap-2 sm:flex">
+            <button onClick={() => scroll("prev")} aria-label="Previous"
+              className="flex h-11 w-11 items-center justify-center rounded-full bg-cream-100 text-ink transition-colors hover:bg-wine-700 hover:text-cream-50">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+            </button>
+            <button onClick={() => scroll("next")} aria-label="Next"
+              className="flex h-11 w-11 items-center justify-center rounded-full bg-cream-100 text-ink transition-colors hover:bg-wine-700 hover:text-cream-50">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+            </button>
+          </div>
+        </Reveal>
       </div>
 
       <div ref={trackRef} className="mt-10 flex snap-x snap-mandatory gap-6 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-        {sermons.map((s) => (
-          <article key={s.id} className="flex w-[85%] shrink-0 snap-start flex-col overflow-hidden rounded-xl border border-ink/10 bg-cream-50 sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]">
-            <div className="relative aspect-[4/3] overflow-hidden">
+        {sermons.map((s, i) => (
+          <Reveal
+            key={s.id}
+            delay={i * 0.15}
+            className="flex w-[85%] shrink-0 snap-start flex-col overflow-hidden rounded-xl border border-ink/10 bg-cream-50 sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]"
+          >
+            <div className="shine relative aspect-[4/3] overflow-hidden">
               <Image src={s.image} alt={s.title} fill className="object-cover" sizes="33vw" />
             </div>
             <div className="flex flex-1 flex-col p-5">
@@ -68,7 +71,7 @@ export function SermonCarousel({ sermons }: { sermons: Sermon[] }) {
                 Watch Now
               </button>
             </div>
-          </article>
+          </Reveal>
         ))}
       </div>
     </div>

@@ -54,6 +54,7 @@ export const mainNav: NavItem[] = [
   },
   { label: "Events", href: "/events" },
   { label: "Media", href: "/media" },
+  { label: "Contact Us", href: "/contact" }
 ];
 
 /** Quick links shown in the "Plan Your Visit" dropdown on the top bar. */
