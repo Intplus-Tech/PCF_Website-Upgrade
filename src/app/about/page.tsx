@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { Container } from "@/components/layout/Container";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { Reveal } from "@/components/motion/Reveal";
+import { GospelText } from "@/components/about/GospelText";
 
 export const metadata: Metadata = { title: "About Us" };
 
@@ -49,30 +50,9 @@ export default async function AboutPage() {
           </Reveal>
 
           {/* Text */}
+           {/* Text */}
           <Reveal direction="right">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-ink">
-                Work of the Church
-              </p>
-              <h2 className="mt-4 font-body text-3xl font-extrabold leading-tight tracking-tight text-ink sm:text-4xl">
-                We Preach the Gospel in Every Sermon
-              </h2>
-              <p className="mt-4 text-[15px] leading-relaxed text-muted">
-                Qadipiscing elit, sed do eiusmod tempor incididunt ut labore eli
-                sed do eiu.
-              </p>
-              <blockquote className="mt-6 border-l-2 border-wine-700 pl-4 text-sm leading-relaxed text-muted/80">
-                Adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                exercitation ullamco.
-              </blockquote>
-              <Link
-                href="/contact"
-                className="mt-6 inline-flex rounded-md bg-wine-800 px-5 py-2.5 text-sm font-semibold text-cream-50 transition-colors hover:bg-wine-700"
-              >
-                Learn More
-              </Link>
-            </div>
+            <GospelText />
           </Reveal>
         </Container>
       </section>

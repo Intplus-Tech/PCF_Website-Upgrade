@@ -28,12 +28,11 @@ export default async function HomePage() {
               <source src="/pcf-video.mp4" type="video/mp4" />
             </video>
           </div>
-          <Container className="flex min-h-screen flex-col justify-start space-y-6 pb-24 pt-56 text-cream-50 sm:pt-40 lg:pt-72">
-            <Reveal>
+          <Container className="flex min-h-[75vh] flex-col justify-start space-y-6 pb-24 pt-56 text-cream-50 sm:pt-40 lg:pt-56">
               <h1 className="max-w-3xl font-body text-5xl font-extrabold leading-[1.03] tracking-tight sm:text-6xl md:text-7xl">
                 A Place Where Worship Inspires.
               </h1>
-            </Reveal>
+            {/* </Reveal> */}
             <Reveal delay={0.3}>
               <div className="mt-8">
                 <span className="inline-flex items-center rounded-full border border-cream-50/20 bg-wine-900/50 px-6 py-2.5 text-sm font-medium text-cream-50/90 backdrop-blur-sm sm:text-base">

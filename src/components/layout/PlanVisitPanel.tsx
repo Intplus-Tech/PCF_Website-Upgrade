@@ -1,5 +1,3 @@
-"use client";
-
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -24,7 +22,6 @@ export function PlanVisitPanel({ events }: { events: ChurchEvent[] }) {
   const primary = events[0];
   const next = events[1];
 
-  // Close only when clicking outside (not on mouse-leave)
   useEffect(() => {
     if (!open) return;
     function handleClick(e: MouseEvent) {
@@ -37,14 +34,11 @@ export function PlanVisitPanel({ events }: { events: ChurchEvent[] }) {
   }, [open]);
 
   return (
-    <div ref={wrapRef}
-      onMouseEnter={() => setOpen(true)}
-    >
-
+    <div ref={wrapRef} onMouseEnter={() => setOpen(true)}>
       <button
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
-        className="inline-flex items-center gap-2 rounded-full  px-5 py-1.5 text-sm text-cream-50/90 transition-colors hover:border-cream-50/60 hover:text-cream-50"
+        className="inline-flex items-center gap-2 rounded-full px-5 py-1.5 text-sm text-cream-50/90 transition-colors hover:border-cream-50/60 hover:text-cream-50"
       >
         Plan Your Visit
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none"
@@ -52,83 +46,83 @@ export function PlanVisitPanel({ events }: { events: ChurchEvent[] }) {
           <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" />
         </svg>
       </button>
-         {open && primary && (
-  <div
-    className="fixed inset-x-0 top-14 z-[70] h-[424px] max-h-[80vh] w-screen overflow-y-auto shadow-2xl"
-    style={{ backgroundColor: "#E9E9E9" }}
-  >
-    <div className="mx-auto flex h-full max-w-[1120px] items-center px-4 md:px-8">
-      <div className="flex w-full flex-col gap-8 md:flex-row md:gap-0">
-        {/* Left — next service */}
-        <div
-          className="flex flex-col justify-center rounded-[12px] md:h-[365px] md:flex-[2] md:rounded-r-none"
-          style={{
-            backgroundColor: "#F5F5F5",
-            gap: "40px",
-            paddingTop: "24px",
-            paddingRight: "40px",
-            paddingBottom: "24px",
-            paddingLeft: "40px",
-          }}
-        >
-          <div>
-            <p className="underline" style={{ color: "#414943", fontWeight: 400, fontSize: "32.52px", lineHeight: "150%" }}>
-              Our Next Service is coming on
-            </p>
-            <p style={{ color: "#170F49", fontWeight: 600, fontSize: "37.98px", lineHeight: "115%", marginTop: "12px" }} className="font-body">
-              {formatEventDate(primary.date)}
-            </p>
-            <p style={{ color: "#414943", fontWeight: 400, fontSize: "22.22px", lineHeight: "150%", marginTop: "4px" }}>
-              {primary.title}
-            </p>
-            <p style={{ color: "#6C1317", fontWeight: 600, fontSize: "33.23px", lineHeight: "100%", marginTop: "16px" }} className="font-body">
-              {primary.time}
-            </p>
-          </div>
-        </div>
 
-        {/* Right — coming up next */}
-        {next && (
-          <div className="flex justify-center md:flex-[1] md:justify-start">
-            <div
-             className="flex w-full max-w-[372px] flex-col rounded-[12px] md:h-[365px] md:rounded-l-none"
-              style={{
-                backgroundColor: "#FFFFFF",
-                paddingTop: "24px",
-                paddingRight: "40px",
-                paddingBottom: "40px",
-                paddingLeft: "40px",
-                gap: "16px",
-              }}
-            >
-              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-ink/60">
-                Coming Up Next
-              </p>
-              <div className="relative aspect-[16/9] w-full overflow-hidden rounded-lg">
-                <Image
-                  src={next.image || "/plan-image.png"}
-                  alt={next.title}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 90vw, 300px"
-                />
+      {open && primary && (
+        <div
+          className="fixed inset-x-0 top-14 z-[70] max-h-[85vh] w-screen overflow-y-auto shadow-2xl"
+          style={{ backgroundColor: "#E9E9E9" }}
+        >
+          <div className="mx-auto flex max-w-[1120px] items-center px-4 py-6 md:px-8">
+            <div className="flex w-full flex-col gap-4 md:flex-row md:gap-0">
+              {/* Left — next service */}
+              <div
+                className="flex flex-col justify-center rounded-[12px] md:h-[300px] md:flex-[2] md:rounded-r-none"
+                style={{
+                  backgroundColor: "#F5F5F5",
+                  gap: "16px",
+                  paddingTop: "24px",
+                  paddingRight: "40px",
+                  paddingBottom: "24px",
+                  paddingLeft: "40px",
+                }}
+              >
+                <div>
+                  <p className="underline" style={{ color: "#414943", fontWeight: 400, lineHeight: "140%" }}>
+                    Our Next Service is coming on
+                  </p>
+                  <p style={{ color: "#170F49", fontWeight: 600, lineHeight: "115%", marginTop: "10px" }} className="font-body text-3xl sm:text-4xl">
+                    {formatEventDate(primary.date)}
+                  </p>
+                  <p style={{ color: "#414943", fontWeight: 400, lineHeight: "150%", marginTop: "4px" }} className="text-lg">
+                    {primary.title}
+                  </p>
+                  <p style={{ color: "#6C1317", fontWeight: 600, lineHeight: "100%", marginTop: "12px" }} className="font-body text-2xl sm:text-3xl">
+                    {primary.time}
+                  </p>
+                </div>
               </div>
-              <div>
-                <p className="font-semibold text-ink">{formatEventDate(next.date)}</p>
-                <p className="text-sm text-ink/60">{next.title}</p>
-                <p className="mt-1 text-sm text-wine-700">{next.time}</p>
-              </div>
-              <Link href="/events" onClick={() => setOpen(false)} className="mt-auto inline-block text-sm font-medium text-ink underline hover:text-wine-700">
-                View Events
-              </Link>
+
+              {/* Right — coming up next */}
+              {next && (
+                <div className="flex justify-center md:flex-[1] md:justify-start">
+                  <div
+                    className="flex w-full max-w-[372px] flex-col rounded-[12px] md:h-[300px] md:rounded-l-none"
+                    style={{
+                      backgroundColor: "#FFFFFF",
+                      paddingTop: "20px",
+                      paddingRight: "24px",
+                      paddingBottom: "20px",
+                      paddingLeft: "24px",
+                      gap: "12px",
+                    }}
+                  >
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-ink/60">
+                      Coming Up Next
+                    </p>
+                    <div className="relative aspect-[16/9] w-full overflow-hidden rounded-lg">
+                      <Image
+                        src={next.image || "/plan-image.png"}
+                        alt={next.title}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 90vw, 300px"
+                      />
+                    </div>
+                    <div>
+                      <p className="font-semibold text-ink">{formatEventDate(next.date)}</p>
+                      <p className="text-sm text-ink/60">{next.title}</p>
+                      <p className="mt-1 text-sm text-wine-700">{next.time}</p>
+                    </div>
+                    <Link href="/events" onClick={() => setOpen(false)} className="mt-auto inline-block text-sm font-medium text-ink underline hover:text-wine-700">
+                      View Events
+                    </Link>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
-        )}
-      </div>
-    </div>
-  </div>
-)}
-   
+        </div>
+      )}
     </div>
   );
 }

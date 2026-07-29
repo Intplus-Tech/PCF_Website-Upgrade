@@ -89,80 +89,80 @@ export default async function EventsPage() {
         </Container>
       </section>
 
-      {/* Recent Memories — mosaic */}
-      <section className="py-20 lg:py-24">
-        <Container size="wide" className="bg-[#F5F5F5]">
-          <Reveal>
-            <div className="text-center">
-              <h2 className="font-body text-4xl font-extrabold tracking-tight text-ink sm:text-5xl">
-                Recent Memories
-              </h2>
-              <p className="mx-auto mt-4 max-w-xl leading-relaxed text-muted">
-                Revisit some of our favorite moments from last month&apos;s
-                gatherings and community celebrations.
-              </p>
+        {/* Recent Memories — mosaic */}
+          {/* Recent Memories — mosaic */}
+<section className="py-20 lg:py-24">
+  <Container size="wide" className="max-w-[95rem] bg-[#F5F5F5] px-4 pb-12 pt-12 sm:px-6 lg:px-8 lg:pb-16 lg:pt-16">
+    <Reveal>
+      <div className="text-center">
+        <h2 className="font-body text-4xl font-extrabold tracking-tight text-ink sm:text-5xl">
+          Recent Memories
+        </h2>
+        <p className="mx-auto mt-4 max-w-3xl leading-relaxed text-muted">
+          Revisit some of our favorite moments from last month&apos;s
+          gatherings and community celebrations.
+        </p>
+      </div>
+    </Reveal>
+
+    <div className="mt-12 grid gap-4 lg:grid-cols-2">
+      {/* Large left image */}
+      <Reveal direction="left">
+        <div className="shine relative aspect-[4/5] overflow-hidden rounded-2xl lg:aspect-auto lg:h-full">
+          <Image
+            src={memories[0] ?? "/calendar-pics.png"}
+            alt="Congregation gathered"
+            fill
+            className="object-cover"
+            sizes="(max-width: 1024px) 100vw, 50vw"
+          />
+        </div>
+      </Reveal>
+
+      {/* Right cluster */}
+      <Reveal direction="right" delay={0.15}>
+        <div className="grid gap-4">
+          <div className="grid grid-cols-2 gap-4">
+            <div className="shine relative aspect-[4/3] overflow-hidden rounded-2xl">
+              <Image
+                src={memories[1] ?? "/calendar-pics.png"}
+                alt="Youth activity"
+                fill
+                className="object-cover"
+                sizes="25vw"
+              />
             </div>
-          </Reveal>
-
-          <div className="mt-12 grid gap-4 lg:grid-cols-2">
-            {/* Large left image */}
-            <Reveal direction="left">
-              <div className="shine relative aspect-[4/5] overflow-hidden rounded-2xl lg:aspect-auto lg:h-full">
-                <Image
-                  src={memories[0] ?? "/calendar-pics.png"}
-                  alt="Congregation gathered"
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                />
-              </div>
-            </Reveal>
-
-            {/* Right cluster */}
-            <Reveal direction="right" delay={0.15}>
-              <div className="grid gap-4">
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="shine relative aspect-[4/3] overflow-hidden rounded-2xl">
-                    <Image
-                      src={memories[1] ?? "/calendar-pics.png"}
-                      alt="Youth activity"
-                      fill
-                      className="object-cover"
-                      sizes="25vw"
-                    />
-                  </div>
-                  <div className="shine relative aspect-[4/3] overflow-hidden rounded-2xl">
-                    <Image
-                      src={memories[2] ?? "/calendar-pics.png"}
-                      alt="Shared meal"
-                      fill
-                      className="object-cover"
-                      sizes="25vw"
-                    />
-                  </div>
-                </div>
-                <div className="shine relative aspect-[16/9] overflow-hidden rounded-2xl">
-                  <Image
-                    src={memories[3] ?? "/calendar-pics.png"}
-                    alt="Community outreach"
-                    fill
-                    className="object-cover"
-                    sizes="50vw"
-                  />
-                </div>
-              </div>
-            </Reveal>
+            <div className="shine relative aspect-[4/3] overflow-hidden rounded-2xl">
+              <Image
+                src={memories[2] ?? "/calendar-pics.png"}
+                alt="Shared meal"
+                fill
+                className="object-cover"
+                sizes="25vw"
+              />
+            </div>
           </div>
-
-          {/* Dots */}
-          <div className="mt-8 flex justify-center gap-2">
-            <span className="h-2 w-6 rounded-full bg-wine-700" />
-            <span className="h-2 w-2 rounded-full bg-ink/25" />
-            <span className="h-2 w-2 rounded-full bg-ink/25" />
+          <div className="shine relative aspect-[16/9] overflow-hidden rounded-2xl">
+            <Image
+              src={memories[3] ?? "/calendar-pics.png"}
+              alt="Community outreach"
+              fill
+              className="object-cover"
+              sizes="50vw"
+            />
           </div>
-        </Container>
-      </section>
+        </div>
+      </Reveal>
+    </div>
 
+    {/* Dots */}
+    <div className="mt-8 flex justify-center gap-2 pb-4">
+      <span className="h-2 w-6 rounded-full bg-wine-700" />
+      <span className="h-2 w-2 rounded-full bg-ink/25" />
+      <span className="h-2 w-2 rounded-full bg-ink/25" />
+    </div>
+  </Container>
+</section>
       <section className="bg-[#FFFFFF] py-20 lg:py-24">
         <VisitSection />
       </section>

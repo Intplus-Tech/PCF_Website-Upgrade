@@ -3,8 +3,7 @@
 import Image from "next/image";
 import { Container } from "@/components/layout/Container";
 import { Reveal } from "@/components/motion/Reveal";
-
-import { RevealText} from "@/components/motion/RevealText";
+import { RevealText } from "@/components/motion/RevealText";
 
 export function PageHeader({
   title,
@@ -25,14 +24,13 @@ export function PageHeader({
           <div className="absolute inset-0 bg-black/50" />
         </div>
       )}
-      <Container className="flex min-h-screen flex-col justify-center pt-40 pb-24 text-center">
-        {eyebrow && (
+      <Container className="flex min-h-[75vh] flex-col justify-center pt-40 pb-24 text-center">
           <Reveal>
             <p className="mb-4 text-xs font-semibold uppercase tracking-[0.24em] text-gold-400">
               {eyebrow}
             </p>
           </Reveal>
-        )}
+        
         <h1 className="font-body text-5xl font-extrabold tracking-tight sm:text-6xl md:text-7xl">
           <RevealText text={title} />
         </h1>

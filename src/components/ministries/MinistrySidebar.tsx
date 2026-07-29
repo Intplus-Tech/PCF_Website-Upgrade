@@ -13,33 +13,39 @@ export function MinistrySidebar({
   activeSlug: string;
 }) {
   const router = useRouter();
-  // The clicked (selected) card expands; default to the active page's ministry
   const [selected, setSelected] = useState(activeSlug);
 
+  const handleClick = (slug: string) => {
+    setSelected(slug);
+    router.push(`/ministries/${slug}`);
+    // After navigation, scroll to the content section so the user doesn't land on the hero
+    setTimeout(() => {
+      document.getElementById("ministry-content")?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }, 100);
+  };
+
   return (
-  <aside className="flex flex-col gap-4 lg:h-full">
+    <aside className="flex flex-col gap-4 lg:h-full">
       {ministries.map((m) => {
         const isSelected = m.slug === selected;
         return (
           <button
             key={m.slug}
-            onClick={() => {
-              setSelected(m.slug);
-              router.push(`/ministries/${m.slug}`);
-            }}
-            className={`group relative block w-full overflow-hidden rounded-xl transition-all duration-300 ${
-  isSelected ? "flex-[2.5]" : "flex-1"
-} min-h-[90px]`}
-           
+            onClick={() => handleClick(m.slug)}
+            className={`group relative block h-24 w-full overflow-hidden rounded-xl transition-all duration-300 lg:h-auto lg:min-h-[90px] ${
+              isSelected ? "lg:flex-[2.5]" : "lg:flex-1"
+            }`}
           >
             <Image
               src={m.image}
               alt={m.name}
               fill
               className="object-cover"
-              sizes="300px"
+              sizes="(max-width: 1024px) 100vw, 360px"
             />
-            {/* Selected = lighter overlay; others = darker */}
             <div
               className={`absolute inset-0 transition-colors ${
                 isSelected
@@ -47,13 +53,12 @@ export function MinistrySidebar({
                   : "bg-wine-900/70 group-hover:bg-wine-900/55"
               }`}
             />
-            <span className="absolute inset-0 flex items-center justify-center text-xl font-semibold text-cream-50">
+            <span className="absolute inset-0 flex items-center justify-center text-lg font-semibold text-cream-50 sm:text-xl">
               {m.name}
             </span>
           </button>
         );
       })}
     </aside>
-
   );
 }

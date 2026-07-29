@@ -75,13 +75,12 @@ export default async function MinistryDetailPage({
         image="/ministries-pics.png"
       />
 
-      <section className="bg-[#FFFFFF] py-16 lg:py-20">
-        <Container size="wide" className="grid items-start gap-8 lg:grid-cols-[300px_1fr]">
-          {/* Sidebar — left un-animated to protect its flex-fill heights */}
+      <section id="ministry-content" className="scroll-mt-24 bg-[#FFFFFF] py-16 lg:py-20">
+        <Container size="wide" className="grid max-w-[95rem] items-start gap-8 px-4 sm:px-6 lg:grid-cols-[420px_1fr] lg:px-8">
           <MinistrySidebar ministries={ministries} activeSlug={ministry.slug} />
 
           {/* Detail panel */}
-          <div className="flex min-h-[720px] flex-col rounded-2xl bg-[#F5F5F5] p-8 lg:p-10">
+          <div className="flex min-h-[720px] flex-col rounded-2xl bg-[#F5F5F5] p-8 lg:p-12">
             <Reveal>
               <span className="block h-0.5 w-10 bg-ink/70" />
               <h2 className="mt-4 font-body text-4xl font-extrabold tracking-tight text-ink sm:text-5xl">
