@@ -20,7 +20,7 @@ export function PageHeader({
     <section className="relative isolate overflow-hidden text-cream-50">
       {image && (
         <div className="absolute inset-0 -z-10">
-          <Image src={image} alt="" fill priority className="object-cover" sizes="100vw" />
+         <Image src={image} alt="" fill priority className="object-cover object-bottom" sizes="100vw" />
           <div className="absolute inset-0 bg-black/50" />
         </div>
       )}

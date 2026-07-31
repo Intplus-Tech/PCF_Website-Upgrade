@@ -72,36 +72,37 @@ export function GetInvolved() {
     
     <section className="py-20">
       <Container>
-        <div className="flex items-end justify-between gap-4">
-          <SectionHeading
-            // eyebrow="Get Involved"
-            title="Get involved in our movement"
-              className="[&_h2]:text-4xl [&_h2]:lg:text-5xl"
-            // lead="There are many ways to belong. Find the rhythm of church life that fits you and take your next step."
-          />
-          {/* Prev / Next controls */}
-          <div className="hidden shrink-0 gap-2 sm:flex">
-            <button
-              onClick={() => scroll("prev")}
-              aria-label="Previous"
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-wine-700/20 text-wine-700 transition-colors hover:bg-wine-700 hover:text-cream-50"
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                <path d="M15 6l-6 6 6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button>
-            <button
-              onClick={() => scroll("next")}
-              aria-label="Next"
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-wine-700/20 text-wine-700 transition-colors hover:bg-wine-700 hover:text-cream-50"
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                <path d="M9 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button>
-          </div>
-        </div>
-
+          <div className="flex items-end justify-between gap-4">
+  <Reveal>
+    <SectionHeading
+      title="Get involved in our movement"
+      className="[&_h2]:text-4xl [&_h2]:lg:text-5xl"
+    />
+  </Reveal>
+  {/* Prev / Next controls */}
+  <Reveal delay={0.2}>
+    <div className="hidden shrink-0 gap-2 sm:flex">
+      <button
+        onClick={() => scroll("prev")}
+        aria-label="Previous"
+        className="flex h-11 w-11 items-center justify-center rounded-full border border-wine-700/20 text-wine-700 transition-colors hover:bg-wine-700 hover:text-cream-50"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <path d="M15 6l-6 6 6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </button>
+      <button
+        onClick={() => scroll("next")}
+        aria-label="Next"
+        className="flex h-11 w-11 items-center justify-center rounded-full border border-wine-700/20 text-wine-700 transition-colors hover:bg-wine-700 hover:text-cream-50"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <path d="M9 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </button>
+    </div>
+  </Reveal>
+</div>
         {/* Scrollable track */}
         <div
           ref={trackRef}
@@ -139,7 +140,7 @@ export function GetInvolved() {
           </span>
         </div>
 
-        <h3 className="mt-3 text-xl font-bold text-[#14422D]">{card.title}</h3>
+        <h3 className="mt-3 text-xl font-bold text-[#000000]">{card.title}</h3>
         <p className="mt-2 flex-1 text-sm leading-relaxed text-muted">{card.text}</p>
 
         <Link

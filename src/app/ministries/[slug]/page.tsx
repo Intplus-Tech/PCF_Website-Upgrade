@@ -3,9 +3,10 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { Container } from "@/components/layout/Container";
 import { PageHeader } from "@/components/layout/PageHeader";
-import { getMinistries, getMinistry } from "@/lib/api";
+
 import { MinistrySidebar } from "@/components/ministries/MinistrySidebar";
 import { Reveal } from "@/components/motion/Reveal";
+ import { getMinistries, getMinistry, getPageHeader } from "@/lib/api";
 
 type Params = { slug: string };
 
@@ -55,25 +56,25 @@ function PillIcon({ index }: { index: number }) {
   );
 }
 
-export default async function MinistryDetailPage({
-  params,
-}: {
-  params: Promise<Params>;
-}) {
+  
+
+export default async function MinistryDetailPage({ params }: { params: Promise<Params> }) {
   const { slug } = await params;
-  const [ministry, ministries] = await Promise.all([
+  const [ministry, ministries, header] = await Promise.all([
     getMinistry(slug),
     getMinistries(),
+    getPageHeader("ministries"),
   ]);
   if (!ministry) notFound();
 
   return (
     <>
       <PageHeader
-        title="Ministries"
-        subtitle="Our ministries gives you the opportunity to get involved and make a difference."
-        image="/ministries-pics.png"
+        title={header?.title ?? "Ministries"}
+        subtitle={header?.subtitle ?? "Our ministries gives you the opportunity to get involved and make a difference."}
+        image={header?.image ?? "/ministries-banner.jpg"}
       />
+      {/* ...rest unchanged... */}
 
       <section id="ministry-content" className="scroll-mt-24 bg-[#FFFFFF] py-16 lg:py-20">
         <Container size="wide" className="grid max-w-[95rem] items-start gap-8 px-4 sm:px-6 lg:grid-cols-[420px_1fr] lg:px-8">
@@ -175,38 +176,27 @@ export default async function MinistryDetailPage({
               </Reveal>
             )}
 
-            {/* Team members — whole cluster wrapped in ONE Reveal; inner flex UNTOUCHED */}
-            {ministry.layout === "expect" && ministry.team && (
-              <Reveal>
-                <div className="mt-8">
-                  <h3 className="mb-4 text-lg font-bold text-ink">Team Member</h3>
-                  <div className="flex flex-wrap items-stretch justify-center gap-3 sm:flex-nowrap">
-                    {/* left 2x2 */}
-                    <div className="grid min-w-0 flex-1 grid-cols-2 gap-3">
-                      {ministry.team.slice(0, 4).map((src, i) => (
-                        <div key={i} className="shine relative aspect-square overflow-hidden rounded-lg">
-                          <Image src={src} alt={`Team member ${i + 1}`} fill className="object-cover" sizes="15vw" />
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* center large */}
-                    <div className="shine relative min-w-0 flex-[1.4] overflow-hidden rounded-lg">
-                      <Image src={ministry.team[4]} alt="Ministry leader" fill className="object-cover" sizes="25vw" />
-                    </div>
-
-                    {/* right 2x2 */}
-                    <div className="grid flex-1 grid-cols-2 gap-3">
-                      {ministry.team.slice(5, 9).map((src, i) => (
-                        <div key={i} className="shine relative aspect-square overflow-hidden rounded-lg">
-                          <Image src={src} alt={`Team member ${i + 6}`} fill className="object-cover" sizes="15vw" />
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </Reveal>
-            )}
+                {/* Team members — responsive grid, adapts to any number of images */}
+{ministry.layout === "expect" && ministry.team && ministry.team.length > 0 && (
+  <Reveal>
+    <div className="mt-8">
+      <h3 className="mb-4 text-lg font-bold text-ink">Team Members</h3>
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+        {ministry.team.map((src, i) => (
+          <div key={i} className="shine relative aspect-square overflow-hidden rounded-lg">
+            <Image
+              src={src}
+              alt={`Team member ${i + 1}`}
+              fill
+              className="object-cover"
+              sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  </Reveal>
+)}
 
             {/* Single feature image */}
             {ministry.gallery && ministry.gallery.length === 1 && (

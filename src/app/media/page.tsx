@@ -4,22 +4,27 @@ import { Container } from "@/components/layout/Container";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { VideoModal } from "@/components/media/VideoModal";
 import { SermonCarousel } from "@/components/media/SermonCarousel";
-import { getSermons } from "@/lib/api";
+
 import { Reveal } from "@/components/motion/Reveal";
 import { RevealText } from "@/components/motion/RevealText";
 
-export const metadata: Metadata = { title: "Media" };
+ import { getSermons, getPageHeader } from "@/lib/api";
 
 export default async function MediaPage() {
-  const carouselSermons = await getSermons();
+  const [carouselSermons, header] = await Promise.all([
+    getSermons(),
+    getPageHeader("media"),
+  ]);
+
   return (
     <>
       <PageHeader
-        eyebrow="Watch & Listen"
-        title="Media"
-        subtitle="Catch up on recent messages and revisit the teaching that's shaping our church."
-        image="/media-pics.png"
+        eyebrow={header?.eyebrow ?? "Watch & Listen"}
+        title={header?.title ?? "Media"}
+        subtitle={header?.subtitle ?? "Catch up on recent messages and revisit the teaching that's shaping our church."}
+        image={header?.image ?? "/media-banner.png"}
       />
+      {/* ...rest unchanged... */}
 
       {/* Section 1 — Your Destiny feature */}
       <section className="overflow-hidden py-16 lg:py-20">
@@ -28,7 +33,7 @@ export default async function MediaPage() {
           <Reveal direction="left">
             <div className="relative">
               <div className="shine relative aspect-[5/4] w-full overflow-hidden rounded-xl">
-                <Image src="/media-pics.png" alt="PCF family" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
+                <Image src={header?.image ?? "/media-pics.png"} alt="PCF family" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
               </div>
               <div className="relative z-10 mx-auto -mt-16 w-56 sm:-mt-24 sm:w-64 lg:ml-auto lg:mr-4">
                 <VideoModal label="Watch Our Video" poster="/mediaholy-pics.jpg" />

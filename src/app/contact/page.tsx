@@ -6,6 +6,7 @@ import { MapEmbed } from "@/components/MapEmbed";
 import { site } from "@/lib/config/site";
 import { ContactFormFull } from "@/components/forms/ContactForm";
 import { Reveal } from "@/components/motion/Reveal";
+ import { getPageHeader } from "@/lib/api";
 
 export const metadata: Metadata = { title: "Contact Us" };
 
@@ -15,15 +16,20 @@ const services = [
   { name: "Thursday Evening", time: "07:30PM" },
 ];
 
-export default function ContactPage() {
+
+
+export default async function ContactPage() {
+  const header = await getPageHeader("contact");
+
   return (
     <>
       <PageHeader
-        eyebrow="We're Listening"
-        title="Contact Us"
-        subtitle="Learn about who we are and what we believe"
-        image="/contact-pics.png"
+        eyebrow={header?.eyebrow ?? "We're Listening"}
+        title={header?.title ?? "Contact Us"}
+        subtitle={header?.subtitle ?? "Learn about who we are and what we believe"}
+        image={header?.image ?? "/contact-pics.png"}
       />
+      {/* ...rest unchanged... */}
 
       {/* Body — info left, form right */}
       <section className="overflow-hidden py-20 lg:py-24">

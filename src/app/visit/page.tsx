@@ -3,6 +3,7 @@ import { Container } from "@/components/layout/Container";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { MapEmbed } from "@/components/MapEmbed";
 import { Reveal } from "@/components/motion/Reveal";
+import { getPageHeader } from "@/lib/api";
 
 export const metadata: Metadata = { title: "Visit" };
 
@@ -12,14 +13,19 @@ const services = [
   { name: "Thursday Evening", time: "07:30PM" },
 ];
 
-export default function VisitPage() {
+
+
+export default async function VisitPage() {
+  const header = await getPageHeader("visit");
+
   return (
     <>
       <PageHeader
-        title="Visit"
-        subtitle="Your first visit should feel easy, warm, and welcoming"
-        image="/visit-pics.png"
+        title={header?.title ?? "Visit"}
+        subtitle={header?.subtitle ?? "Your first visit should feel easy, warm, and welcoming"}
+        image={header?.image ?? "/visit-pics.png"}
       />
+      {/* ...rest unchanged... */}
 
       {/* Join Us This Week — text left, service times right */}
       <section className="py-20 lg:py-24">

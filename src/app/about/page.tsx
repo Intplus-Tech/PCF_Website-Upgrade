@@ -5,6 +5,7 @@ import { Container } from "@/components/layout/Container";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { Reveal } from "@/components/motion/Reveal";
 import { GospelText } from "@/components/about/GospelText";
+import { getPageHeader } from "@/lib/api";
 
 export const metadata: Metadata = { title: "About Us" };
 
@@ -16,13 +17,14 @@ const values = [
 ];
 
 export default async function AboutPage() {
+   const header = await getPageHeader("about");
   return (
     <>
-      <PageHeader
-        eyebrow="Our Story"
-        title="About Us"
-        subtitle="Learn about who we are and what we believe"
-        image="/About-pics.png"
+       <PageHeader
+        eyebrow={header?.eyebrow ?? "Our Story"}
+        title={header?.title ?? "About Us"}
+        subtitle={header?.subtitle ?? "Learn about who we are and what we believe"}
+        image={header?.image ?? "/about-banner.png"}
       />
 
       {/* Section 1 — We Preach the Gospel */}
@@ -33,7 +35,7 @@ export default async function AboutPage() {
             <div className="relative">
               <div className="shine relative aspect-[4/3] w-full max-w-lg overflow-hidden">
                 <Image
-                  src="/workchurch-pics.png"
+                   src={header?.image ?? "/we-preach-gospel.png"}
                   alt="Pastor David and Elaine"
                   fill
                   className="object-cover"
