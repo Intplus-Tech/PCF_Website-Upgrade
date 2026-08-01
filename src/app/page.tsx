@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Container } from "@/components/layout/Container";
 import { VisitSection } from "@/components/sections/VisitSection";
-import { getHomepage } from "@/lib/api";
+import { getHomepage, getEvents } from "@/lib/api";
 import { site } from "@/lib/config/site";
 import Link from "next/link";
 import { GetInvolved } from "@/components/sections/GetInvolved";
@@ -10,26 +10,29 @@ import { Reveal } from "@/components/motion/Reveal";
 import { RotatingHeadline } from "@/components/motion/RotatingHeadline";
 
 export default async function HomePage() {
-  const home = await getHomepage();
+  const [home, events] = await Promise.all([
+    getHomepage(),
+    getEvents()
+  ]);
 
   return (
     <>
       {/* Hero */}
       <div style={{ backgroundColor: "#F5F5F5" }}>
         <section className="relative isolate overflow-hidden">
-          <div className="absolute inset-0 -z-10">
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              poster="/pcf-poster.jpg"
-              className="h-full w-full object-cover"
-            >
-              <source src={home?.heroVideoUrl ?? "/pcf-video.mp4"} type="video/mp4" />
-            </video>
-          </div>
-          <Container className="flex min-h-[75vh] flex-col justify-start space-y-6 pb-24 pt-56 text-cream-50 sm:pt-40 lg:pt-56">
+             <div className="absolute inset-0 -z-10">
+              <video
+                autoPlay
+                muted
+                loop
+                playsInline
+                poster="/pcf-poster.jpg"
+                className="h-full w-full object-cover"
+              >
+                <source src={home?.heroVideoUrl ?? "/pcf-video.mp4"} type="video/mp4" />
+              </video>
+            </div>
+          <Container className="flex min-h-screen flex-col justify-start space-y-6 pb-24 pt-56 text-cream-50 sm:pt-40 lg:pt-56">
             <RotatingHeadline prefix={home?.heroPrefix} phrases={home?.heroPhrases}/>
             <Reveal delay={0.3}>
               <div className="mt-8">
@@ -43,7 +46,7 @@ export default async function HomePage() {
       </div>
 
       <div style={{ backgroundColor: "#F5F5F5" }}>
-        <GetInvolved />
+        <GetInvolved events={events} />
       </div>
 
       {/* Grey band: Mission + Pastors + Visit */}
@@ -119,16 +122,17 @@ export default async function HomePage() {
 
       {/* Closing CTA */}
       <div style={{ backgroundColor: "#F5F5F5" }}>
-        <section className="relative isolate overflow-hidden">
-          <div className="absolute inset-0 -z-10">
-            <Image
-              src={home?.ctaImage ?? "/Findpeople-pics.png"}
-              alt="Congregation worshipping with hands raised"
-              fill
-              className="object-cover"
-              sizes="100vw"
-            />
-          </div>
+            <section className="relative isolate overflow-hidden">
+            <div className="absolute inset-0 -z-10">
+              <Image
+                src={home?.ctaImage ?? "/Findpeople-pics.png"}
+                alt="Congregation worshipping with hands raised"
+                fill
+                className="object-cover"
+                sizes="100vw"
+              />
+              <div className="absolute inset-0 bg-black/50" />
+            </div>
           <Container className="py-28 text-center text-cream-50">
             <Reveal>
               <h2 className="mx-auto max-w-3xl font-body text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl md:text-6xl">

@@ -73,18 +73,18 @@ export async function getMinistry(slug: string): Promise<Ministry | null> {
  *  EVENTS & MEMORIES — from Sanity
  * ---------------------------------------------------------------- */
 
-function mapEvent(doc: any): ChurchEvent {
+  function mapEvent(doc: any): ChurchEvent {
   return {
     id: doc._id,
     title: doc.title ?? "",
     date: doc.date ?? "",
     time: doc.time ?? "",
+    speaker: doc.speaker ?? "",
     location: doc.location ?? "",
     description: doc.description ?? "",
     image: doc.image ? urlFor(doc.image).width(1200).url() : "",
   };
 }
-
 
 export async function getEvents(): Promise<ChurchEvent[]> {
   try {

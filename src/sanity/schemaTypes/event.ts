@@ -19,6 +19,7 @@ export const event = defineType({
       validation: (r) => r.required(),
     }),
     defineField({ name: "time", title: "Time", type: "string" }),
+    defineField({ name: "speaker", title: "Speaker", type: "string" }),
     defineField({ name: "location", title: "Location", type: "string" }),
     defineField({
       name: "description",

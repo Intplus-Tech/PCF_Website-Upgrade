@@ -32,7 +32,7 @@ export default async function EventsPage() {
       />
 
       {/* Event Calendar — list left, image right */}
-      <section className="bg-[#FFFFFF] py-20 lg:py-24">
+      <section className="overflow-hidden bg-[#FFFFFF] py-20 lg:py-24">
         <Container size="wide">
           <Reveal>
             <span className="block h-0.5 w-10 bg-ink/70" />
@@ -45,9 +45,9 @@ export default async function EventsPage() {
             </p>
           </Reveal>
 
-          <div className="mt-12 grid gap-8 lg:grid-cols-[1fr_auto] lg:items-stretch">
+          <div className="mt-12 grid gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-stretch">
             {/* Calendar table */}
-            <div>
+            <div className="min-w-0">
               <Reveal>
                 <div className="rounded-md bg-[#1a1a1a] py-3 text-center text-sm font-semibold text-cream-50">
                   {calendarMonth}
@@ -65,12 +65,18 @@ export default async function EventsPage() {
 
                   return (
                     <Reveal key={event.id} delay={i * 0.1}>
-                      <div className="grid grid-cols-[auto_1fr_auto] items-center gap-4 rounded-md border border-ink/10 px-5 py-4">
-                        <span className="text-sm font-semibold text-wine-700">
-                          {dayNum}{suffix} {weekday}
+                      <div className="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 rounded-md border border-ink/10 px-3 py-4 sm:gap-4 sm:px-5">
+                        <span className="text-xs font-semibold text-wine-700 sm:text-sm">
+                          {dayNum}{suffix}<span className="hidden sm:inline"> {weekday}</span>
+                          <span className="block text-[10px] text-wine-700/70 sm:hidden">{weekday}</span>
                         </span>
-                        <span className="text-center text-sm text-ink">{event.title}</span>
-                        <span className="text-sm text-ink">{event.time}</span>
+                        <span className="min-w-0 break-words text-center text-xs text-ink sm:text-sm">
+                          {event.title}
+                          {event.speaker && (
+                            <span className="block text-[11px] text-muted">Speaker: {event.speaker}</span>
+                          )}
+                        </span>
+                        <span className="whitespace-nowrap text-xs text-ink sm:text-sm">{event.time}</span>
                       </div>
                     </Reveal>
                   );
@@ -78,7 +84,7 @@ export default async function EventsPage() {
               </div>
             </div>
 
-            {/* Side image — now from Sanity (Site Settings), fallback to /in-events.jpg */}
+            {/* Side image — from Sanity (Site Settings), fallback to /in-events.jpg */}
             <Reveal direction="right">
               <div className="shine relative h-64 w-full overflow-hidden rounded-md lg:h-full lg:w-80">
                 <Image
@@ -94,9 +100,9 @@ export default async function EventsPage() {
         </Container>
       </section>
 
-      {/* Recent Memories — mosaic (already Sanity-controlled via getMemories) */}
-      <section className="py-20 lg:py-24">
-        <Container size="wide" className="max-w-[95rem] bg-[#F5F5F5] px-4 pb-12 pt-12 sm:px-6 lg:px-8 lg:pb-16 lg:pt-16">
+      {/* Recent Memories — mosaic (Sanity-controlled via getMemories) */}
+      <section className="overflow-hidden py-20 lg:py-24">
+        <Container size="full" className="bg-[#F5F5F5] pb-12 pt-12 lg:pb-16 lg:pt-16">
           <Reveal>
             <div className="text-center">
               <h2 className="font-body text-4xl font-extrabold tracking-tight text-ink sm:text-5xl">
@@ -168,7 +174,7 @@ export default async function EventsPage() {
         </Container>
       </section>
 
-      <section className="bg-[#FFFFFF] py-20 lg:py-24">
+      <section className="overflow-hidden bg-[#FFFFFF] py-20 lg:py-24">
         <VisitSection />
       </section>
     </>

@@ -6,17 +6,15 @@ import { MapEmbed } from "@/components/MapEmbed";
 import { site } from "@/lib/config/site";
 import { ContactFormFull } from "@/components/forms/ContactForm";
 import { Reveal } from "@/components/motion/Reveal";
- import { getPageHeader } from "@/lib/api";
+import { getPageHeader } from "@/lib/api";
 
 export const metadata: Metadata = { title: "Contact Us" };
 
 const services = [
-  { name: "Sunday Worship", time: "11:00AM & 06:45PM" },
-  { name: "Tuesday Evening", time: "07:30PM" },
-  { name: "Thursday Evening", time: "07:30PM" },
+  { name: "Sunday Worship", time: "11:00 AM & 06:45 PM" },
+  { name: "Bible Study", time: "07:30 PM" },
+  { name: "Prayer Meeting", time: "06:30 PM & 07:30 PM" },
 ];
-
-
 
 export default async function ContactPage() {
   const header = await getPageHeader("contact");
@@ -29,7 +27,6 @@ export default async function ContactPage() {
         subtitle={header?.subtitle ?? "Learn about who we are and what we believe"}
         image={header?.image ?? "/contact-pics.png"}
       />
-      {/* ...rest unchanged... */}
 
       {/* Body — info left, form right */}
       <section className="overflow-hidden py-20 lg:py-24">
@@ -39,7 +36,7 @@ export default async function ContactPage() {
             <div className="lg:border-r lg:border-ink/10 lg:pr-16">
               <div className="shine relative aspect-[4/3] w-full max-w-md overflow-hidden">
                 <Image
-                  src="/contactform-pics.jpg"
+                  src="/contact-slide-form.jpg"
                   alt="The People Church Falkirk"
                   fill
                   className="object-cover"

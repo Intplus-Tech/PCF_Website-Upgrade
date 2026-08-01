@@ -76,6 +76,11 @@ export function PlanVisitPanel({ events }: { events: ChurchEvent[] }) {
                   <p style={{ color: "#414943", fontWeight: 400, lineHeight: "150%", marginTop: "4px" }} className="text-lg">
                     {primary.title}
                   </p>
+                  {primary.speaker && (
+                    <p style={{ color: "#414943", fontWeight: 400, marginTop: "2px" }} className="text-sm">
+                      Speaker: {primary.speaker}
+                    </p>
+                  )}
                   <p style={{ color: "#6C1317", fontWeight: 600, lineHeight: "100%", marginTop: "12px" }} className="font-body text-2xl sm:text-3xl">
                     {primary.time}
                   </p>
@@ -111,6 +116,9 @@ export function PlanVisitPanel({ events }: { events: ChurchEvent[] }) {
                     <div>
                       <p className="font-semibold text-ink">{formatEventDate(next.date)}</p>
                       <p className="text-sm text-ink/60">{next.title}</p>
+                      {next.speaker && (
+                        <p className="text-sm text-ink/60">Speaker: {next.speaker}</p>
+                      )}
                       <p className="mt-1 text-sm text-wine-700">{next.time}</p>
                     </div>
                     <Link href="/events" onClick={() => setOpen(false)} className="mt-auto inline-block text-sm font-medium text-ink underline hover:text-wine-700">

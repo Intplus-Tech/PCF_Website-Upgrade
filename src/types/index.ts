@@ -22,11 +22,12 @@ export type Ministry = {
   team?: string[];
 };
 
-export type ChurchEvent = {
+ export type ChurchEvent = {
   id: string;
   title: string;
   date: string; // ISO date
   time: string;
+  speaker: string;
   location: string;
   description: string;
   image: string;

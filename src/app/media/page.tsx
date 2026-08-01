@@ -9,6 +9,7 @@ import { Reveal } from "@/components/motion/Reveal";
 import { RevealText } from "@/components/motion/RevealText";
 
  import { getSermons, getPageHeader } from "@/lib/api";
+import { site } from "@/lib/config/site";
 
 export default async function MediaPage() {
   const [carouselSermons, header] = await Promise.all([
@@ -22,7 +23,8 @@ export default async function MediaPage() {
         eyebrow={header?.eyebrow ?? "Watch & Listen"}
         title={header?.title ?? "Media"}
         subtitle={header?.subtitle ?? "Catch up on recent messages and revisit the teaching that's shaping our church."}
-        image={header?.image ?? "/media-banner.png"}
+        image={header?.image ?? "/media-banner-1.png"}
+        imagePosition="object-center"
       />
       {/* ...rest unchanged... */}
 
@@ -33,10 +35,10 @@ export default async function MediaPage() {
           <Reveal direction="left">
             <div className="relative">
               <div className="shine relative aspect-[5/4] w-full overflow-hidden rounded-xl">
-                <Image src={header?.image ?? "/media-pics.png"} alt="PCF family" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
+               <Image src="/media-pics.png" alt="PCF family" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
               </div>
               <div className="relative z-10 mx-auto -mt-16 w-56 sm:-mt-24 sm:w-64 lg:ml-auto lg:mr-4">
-                <VideoModal label="Watch Our Video" poster="/mediaholy-pics.jpg" />
+                <VideoModal label="Watch Our Video" poster="/watch-our-video.jpg" />
               </div>
             </div>
           </Reveal>
@@ -61,9 +63,14 @@ export default async function MediaPage() {
                 <li className="flex items-center gap-2"><ClockIcon /> 7:30 PM - 9:00PM</li>
               </ul>
               <div className="mt-6 flex flex-wrap gap-3">
-                <button className="rounded-md bg-wine-800 px-5 py-2.5 text-sm font-semibold text-cream-50 transition-colors hover:bg-wine-700">
-                  Watch Past Recordings
-                </button>
+                <a
+                 href="https://www.youtube.com/channel/UCnLTOOGYZfXM7AF4YMR1tgQ"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="rounded-md bg-wine-800 px-5 py-2.5 text-sm font-semibold text-cream-50 transition-colors hover:bg-wine-700"
+>
+  Watch Past Recordings
+</a>
                 <a href="/visit" className="inline-flex items-center gap-2 rounded-md border border-wine-700/40 px-5 py-2.5 text-sm font-semibold text-wine-700 transition-colors hover:bg-wine-700 hover:text-cream-50">
                   Join in Person →
                 </a>

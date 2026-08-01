@@ -25,6 +25,7 @@ export default async function AboutPage() {
         title={header?.title ?? "About Us"}
         subtitle={header?.subtitle ?? "Learn about who we are and what we believe"}
         image={header?.image ?? "/about-banner.png"}
+         imagePosition="object-[center_40%]"
       />
 
       {/* Section 1 — We Preach the Gospel */}
@@ -101,14 +102,14 @@ export default async function AboutPage() {
 
       {/* Section 3 — Pastor David (full-bleed) */}
       <section className="relative isolate overflow-hidden">
-        <div className="absolute inset-0 -z-10">
-          <Image
-            src="/pstdavid-pics.png"
-            alt="Pastor David"
-            fill
-            className="object-cover"
-            sizes="100vw"
-          />
+  <div className="absolute inset-0 -z-10">
+    <Image
+      src="/pstdavid-pics.png"
+      alt="Pastor David"
+      fill
+      className="object-cover object-[center_35%]"
+      sizes="100vw"
+    />
           <div className="absolute inset-0 bg-wine-900/70" />
         </div>
         <Container size="wide" className="py-20 lg:py-28">

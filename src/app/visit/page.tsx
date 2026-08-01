@@ -24,6 +24,7 @@ export default async function VisitPage() {
         title={header?.title ?? "Visit"}
         subtitle={header?.subtitle ?? "Your first visit should feel easy, warm, and welcoming"}
         image={header?.image ?? "/visit-pics.png"}
+         imagePosition="object-[center_45%]"
       />
       {/* ...rest unchanged... */}
 
