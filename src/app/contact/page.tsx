@@ -26,6 +26,7 @@ export default async function ContactPage() {
         title={header?.title ?? "Contact Us"}
         subtitle={header?.subtitle ?? "Learn about who we are and what we believe"}
         image={header?.image ?? "/contact-pics.png"}
+         imagePosition="object-top"
       />
 
       {/* Body — info left, form right */}

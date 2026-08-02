@@ -27,10 +27,11 @@ export default async function HomePage() {
                 loop
                 playsInline
                 poster="/pcf-poster.jpg"
-                className="h-full w-full object-cover"
+                className="h-full w-full object-cover "
               >
                 <source src={home?.heroVideoUrl ?? "/pcf-video.mp4"} type="video/mp4" />
               </video>
+                <div className="absolute inset-0 bg-black/50" />
             </div>
           <Container className="flex min-h-screen flex-col justify-start space-y-6 pb-24 pt-56 text-cream-50 sm:pt-40 lg:pt-56">
             <RotatingHeadline prefix={home?.heroPrefix} phrases={home?.heroPhrases}/>

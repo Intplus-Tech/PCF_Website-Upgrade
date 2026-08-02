@@ -35,8 +35,8 @@ export function MinistrySidebar({
           <button
             key={m.slug}
             onClick={() => handleClick(m.slug)}
-            className={`group relative block h-24 w-full overflow-hidden rounded-xl transition-all duration-300 lg:h-auto lg:min-h-[90px] ${
-              isSelected ? "lg:flex-[2.5]" : "lg:flex-1"
+               className={`group relative block h-24 w-full overflow-hidden rounded-xl transition-all duration-300 lg:h-auto lg:min-h-[90px] ${
+              isSelected ? "lg:flex-[1.5]" : "lg:flex-1"
             }`}
           >
             <Image
