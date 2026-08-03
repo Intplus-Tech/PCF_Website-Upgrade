@@ -2,6 +2,7 @@ import type { ChurchEvent, Ministry, Sermon, StaffMember } from "@/types";
 import { staff } from "@/lib/data/sermons";
 import { client } from "@/sanity/client";
 import { urlFor } from "@/sanity/image";
+import { getNextOccurrence } from "@/lib/recurrence";
 
 
 
@@ -73,11 +74,16 @@ export async function getMinistry(slug: string): Promise<Ministry | null> {
  *  EVENTS & MEMORIES — from Sanity
  * ---------------------------------------------------------------- */
 
-  function mapEvent(doc: any): ChurchEvent {
+ function mapEvent(doc: any): ChurchEvent {
+  const computedDate = getNextOccurrence(
+    doc.recurrence ?? "oneTime",
+    doc.weekday,
+    doc.date,
+  );
   return {
     id: doc._id,
     title: doc.title ?? "",
-    date: doc.date ?? "",
+    date: computedDate,
     time: doc.time ?? "",
     speaker: doc.speaker ?? "",
     location: doc.location ?? "",
@@ -86,13 +92,17 @@ export async function getMinistry(slug: string): Promise<Ministry | null> {
   };
 }
 
-export async function getEvents(): Promise<ChurchEvent[]> {
+ export async function getEvents(): Promise<ChurchEvent[]> {
   try {
-    const docs = await client.fetch(`*[_type == "event"] | order(date asc)`);
-    return docs.map(mapEvent);
+    const docs = await client.fetch(`*[_type == "event"]`);
+    const mapped = docs.map(mapEvent);
+    // Sort by the computed next-occurrence date (soonest first)
+    return mapped.sort((a: ChurchEvent, b: ChurchEvent) =>
+      a.date.localeCompare(b.date),
+    );
   } catch (err) {
     console.error("getEvents failed:", err);
-    return []; // fail gracefully — header just shows no events instead of crashing
+    return [];
   }
 }
 

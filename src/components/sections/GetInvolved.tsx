@@ -7,6 +7,7 @@ import { Container } from "@/components/layout/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "../motion/Reveal";
 import type { ChurchEvent } from "@/types";
+import { parseLocalDate } from "@/lib/recurrence";
 
 function CalendarIcon() {
   return (
@@ -79,7 +80,7 @@ export function GetInvolved({ events }: { events: ChurchEvent[] }) {
           className="mt-12 flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
           {events.map((event, i) => {
-            const d = new Date(event.date);
+            const d = parseLocalDate(event.date);
             const validDate = !isNaN(d.getTime());
             const month = validDate
               ? d.toLocaleDateString("en-GB", { month: "short" }).toUpperCase()

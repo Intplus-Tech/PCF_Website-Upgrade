@@ -2,10 +2,11 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import type { ChurchEvent } from "@/types";
+import { parseLocalDate } from "@/lib/recurrence";
 
 function formatEventDate(iso: string) {
   if (!iso) return "";
-  const d = new Date(iso);
+  const d = parseLocalDate(iso);
   const weekday = d.toLocaleDateString("en-GB", { weekday: "long" });
   const day = d.getDate();
   const month = d.toLocaleDateString("en-GB", { month: "long" });
