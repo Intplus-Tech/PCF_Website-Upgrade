@@ -26,6 +26,7 @@ export const site = {
     facebook: "#",
     instagram: "#",
     youtube: "#",
+      telegram: "https://t.me/yourchannel", 
   },
 } as const;
 

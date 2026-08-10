@@ -45,7 +45,7 @@ export function GetInvolved({ events }: { events: ChurchEvent[] }) {
         <div className="flex items-end justify-between gap-4">
           <Reveal>
             <SectionHeading
-              title="Get involved in our movement"
+              title="Be Part of What God is Doing"
               className="[&_h2]:text-4xl [&_h2]:lg:text-5xl"
             />
           </Reveal>

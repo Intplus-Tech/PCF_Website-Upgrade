@@ -71,7 +71,7 @@ export function SiteHeader({ events }: { events: ChurchEvent[] }) {
             {mainNav.map((item) => (
               <div key={item.href} className="relative">
                 <Link href={item.href}
-                  className={cn("px-4 py-2 text-sm font-medium transition-colors",
+                  className={cn("px-4 py-2 text-lg font-medium transition-colors",
                     isActive(item.href) ? "text-cream-50" : "text-cream-50/80 hover:text-cream-50")}>
                   {item.label}
                 </Link>
