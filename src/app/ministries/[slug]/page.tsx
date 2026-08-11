@@ -76,12 +76,15 @@ export default async function MinistryDetailPage({ params }: { params: Promise<P
       />
       {/* ...rest unchanged... */}
 
-      <section id="ministry-content" className="scroll-mt-24 bg-[#FFFFFF] py-16 lg:py-20">
-        <Container size="wide" className="grid max-w-[95rem] items-start gap-8 px-4 sm:px-6 lg:grid-cols-[420px_1fr] lg:px-8">
-          <MinistrySidebar ministries={ministries} activeSlug={ministry.slug} />
+       <section id="ministry-content" className="scroll-mt-24 bg-[#FFFFFF] py-16 lg:py-20">
+           <Container size="wide" className="grid max-w-[95rem] items-start gap-8 px-4 sm:px-6 lg:grid-cols-[420px_1fr] lg:px-8">
+            {/* Sidebar — becomes an independent scroll area on large screens */}
+              <div className="lg:sticky lg:top-24 lg:h-[820px] lg:overflow-y-auto lg:pr-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                   <MinistrySidebar ministries={ministries} activeSlug={ministry.slug} />
+               </div>
 
           {/* Detail panel */}
-          <div className="flex min-h-[720px] flex-col rounded-2xl bg-[#F5F5F5] p-8 lg:p-12">
+              <div className="flex min-h-[820px] flex-col rounded-2xl bg-[#F5F5F5] p-8 lg:p-12">
             <Reveal>
               <span className="block h-0.5 w-10 bg-ink/70" />
               <h2 className="mt-4 font-body text-4xl font-extrabold tracking-tight text-ink sm:text-5xl">

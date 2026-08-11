@@ -222,7 +222,7 @@ export default async function EventsPage() {
           <Reveal>
             <span className="block h-0.5 w-10 bg-ink/70" />
             <h2 className="mt-5 font-body text-4xl font-extrabold tracking-tight text-ink sm:text-5xl">
-              Event Calender
+              Event Calendar
             </h2>
             <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted">
               We gather every Sunday for worship, connection, and encouragement.

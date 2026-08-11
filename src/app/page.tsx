@@ -29,7 +29,7 @@ export default async function HomePage() {
         poster="/pcf-poster.jpg"
         className="h-full w-full object-cover object-[center_30%]"
       >
-        <source src={home?.heroVideoUrl ?? "/pcf-video.mp4"} type="video/mp4" />
+         <source src={home?.heroVideoUrl ?? "/hero-new-video.mp4"} type="video/mp4" />
       </video>
       <div className="absolute inset-0 bg-black/20" />
     </div>

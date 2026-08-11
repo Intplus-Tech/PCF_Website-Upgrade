@@ -18,7 +18,6 @@ export function MinistrySidebar({
   const handleClick = (slug: string) => {
     setSelected(slug);
     router.push(`/ministries/${slug}`);
-    // After navigation, scroll to the content section so the user doesn't land on the hero
     setTimeout(() => {
       document.getElementById("ministry-content")?.scrollIntoView({
         behavior: "smooth",
@@ -28,24 +27,24 @@ export function MinistrySidebar({
   };
 
   return (
-    <aside className="flex flex-col gap-4 lg:h-full">
+    <aside className="flex flex-col gap-4">
       {ministries.map((m) => {
         const isSelected = m.slug === selected;
         return (
           <button
             key={m.slug}
             onClick={() => handleClick(m.slug)}
-               className={`group relative block h-24 w-full overflow-hidden rounded-xl transition-all duration-300 lg:h-auto lg:min-h-[90px] ${
-              isSelected ? "lg:flex-[1.5]" : "lg:flex-1"
+            className={`group relative block w-full shrink-0 overflow-hidden rounded-xl transition-all duration-300 ${
+              isSelected ? "h-32 lg:h-40" : "h-24 lg:h-28"
             }`}
           >
-            <Image
-              src={m.image}
-              alt={m.name}
-              fill
-              className="object-cover"
-              sizes="(max-width: 1024px) 100vw, 360px"
-            />
+             <Image
+                src={m.image || "/ministries-banner.jpg"}
+                alt={m.name}
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 420px"
+              />
             <div
               className={`absolute inset-0 transition-colors ${
                 isSelected
