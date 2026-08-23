@@ -6,8 +6,8 @@ import Link from "next/link";
 import { Container } from "@/components/layout/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "../motion/Reveal";
-import type { ChurchEvent } from "@/types";
 import { parseLocalDate } from "@/lib/recurrence";
+import type { GetInvolvedCardData } from "@/lib/api";
 
 function CalendarIcon() {
   return (
@@ -26,22 +26,22 @@ function ClockIcon() {
   );
 }
 
-export function GetInvolved({ events }: { events: ChurchEvent[] }) {
+export function GetInvolved({ cards }: { cards: GetInvolvedCardData[] }) {
   const trackRef = useRef<HTMLDivElement>(null);
 
   const scroll = (dir: "prev" | "next") => {
     const el = trackRef.current;
     if (!el) return;
-    const amount = el.clientWidth / 3 + 24;
+    const amount = el.clientWidth / 4 + 41;
     el.scrollBy({ left: dir === "next" ? amount : -amount, behavior: "smooth" });
   };
 
-  // Nothing to show if there are no events
-  if (!events || events.length === 0) return null;
+  if (!cards || cards.length === 0) return null;
 
   return (
     <section className="py-20">
-      <Container>
+      <Container size="full">
+        {/* Heading + arrows — arrows align to the right edge (= last card's right edge) */}
         <div className="flex items-end justify-between gap-4">
           <Reveal>
             <SectionHeading
@@ -49,7 +49,6 @@ export function GetInvolved({ events }: { events: ChurchEvent[] }) {
               className="[&_h2]:text-4xl [&_h2]:lg:text-5xl"
             />
           </Reveal>
-          {/* Prev / Next controls */}
           <Reveal delay={0.2}>
             <div className="hidden shrink-0 gap-2 sm:flex">
               <button
@@ -74,13 +73,13 @@ export function GetInvolved({ events }: { events: ChurchEvent[] }) {
           </Reveal>
         </div>
 
-        {/* Scrollable track */}
+        {/* Scrollable track — 4 cards fill the width, carousel on smaller screens */}
         <div
           ref={trackRef}
-          className="mt-12 flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className="mt-12 flex snap-x snap-mandatory gap-[40.91px] overflow-x-auto scroll-smooth pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
-          {events.map((event, i) => {
-            const d = parseLocalDate(event.date);
+          {cards.map((card, i) => {
+            const d = parseLocalDate(card.date);
             const validDate = !isNaN(d.getTime());
             const month = validDate
               ? d.toLocaleDateString("en-GB", { month: "short" }).toUpperCase()
@@ -92,17 +91,17 @@ export function GetInvolved({ events }: { events: ChurchEvent[] }) {
 
             return (
               <Reveal
-                key={event.id}
-                delay={i * 0.15}
-                className="group flex w-[85%] shrink-0 snap-start flex-col overflow-hidden rounded-card border border-wine-700/10 bg-cream-50 shadow-sm transition-shadow hover:shadow-md sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]"
+                key={card.id}
+                delay={i * 0.12}
+                className="group flex h-[540px] w-[85%] shrink-0 snap-start flex-col overflow-hidden rounded-[8.98px] border-[0.75px] border-[#C0C9C14D] bg-white pb-[1.5px] shadow-sm transition-shadow hover:shadow-md sm:w-[calc(50%-20px)] lg:w-[calc(25%-30.68px)]"
               >
                 <div className="shine relative aspect-[4/3] overflow-hidden">
                   <Image
-                    src={event.image || "/morning-worship.png"}
-                    alt={event.title}
+                    src={card.image || "/morning-worship.png"}
+                    alt={card.title}
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    sizes="(max-width: 768px) 85vw, 33vw"
+                    sizes="(max-width: 768px) 85vw, 25vw"
                   />
                   {validDate && (
                     <div className="absolute right-3 top-3 flex flex-col items-center rounded-lg bg-cream-50 px-2.5 py-1 text-center shadow-md">
@@ -112,24 +111,28 @@ export function GetInvolved({ events }: { events: ChurchEvent[] }) {
                   )}
                 </div>
 
-                <div className="flex flex-1 flex-col p-5">
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="inline-flex items-center gap-1.5 rounded-full bg-wine-700/8 px-2.5 py-1 text-[11px] font-medium uppercase tracking-wide text-wine-700">
-                      <CalendarIcon />
-                      {weekday}
-                    </span>
-                    <span className="inline-flex items-center gap-1.5 rounded-full bg-wine-700/8 px-2.5 py-1 text-[11px] font-medium uppercase tracking-wide text-wine-700">
-                      <ClockIcon />
-                      {event.time}
-                    </span>
+                <div className="flex flex-1 flex-col overflow-hidden p-5">
+                  <div className="flex flex-wrap items-center gap-2">
+                    {weekday && (
+                      <span className="inline-flex items-center gap-1.5 rounded-full bg-wine-700/8 px-2.5 py-1 text-[11px] font-medium uppercase tracking-wide text-wine-700">
+                        <CalendarIcon />
+                        {weekday}
+                      </span>
+                    )}
+                    {card.time && (
+                      <span className="inline-flex items-center gap-1.5 rounded-full bg-wine-700/8 px-2.5 py-1 text-[11px] font-medium uppercase tracking-wide text-wine-700">
+                        <ClockIcon />
+                        {card.time}
+                      </span>
+                    )}
                   </div>
 
-                  <h3 className="mt-3 text-xl font-bold text-[#000000]">{event.title}</h3>
-                  <p className="mt-2 flex-1 text-sm leading-relaxed text-muted">{event.description}</p>
+                  <h3 className="mt-3 text-lg font-bold text-[#000000]">{card.title}</h3>
+                  <p className="mt-2 flex-1 overflow-hidden text-sm leading-relaxed text-muted line-clamp-6">{card.description}</p>
 
                   <Link
                     href="/events"
-                    className="mt-5 inline-flex w-fit rounded-lg bg-wine-700 px-4 py-2 text-sm font-medium text-cream-50 transition-colors hover:bg-wine-800"
+                    className="mt-4 inline-flex w-fit rounded-lg bg-wine-700 px-4 py-2 text-sm font-medium text-cream-50 transition-colors hover:bg-wine-800"
                   >
                     Learn more
                   </Link>

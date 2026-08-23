@@ -4,8 +4,6 @@ import { client } from "@/sanity/client";
 import { urlFor } from "@/sanity/image";
 import { getNextOccurrence } from "@/lib/recurrence";
 
-
-
 const DELAY = 0; // set >0 to simulate network latency while testing loading states
 
 async function simulate<T>(data: T): Promise<T> {
@@ -37,8 +35,6 @@ function mapMinistry(doc: any): Ministry {
   };
 }
 
-
-
 export async function getMinistries(): Promise<Ministry[]> {
   try {
     const docs = await client.fetch(`*[_type == "ministry"] | order(order asc)`);
@@ -48,14 +44,6 @@ export async function getMinistries(): Promise<Ministry[]> {
     return [];
   }
 }
-
-// export async function getMinistry(slug: string): Promise<Ministry | null> {
-//   const doc = await client.fetch(
-//     `*[_type == "ministry" && slug.current == $slug][0]`,
-//     { slug },
-//   );
-//   return doc ? mapMinistry(doc) : null;
-// }
 
 export async function getMinistry(slug: string): Promise<Ministry | null> {
   try {
@@ -74,7 +62,7 @@ export async function getMinistry(slug: string): Promise<Ministry | null> {
  *  EVENTS & MEMORIES — from Sanity
  * ---------------------------------------------------------------- */
 
- function mapEvent(doc: any): ChurchEvent {
+function mapEvent(doc: any): ChurchEvent {
   const computedDate = getNextOccurrence(
     doc.recurrence ?? "oneTime",
     doc.weekday,
@@ -92,7 +80,7 @@ export async function getMinistry(slug: string): Promise<Ministry | null> {
   };
 }
 
- export async function getEvents(): Promise<ChurchEvent[]> {
+export async function getEvents(): Promise<ChurchEvent[]> {
   try {
     const docs = await client.fetch(`*[_type == "event"]`);
     const mapped = docs.map(mapEvent);
@@ -106,7 +94,6 @@ export async function getMinistry(slug: string): Promise<Ministry | null> {
   }
 }
 
-
 export async function getMemories(): Promise<string[]> {
   try {
     const docs = await client.fetch(
@@ -118,8 +105,6 @@ export async function getMemories(): Promise<string[]> {
     return [];
   }
 }
-
-
 
 /* ----------------------------------------------------------------
  *  SERMONS — from Sanity
@@ -140,8 +125,6 @@ function mapSermon(doc: any): Sermon {
     featured: doc.featured ?? false,
   };
 }
-
-
 
 export async function getSermons(): Promise<Sermon[]> {
   try {
@@ -206,6 +189,10 @@ export async function getSiteSettings(): Promise<SiteSettings | null> {
   }
 }
 
+/* ----------------------------------------------------------------
+ *  HOMEPAGE — from Sanity
+ * ---------------------------------------------------------------- */
+
 export type HomepageData = {
   heroPill?: string;
   heroVideoUrl?: string;
@@ -220,7 +207,6 @@ export type HomepageData = {
   ctaImage?: string;
   heroPrefix?: string;
   heroPhrases?: string[];
- 
 };
 
 export async function getHomepage(): Promise<HomepageData | null> {
@@ -242,15 +228,51 @@ export async function getHomepage(): Promise<HomepageData | null> {
       pastorsImage: doc.pastorsImage ? urlFor(doc.pastorsImage).width(1200).url() : undefined,
       ctaHeading: doc.ctaHeading ?? undefined,
       ctaImage: doc.ctaImage ? urlFor(doc.ctaImage).width(1600).url() : undefined,
-       heroPrefix: doc.heroPrefix ?? undefined,
+      heroPrefix: doc.heroPrefix ?? undefined,
       heroPhrases: doc.heroPhrases ?? undefined,
-    
     };
   } catch (err) {
     console.error("getHomepage failed:", err);
     return null;
   }
 }
+
+/* ----------------------------------------------------------------
+ *  GET INVOLVED CARDS — from Sanity (with dynamic dates)
+ * ---------------------------------------------------------------- */
+
+export type GetInvolvedCardData = {
+  id: string;
+  title: string;
+  description: string;
+  date: string;
+  time: string;
+  image: string;
+  eventsImage: string;
+};
+
+export async function getInvolvedCards(): Promise<GetInvolvedCardData[]> {
+  try {
+    const docs = await client.fetch(`*[_type == "getInvolvedCard"] | order(order asc)`);
+    return docs.map((doc: any) => {
+      const cardImage = doc.image ? urlFor(doc.image).width(1200).url() : "";
+      const eventsImg = doc.eventsImage ? urlFor(doc.eventsImage).width(1200).url() : "";
+      return {
+        id: doc._id,
+        title: doc.title ?? "",
+        description: doc.description ?? "",
+        date: getNextOccurrence(doc.recurrence ?? "oneTime", doc.weekday, doc.date),
+        time: doc.time ?? "",
+        image: cardImage,
+        eventsImage: eventsImg || cardImage, // fall back to card image if no events image set
+      };
+    });
+  } catch (err) {
+    console.error("getInvolvedCards failed:", err);
+    return [];
+  }
+}
+
 /* ----------------------------------------------------------------
  *  STAFF — still dummy data (migrate next)
  * ---------------------------------------------------------------- */

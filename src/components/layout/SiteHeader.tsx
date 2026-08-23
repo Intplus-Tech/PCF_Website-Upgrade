@@ -24,7 +24,7 @@ function Caret({ open = false }: { open?: boolean }) {
 export function SiteHeader({ events }: { events: ChurchEvent[] }) {
   const pathname = usePathname();
   const isHome = pathname === "/";
-  const overlayPages = ["/about", "/visit", "/events", "/media", "/ministries", "/contact"];
+  const overlayPages = ["/about", "/visit", "/events", "/media", "/ministries", "/contact", "/give"];
   const overlay =
     pathname === "/" || overlayPages.some((p) => pathname.startsWith(p));
   const [mobileOpen, setMobileOpen] = useState(false);

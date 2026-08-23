@@ -37,11 +37,10 @@ export const serviceTimes = [
   { day: "Friday", name: "Prayer Night", time: "7:00 PM" },
 ];
 
-/** The tabs that appear inside the hero nav (matches the Figma). */
+   /** The tabs that appear inside the hero nav (matches the Figma). */
 export const mainNav: NavItem[] = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about" },
-  { label: "Visit", href: "/visit" },
   {
     label: "Ministries",
     href: "/ministries",
@@ -55,12 +54,7 @@ export const mainNav: NavItem[] = [
   },
   { label: "Events", href: "/events" },
   { label: "Media", href: "/media" },
+  { label: "Give", href: "/give" },
   { label: "Contact Us", href: "/contact" }
 ];
 
-/** Quick links shown in the "Plan Your Visit" dropdown on the top bar. */
-export const planVisitLinks: NavItem[] = [
-  { label: "Service Times", href: "/visit" },
-  { label: "What to Expect", href: "/visit" },
-  { label: "Get Directions", href: "/contact" },
-];
