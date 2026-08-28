@@ -93,7 +93,7 @@ export function GetInvolved({ cards }: { cards: GetInvolvedCardData[] }) {
               <Reveal
                 key={card.id}
                 delay={i * 0.12}
-                className="group flex h-[540px] w-[85%] shrink-0 snap-start flex-col overflow-hidden rounded-[8.98px] border-[0.75px] border-[#C0C9C14D] bg-white pb-[1.5px] shadow-sm transition-shadow hover:shadow-md sm:w-[calc(50%-20px)] lg:w-[calc(25%-30.68px)]"
+                className="group flex min-h-[540px] w-[85%] shrink-0 snap-start flex-col overflow-hidden rounded-[8.98px] border-[0.75px] border-[#C0C9C14D] bg-white pb-[1.5px] shadow-sm transition-shadow hover:shadow-md sm:w-[calc(50%-20px)] lg:w-[calc(25%-30.68px)]"
               >
                 <div className="shine relative aspect-[4/3] overflow-hidden">
                   <Image
@@ -111,7 +111,7 @@ export function GetInvolved({ cards }: { cards: GetInvolvedCardData[] }) {
                   )}
                 </div>
 
-                <div className="flex flex-1 flex-col overflow-hidden p-5">
+                <div className="flex flex-1 flex-col p-5">
                   <div className="flex flex-wrap items-center gap-2">
                     {weekday && (
                       <span className="inline-flex items-center gap-1.5 rounded-full bg-wine-700/8 px-2.5 py-1 text-[11px] font-medium uppercase tracking-wide text-wine-700">
@@ -127,12 +127,12 @@ export function GetInvolved({ cards }: { cards: GetInvolvedCardData[] }) {
                     )}
                   </div>
 
-                  <h3 className="mt-3 text-lg font-bold text-[#000000]">{card.title}</h3>
-                  <p className="mt-2 flex-1 overflow-hidden text-sm leading-relaxed text-muted line-clamp-6">{card.description}</p>
+                  <h3 className="mt-3 text-xl font-bold leading-snug text-[#000000]">{card.title}</h3>
+                  <p className="mt-2 flex-1 text-[15px] leading-relaxed text-muted">{card.description}</p>
 
                   <Link
                     href="/events"
-                    className="mt-4 inline-flex w-fit rounded-lg bg-wine-700 px-4 py-2 text-sm font-medium text-cream-50 transition-colors hover:bg-wine-800"
+                    className="mt-5 inline-flex w-fit rounded-lg bg-wine-700 px-4 py-2 text-sm font-medium text-cream-50 transition-colors hover:bg-wine-800"
                   >
                     Learn more
                   </Link>

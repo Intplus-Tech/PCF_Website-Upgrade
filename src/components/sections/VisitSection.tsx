@@ -6,8 +6,8 @@ import { RevealText } from "@/components/motion/RevealText";
 export function VisitSection() {
   return (
     <section className="py-20 lg:py-24">
+      {/* Eyebrow dash + heading — stays within the container */}
       <Container size="full">
-        {/* Eyebrow dash + heading */}
         <Reveal>
           <div>
             <span className="block h-0.5 w-10 bg-ink/70" />
@@ -16,11 +16,15 @@ export function VisitSection() {
             </h2>
           </div>
         </Reveal>
-
-        <Reveal delay={0.2}>
-          <MapEmbed className="mt-10 h-[460px] w-full" />
-        </Reveal>
       </Container>
+
+      {/* Map — full bleed, edge to edge */}
+      <Reveal delay={0.2}>
+        <MapEmbed
+          rounded={false}
+          className="mt-10 h-[520px] w-full sm:h-[620px] lg:h-[720px]"
+        />
+      </Reveal>
     </section>
   );
 }

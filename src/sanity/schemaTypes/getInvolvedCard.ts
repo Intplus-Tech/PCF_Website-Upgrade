@@ -11,7 +11,7 @@ export const getInvolvedCard = defineType({
       type: "string",
       validation: (r) => r.required(),
     }),
-    defineField({
+    defineField({    
       name: "description",
       title: "Description",
       type: "text",
@@ -70,24 +70,17 @@ export const getInvolvedCard = defineType({
     }),
     defineField({
       name: "image",
-      title: "Image",
+      title: "Card Image (homepage)",
       type: "image",
       options: { hotspot: true },
     }),
-   defineField({
-  name: "image",
-  title: "Card Image (homepage)",
-  type: "image",
-  options: { hotspot: true },
-}),
-defineField({
-  name: "eventsImage",
-  title: "Events Page Image (optional — falls back to Card Image)",
-  type: "image",
-  options: { hotspot: true },
-  description: "Shown on the Events page. Leave blank to use the same image as the homepage card.",
-}),
-
+    defineField({
+      name: "eventsImage",
+      title: "Events Page Image (optional — falls back to Card Image)",
+      type: "image",
+      options: { hotspot: true },
+      description: "Shown on the Events page. Leave blank to use the same image as the homepage card.",
+    }),
   ],
   orderings: [
     { title: "Display order", name: "orderAsc", by: [{ field: "order", direction: "asc" }] },

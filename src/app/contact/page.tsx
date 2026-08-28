@@ -59,6 +59,7 @@ export default async function ContactPage() {
         <Container size="wide">
           {/* Form left · map + details right */}
           <div className="grid gap-8 lg:grid-cols-2 lg:gap-10">
+            {/* Form */}
             <Reveal direction="left">
               <div className="rounded-2xl bg-white p-6 shadow-sm sm:p-8 lg:p-10">
                 <h2 className="font-body text-2xl font-extrabold tracking-tight text-wine-700 sm:text-3xl">
@@ -70,9 +71,10 @@ export default async function ContactPage() {
               </div>
             </Reveal>
 
+            {/* Map + address */}
             <Reveal direction="right">
               <div>
-                <MapEmbed className="h-[320px] w-full overflow-hidden rounded-2xl sm:h-[420px]" />
+                <MapEmbed className="h-[380px] w-full overflow-hidden rounded-2xl sm:h-[460px] lg:h-[560px]" />
 
                 {/* Address parts */}
                 <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
