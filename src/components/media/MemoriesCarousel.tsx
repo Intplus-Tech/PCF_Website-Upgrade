@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 
-const FALLBACK_IMAGE = "/media-pics.png";
+const FALLBACK_IMAGE = "/media-picsfour.png";
 
 function chunk<T>(items: T[], size: number): T[][] {
   const out: T[][] = [];

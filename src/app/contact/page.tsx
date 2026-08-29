@@ -1,10 +1,9 @@
-import Image from "next/image";
-import Link from "next/link";
 import type { Metadata } from "next";
 import { Container } from "@/components/layout/Container";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { MapEmbed } from "@/components/MapEmbed";
 import { ContactFormFull } from "@/components/forms/ContactForm";
+import { AdditionalForms } from "@/components/contact/AdditionalForms";
 import { Reveal } from "@/components/motion/Reveal";
 import { site } from "@/lib/config/site";
 import { getPageHeader } from "@/lib/api";
@@ -12,13 +11,6 @@ import { getPageHeader } from "@/lib/api";
 export const metadata: Metadata = { title: "Contact Us" };
 
 const addressParts = ["West Bridge St", "Falkirk", "Scotland", "FK1 5RJ"];
-
-// TODO: point these at the real form pages once they exist.
-const additionalForms = [
-  { title: "Join a ministry", href: "#", image: "/contact-slide-form.jpg" },
-  { title: "Prayer Request", href: "#", image: "/contact-slide-form.jpg" },
-  { title: "Testimonials", href: "#", image: "/contact-slide-form.jpg" },
-];
 
 function PinIcon() {
   return (
@@ -116,7 +108,7 @@ export default async function ContactPage() {
             </Reveal>
           </div>
 
-          {/* Additional contact forms */}
+          {/* Additional contact forms — cards open each form in a modal */}
           <div className="mt-14 border-t border-ink/15 pt-10 lg:mt-16">
             <Reveal>
               <h2 className="font-body text-2xl font-extrabold tracking-tight text-wine-700 sm:text-3xl">
@@ -124,33 +116,7 @@ export default async function ContactPage() {
               </h2>
             </Reveal>
 
-            <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {additionalForms.map((card, i) => (
-                <Reveal key={card.title} delay={i * 0.1}>
-                  <Link
-                    href={card.href}
-                    className="group relative block h-32 overflow-hidden rounded-xl sm:h-36"
-                  >
-                    <Image
-                      src={card.image}
-                      alt=""
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    />
-                    <div className="absolute inset-0 bg-wine-900/45 transition-colors group-hover:bg-wine-900/60" />
-                    <span className="absolute inset-0 flex flex-col items-center justify-center gap-1 text-center">
-                      <span className="font-display text-xl font-bold text-cream-50 sm:text-2xl">
-                        {card.title}
-                      </span>
-                      <span className="text-[11px] font-semibold text-cream-50/90">
-                        Click to see the form
-                      </span>
-                    </span>
-                  </Link>
-                </Reveal>
-              ))}
-            </div>
+            <AdditionalForms />
           </div>
         </Container>
       </section>

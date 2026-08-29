@@ -1,12 +1,19 @@
 import Image from "next/image";
 import { site } from "@/lib/config/site";
 
-// Copied from Google Maps → Share → Embed a map.
-// To change the view: zoom to the church on Google Maps first, then re-copy.
-const GOOGLE_EMBED_SRC =
-  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4569076.173126106!2d-13.013305664062484!3d56.001452700329764!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48887a30a2649ea9%3A0x9292ce877cee2e19!2sPeoples%20Church!5e0!3m2!1sen!2sng!4v1787855367017!5m2!1sen!2sng";
-
+const PLACE = "Peoples Church, West Bridge St, Falkirk FK1 5RJ";
 const ADDRESS = "West Bridge St, Falkirk FK1 5RJ, United Kingdom";
+
+// Query-based Google embed — centres on the place and drops a marker.
+// No API key needed. `z` is the zoom level: raise it to zoom in further.
+const GOOGLE_EMBED_SRC = `https://maps.google.com/maps?q=${encodeURIComponent(
+  PLACE,
+)}&z=17&output=embed`;
+
+// Directions link supplied by the church.
+const DIRECTIONS_URL = `https://www.google.com/maps?daddr=${encodeURIComponent(
+  ADDRESS,
+)}`;
 
 // Google rating shown on the listing. Update by hand — reading this live would
 // need the Google Places API (billing-enabled key + server-side fetch).
@@ -55,7 +62,7 @@ function PhoneIcon() {
 export function MapEmbed({
   className,
   /** Photo of the church shown at the top of the info card. */
-  image = "/contact-slide-form.jpg",
+  image = "/church-exterior.jpeg",
   /** Set false for a full-bleed, edge-to-edge map (no corners or border). */
   rounded = true,
 }: {
@@ -63,10 +70,6 @@ export function MapEmbed({
   image?: string;
   rounded?: boolean;
 }) {
-  const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
-    ADDRESS,
-  )}`;
-
   return (
     <div
       className={`relative overflow-hidden ${
@@ -126,7 +129,7 @@ export function MapEmbed({
             </p>
 
             <a
-              href={directionsUrl}
+              href={DIRECTIONS_URL}
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`Get directions to ${site.name} on Google Maps`}

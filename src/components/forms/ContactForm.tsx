@@ -2,12 +2,9 @@
 
 import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
+import { HEARD_ABOUT_OPTIONS, field, select } from "@/components/forms/formStyles";
 
 type Status = "idle" | "sending" | "sent" | "error";
-
-const label = "mb-1.5 block text-sm font-medium text-ink";
-const field =
-  "w-full rounded-md border border-ink/15 bg-white px-4 py-2.5 text-sm text-ink placeholder:text-muted/60 focus:border-wine-700 focus:outline-none focus:ring-2 focus:ring-wine-700/20";
 
 export function ContactFormFull() {
   const formRef = useRef<HTMLFormElement>(null);
@@ -37,46 +34,43 @@ export function ContactFormFull() {
   }
 
   return (
-    <form ref={formRef} onSubmit={handleSubmit} className="space-y-5">
-      <div className="grid gap-5 sm:grid-cols-2">
-        <div>
-          <label htmlFor="name" className={label}>Full Name</label>
-          <input id="name" name="name" required className={field} placeholder="Your name" />
-        </div>
-        <div>
-          <label htmlFor="email" className={label}>Email Address</label>
-          <input id="email" name="email" type="email" required className={field} placeholder="example@email.com" />
-        </div>
+    <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
+      <div className="grid gap-4 sm:grid-cols-2">
+        <input name="first_name" required placeholder="First name" className={field} aria-label="First name" />
+        <input name="last_name" required placeholder="Last name" className={field} aria-label="Last name" />
       </div>
 
-      <div>
-        <label htmlFor="phone" className={label}>Phone</label>
-        <input id="phone" name="phone" className={field} />
+      <div className="grid gap-4 sm:grid-cols-2">
+        <input name="email" type="email" required placeholder="Email" className={field} aria-label="Email" />
+        <input name="phone" type="tel" placeholder="Phone Number" className={field} aria-label="Phone number" />
       </div>
 
-      <div>
-        <label htmlFor="subject" className={label}>Subject</label>
-        <input id="subject" name="subject" className={field} />
-      </div>
+      <select name="source" defaultValue="" className={select} aria-label="How did you hear about us?">
+        <option value="" disabled>How did you hear about us?</option>
+        {HEARD_ABOUT_OPTIONS.map((s) => (
+          <option key={s} value={s}>{s}</option>
+        ))}
+      </select>
 
-      <div>
-        <label htmlFor="message" className={label}>Message</label>
-        <textarea id="message" name="message" required rows={5} className={field} placeholder="How can we help you today?" />
-      </div>
+      <textarea
+        name="message"
+        required
+        rows={5}
+        placeholder="Write message..."
+        className={field}
+        aria-label="Message"
+      />
 
-      <div>
-        <label htmlFor="source" className={label}>How Did You Hear About Us?</label>
-        <input id="source" name="source" className={field} placeholder="Referral, Google, Social Media, etc" />
-      </div>
-
-      <div className="flex flex-wrap items-center gap-4">
+      <div className="flex flex-wrap items-center gap-4 pt-2">
         <button
           type="submit"
           disabled={status === "sending"}
-          className="inline-flex items-center gap-2 rounded-md bg-wine-800 px-6 py-2.5 text-sm font-semibold text-cream-50 transition-colors hover:bg-wine-700 disabled:opacity-60"
+          className="inline-flex items-center gap-3 rounded-lg bg-wine-800 px-7 py-3 text-sm font-semibold text-cream-50 transition-colors hover:bg-wine-700 disabled:opacity-60"
         >
           {status === "sending" ? "Sending…" : "Send Message"}
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden><path d="M2 21l21-9L2 3v7l15 2-15 2z" /></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+            <path d="M2 21l21-9L2 3v7l15 2-15 2z" />
+          </svg>
         </button>
         {note && (
           <p className={status === "error" ? "text-sm text-wine-600" : "text-sm text-wine-700"} role="status">
