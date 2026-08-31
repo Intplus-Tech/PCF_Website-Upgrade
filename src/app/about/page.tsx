@@ -15,12 +15,12 @@ export default async function AboutPage() {
   return (
     <>
       <PageHeader
-        eyebrow={header?.eyebrow ?? "Our Story"}
+        // eyebrow={header?.eyebrow ?? "Our Story"}
         title={header?.title ?? "About Us"}
         subtitle={
           header?.subtitle ?? "Learn about who we are and what we believe"
         }
-        image={header?.image ?? "/about-banner.png"}
+        image={header?.image ?? "/aboutus-banner.jpg"}
         imagePosition="object-[center_40%]"
       />
 

@@ -15,7 +15,7 @@ export const site = {
   phone: "+44 1324 000000",
   email: "hello@peopleschurchfalkirk.org",
   // Link for the Donate button — point this at your giving page/provider.
- giveUrl: "https://www.paypal.com/donate?token=caB5eUIOKXc6FD5hDqJyXHNGFGv_U8IpRZO61Yx8XBFRbESjYBgVILX8zDOkVboLsSxJMqs_RNdtrEc1",
+ giveUrl: "https://www.paypal.com/donate?token=TRjTRP9NjVnOimqdPW-k6MvX7aj2Z3xkbvnMuALFWswyq_pPvDMfDaDteTLu2xlalIEt1nHa4_rgcNYD",
   // Coordinates used by the map embed (Falkirk town centre — adjust as needed).
   map: {
     query: "West Bridge Street, Falkirk",

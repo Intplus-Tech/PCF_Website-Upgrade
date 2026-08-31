@@ -17,7 +17,7 @@ const hero = {
   subtitle:
     "We believe every good thing comes from God, and giving is an essential part of our worship",
   // TODO: swap for the worship photo from the Figma when it's available.
-  image: "/findpeople-pics.png",
+  image: "/give-page.png",
 };
 
 const verse = {
@@ -180,7 +180,7 @@ export default function GivePage() {
                 </p>
                 <div className="mt-auto pt-6">
                   <Link
-                    href={site.giveUrl ?? "#"}
+                    href={site.giveUrl ?? "https://www.paypal.com/donate?token=TRjTRP9NjVnOimqdPW-k6MvX7aj2Z3xkbvnMuALFWswyq_pPvDMfDaDteTLu2xlalIEt1nHa4_rgcNYD"}
                     className="inline-flex w-full items-center justify-center rounded-md bg-wine-800 px-6 py-3 text-sm font-semibold text-cream-50 transition-colors hover:bg-wine-700 sm:w-auto sm:px-10"
                   >
                     Donate

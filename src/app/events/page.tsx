@@ -29,7 +29,7 @@ export default async function EventsPage() {
       <PageHeader
         title={header?.title ?? "Events"}
         subtitle={header?.subtitle ?? "Where every gathering is an opportunity to connect, grow, and belong"}
-        image={header?.image ?? "/events-banner.png"}
+        image={header?.image ?? "/event-bannersnew.jpg"}
       />
 
       {/* Event Calendar — alternating image + text rows */}

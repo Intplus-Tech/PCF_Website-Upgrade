@@ -72,7 +72,7 @@ export default async function MinistryDetailPage({ params }: { params: Promise<P
       <PageHeader
         title={header?.title ?? "Ministries"}
         subtitle={header?.subtitle ?? "Our ministries gives you the opportunity to get involved and make a difference."}
-        image={header?.image ?? "/ministries-banner.jpg"}
+        image={header?.image ?? "/ministries-bannersnew.jpg"}
       />
       {/* ...rest unchanged... */}
 
