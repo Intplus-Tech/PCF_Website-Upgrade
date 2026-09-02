@@ -95,7 +95,7 @@ export function GetInvolved({ cards }: { cards: GetInvolvedCardData[] }) {
                 delay={i * 0.12}
                 className="group flex min-h-[540px] w-[85%] shrink-0 snap-start flex-col overflow-hidden rounded-[8.98px] border-[0.75px] border-[#C0C9C14D] bg-white pb-[1.5px] shadow-sm transition-shadow hover:shadow-md sm:w-[calc(50%-20px)] lg:w-[calc(25%-30.68px)]"
               >
-                       <div className="shine relative aspect-square overflow-hidden">
+                  <div className="shine relative aspect-square overflow-hidden">
                     <Image
                       src={card.image || "/morning-worship.png"}
                       alt={card.title}

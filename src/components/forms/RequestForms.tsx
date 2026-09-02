@@ -12,13 +12,16 @@ import {
 
 type Status = "idle" | "sending" | "sent" | "error";
 
+// The only enquiry type that asks which ministry the person is interested in.
+const MINISTRY_ENQUIRY = "Ministry Request";
+
 export function OtherEnquiryForm() {
   const formRef = useRef<HTMLFormElement>(null);
   const [status, setStatus] = useState<Status>("idle");
   const [note, setNote] = useState("");
 
-  // The ministry field only appears once an enquiry type has been chosen.
   const [enquiryType, setEnquiryType] = useState("");
+  const showMinistryField = enquiryType === MINISTRY_ENQUIRY;
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -85,10 +88,11 @@ export function OtherEnquiryForm() {
           ))}
         </select>
 
-        {/* Revealed only once an enquiry type has been selected */}
-        {enquiryType && (
+        {/* Shown only for a Ministry Request — prayer and testimonial skip this */}
+        {showMinistryField && (
           <select
             name="ministry"
+            required
             defaultValue=""
             className={select}
             aria-label="Which ministry are you interested in?"

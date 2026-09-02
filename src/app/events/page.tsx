@@ -53,15 +53,15 @@ export default async function EventsPage() {
                 <Reveal key={card.id}>
                   <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-14">
                     {/* Image */}
-                        <div className={`shine relative aspect-square w-full overflow-hidden rounded-2xl ${imageLeft ? "lg:order-1" : "lg:order-2"}`}>
-                      <Image
-                        src={card.eventsImage || "/in-events.jpg"}
-                        alt={card.title}
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 1024px) 100vw, 50vw"
-                      />
-                    </div>
+                         <div className={`shine relative mx-auto aspect-square w-full max-w-[480px] overflow-hidden rounded-2xl bg-white ${imageLeft ? "lg:order-1" : "lg:order-2"}`}>
+                        <Image
+                          src={card.eventsImage || "/in-events.jpg"}
+                          alt={card.title}
+                          fill
+                          className="object-contain"
+                          sizes="(max-width: 1024px) 100vw, 480px"
+                        />
+                      </div>
                     {/* Text */}
                     <div className={`${imageLeft ? "lg:order-2" : "lg:order-1"}`}>
                       <p className="text-sm text-muted">

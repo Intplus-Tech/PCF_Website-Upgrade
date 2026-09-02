@@ -71,8 +71,8 @@ export function SiteHeader({ events }: { events: ChurchEvent[] }) {
             {mainNav.map((item) => (
               <div key={item.href} className="relative">
                 <Link href={item.href}
-                  className={cn("px-4 py-2 text-lg font-medium transition-colors",
-                    isActive(item.href) ? "text-cream-50" : "text-cream-50/80 hover:text-cream-50")}>
+                    className={cn("px-5 py-4 text-2xl font-medium transition-colors",
+  isActive(item.href) ? "text-cream-50" : "text-cream-50/80 hover:text-cream-50")}>
                   {item.label}
                 </Link>
                 {isActive(item.href) && (
@@ -85,8 +85,8 @@ export function SiteHeader({ events }: { events: ChurchEvent[] }) {
           {/* Donate + mobile toggle */}
           <div className="flex items-center gap-3 lg:-mt-14">
              <Link href="/give"
-              className={cn(
-                "hidden rounded-xl px-6 py-2.5 text-sm font-semibold text-cream-50 transition-colors sm:inline-flex",
+                className={cn(
+                "hidden rounded-xl px-8 py-3.5 text-base font-semibold text-cream-50 transition-colors sm:inline-flex",
                 isActive("/give") ? "bg-wine-500" : "bg-wine-600 hover:bg-wine-500",
               )}>
               Give

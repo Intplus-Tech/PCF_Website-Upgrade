@@ -48,14 +48,14 @@ export function PageHeader({
             </p>
           </Reveal>
         )}
-        <h1 className="font-body text-5xl font-extrabold tracking-tight sm:text-6xl md:text-7xl">
-          <RevealText text={title} />
-        </h1>
-        {subtitle && (
-          <Reveal delay={0.4}>
-            <p className="mx-auto mt-4 max-w-2xl text-cream-100/90">{subtitle}</p>
-          </Reveal>
-        )}
+          <h1 className="font-body text-6xl font-extrabold tracking-tight sm:text-7xl md:text-8xl">
+  <RevealText text={title} />
+</h1>
+{subtitle && (
+  <Reveal delay={0.4}>
+    <p className="mx-auto mt-6 max-w-3xl text-lg text-cream-100/90 sm:text-xl">{subtitle}</p>
+  </Reveal>
+)}
       </Container>
     </section>
   );

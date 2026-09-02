@@ -38,7 +38,7 @@ export default async function ContactPage() {
   return (
     <>
       <PageHeader
-        eyebrow={header?.eyebrow ?? "We're Listening"}
+        // eyebrow={header?.eyebrow ?? "We're Listening"}
         title={header?.title ?? "Contact Us"}
         subtitle={
           header?.subtitle ?? "Learn about who we are and what we believe"

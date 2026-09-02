@@ -6,7 +6,7 @@ import { Reveal } from "@/components/motion/Reveal";
 import { OtherEnquiryForm } from "@/components/forms/RequestForms";
 
 // Card artwork — file lives in /public.
-const CARD_IMAGE = "/other-request.png";
+const CARD_IMAGE = "/additional-form.jpg";
 
 export function AdditionalForms() {
   const [open, setOpen] = useState(false);

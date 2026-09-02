@@ -37,7 +37,7 @@ export function RotatingHeadline({
   }, [list.length]);
 
   return (
-     <h1 className="max-w-3xl font-body text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
+     <h1 className="max-w-4xl font-body text-5xl font-extrabold leading-[1.05] tracking-tight sm:text-6xl md:text-7xl">
       {prefix}{" "}
       <span
         className={`inline-block transition-opacity duration-500 ${

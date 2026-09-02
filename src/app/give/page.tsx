@@ -16,7 +16,7 @@ const hero = {
   title: "Give",
   subtitle:
     "We believe every good thing comes from God, and giving is an essential part of our worship",
-  image: "/new-give.png",
+  image: "/give-banner.jpg",
 };
 
 const verse = {
