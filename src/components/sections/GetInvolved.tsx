@@ -95,15 +95,15 @@ export function GetInvolved({ cards }: { cards: GetInvolvedCardData[] }) {
                 delay={i * 0.12}
                 className="group flex min-h-[540px] w-[85%] shrink-0 snap-start flex-col overflow-hidden rounded-[8.98px] border-[0.75px] border-[#C0C9C14D] bg-white pb-[1.5px] shadow-sm transition-shadow hover:shadow-md sm:w-[calc(50%-20px)] lg:w-[calc(25%-30.68px)]"
               >
-                <div className="shine relative aspect-[4/3] overflow-hidden">
-                  <Image
-                    src={card.image || "/morning-worship.png"}
-                    alt={card.title}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    sizes="(max-width: 768px) 85vw, 25vw"
-                  />
-                  {validDate && (
+                       <div className="shine relative aspect-square overflow-hidden">
+                    <Image
+                      src={card.image || "/morning-worship.png"}
+                      alt={card.title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      sizes="(max-width: 768px) 85vw, 25vw"
+                    />
+                                      {validDate && (
                     <div className="absolute right-3 top-3 flex flex-col items-center rounded-lg bg-cream-50 px-2.5 py-1 text-center shadow-md">
                       <span className="text-[10px] font-semibold uppercase tracking-wide text-wine-600">{month}</span>
                       <span className="text-lg font-bold leading-none text-ink">{dateNum}</span>

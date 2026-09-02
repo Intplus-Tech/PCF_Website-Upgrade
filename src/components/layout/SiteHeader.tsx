@@ -84,11 +84,12 @@ export function SiteHeader({ events }: { events: ChurchEvent[] }) {
 
           {/* Donate + mobile toggle */}
           <div className="flex items-center gap-3 lg:-mt-14">
-            <Link href={site.giveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden rounded-xl bg-wine-600 px-6 py-2.5 text-sm font-semibold text-cream-50 transition-colors hover:bg-wine-500 sm:inline-flex">
-              Donate
+             <Link href="/give"
+              className={cn(
+                "hidden rounded-xl px-6 py-2.5 text-sm font-semibold text-cream-50 transition-colors sm:inline-flex",
+                isActive("/give") ? "bg-wine-500" : "bg-wine-600 hover:bg-wine-500",
+              )}>
+              Give
             </Link>
             <button
               className="inline-flex h-11 w-11 items-center justify-center rounded-full text-cream-50 lg:hidden"
@@ -117,10 +118,10 @@ export function SiteHeader({ events }: { events: ChurchEvent[] }) {
                   </Link>
                 </div>
               ))}
-              <Link href={site.giveUrl} onClick={() => setMobileOpen(false)}
-                className="mt-3 inline-flex items-center justify-center rounded-full bg-wine-600 px-6 py-2.5 text-sm font-semibold text-cream-50">
-                Donate
-              </Link>
+               <Link href="/give" onClick={() => setMobileOpen(false)}
+              className="mt-3 inline-flex items-center justify-center rounded-full bg-wine-600 px-6 py-2.5 text-sm font-semibold text-cream-50">
+              Give
+            </Link>
             </nav>
           </Container>
         </div>

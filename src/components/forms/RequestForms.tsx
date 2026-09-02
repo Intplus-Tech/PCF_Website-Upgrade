@@ -17,6 +17,9 @@ export function OtherEnquiryForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [note, setNote] = useState("");
 
+  // The ministry field only appears once an enquiry type has been chosen.
+  const [enquiryType, setEnquiryType] = useState("");
+
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setStatus("sending");
@@ -40,6 +43,7 @@ export function OtherEnquiryForm() {
       setStatus("sent");
       setNote("Thank you — your enquiry has been sent. We'll be in touch soon.");
       formRef.current?.reset();
+      setEnquiryType("");
     } catch (err) {
       setStatus("error");
       setNote("Sorry, something went wrong. Please try again or email us directly.");
@@ -67,19 +71,34 @@ export function OtherEnquiryForm() {
           <input name="phone" type="tel" placeholder="Phone Number" className={field} aria-label="Phone number" />
         </div>
 
-        <select name="enquiry_type" required defaultValue="" className={select} aria-label="What you want to enquire about">
+        <select
+          name="enquiry_type"
+          required
+          value={enquiryType}
+          onChange={(e) => setEnquiryType(e.target.value)}
+          className={select}
+          aria-label="What you want to enquire about"
+        >
           <option value="" disabled>What you want to Enquire?</option>
           {ENQUIRY_OPTIONS.map((o) => (
             <option key={o} value={o}>{o}</option>
           ))}
         </select>
 
-        <select name="ministry" defaultValue="" className={select} aria-label="Which ministry are you interested in?">
-          <option value="" disabled>Which of the Ministry are your interested in?</option>
-          {MINISTRY_OPTIONS.map((m) => (
-            <option key={m} value={m}>{m}</option>
-          ))}
-        </select>
+        {/* Revealed only once an enquiry type has been selected */}
+        {enquiryType && (
+          <select
+            name="ministry"
+            defaultValue=""
+            className={select}
+            aria-label="Which ministry are you interested in?"
+          >
+            <option value="" disabled>Which of the Ministry are your interested in?</option>
+            {MINISTRY_OPTIONS.map((m) => (
+              <option key={m} value={m}>{m}</option>
+            ))}
+          </select>
+        )}
 
         <textarea
           name="message"

@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Container } from "@/components/layout/Container";
 import { mainNav, site } from "@/lib/config/site";
+import { PrivacyPolicyModal } from "@/components/legal/PrivacyPolicyModal";
 
 // Weekly services (event names + days per client request)
 // const weeklyServices = [
@@ -99,12 +100,12 @@ export function Footer() {
                 </span>
                 YouTube
               </a>
-              <a href={site.socials.telegram} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm text-ink/80 transition-colors hover:text-wine-700">
+              {/* <a href={site.socials.telegram} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm text-ink/80 transition-colors hover:text-wine-700">
   <span style={{ color: "#26A5E4" }}>
     <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3l-3.3 15.6c-.2 1.1-.9 1.4-1.8.9l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5 9.3-8.4c.4-.4-.1-.6-.6-.2L6.2 13.2l-4.9-1.5c-1.1-.3-1.1-1 .2-1.5l19.2-7.4c.9-.3 1.7.2 1.4 1.5z"/></svg>
   </span>
   Telegram
-</a>
+</a> */}
             </div>
           </div>
         </div>
@@ -115,9 +116,7 @@ export function Footer() {
             <p>
               @Copyright PCFministries {new Date().getFullYear()}
               {" · "}
-              <Link href="/privacy-policy" className="underline hover:text-wine-900">
-                Privacy Policy
-              </Link>
+               <PrivacyPolicyModal />
             </p>
           </div>
     </footer>

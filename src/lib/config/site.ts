@@ -23,9 +23,9 @@ export const site = {
     lng: -3.7839,
   },
   socials: {
-    facebook: "#",
+    facebook: "https://www.facebook.com/PCFFalkirk",
     instagram: "#",
-    youtube: "#",
+    youtube: "https://www.youtube.com/channel/UCnLTOOGYZfXM7AF4YMR1tgQ",
       telegram: "https://t.me/yourchannel", 
   },
 } as const;
@@ -38,7 +38,7 @@ export const serviceTimes = [
 ];
 
    /** The tabs that appear inside the hero nav (matches the Figma). */
-export const mainNav: NavItem[] = [
+ export const mainNav: NavItem[] = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about" },
   {
@@ -54,7 +54,5 @@ export const mainNav: NavItem[] = [
   },
   { label: "Events", href: "/events" },
   { label: "Media", href: "/media" },
-  { label: "Give", href: "/give" },
-  { label: "Contact Us", href: "/contact" }
+  { label: "Contact Us", href: "/contact" },
 ];
-
