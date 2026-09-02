@@ -81,12 +81,12 @@ export default async function HomePage() {
     <p className="mt-5 leading-relaxed text-muted text-[18px] lg:text-[25.86px] lg:leading-[36.2px]">
       {home?.missionText ?? "We may be one church in one town, but our reach extends far beyond Falkirk. Through prayer, giving, and partnership, we're part of something bigger — God's mission to every nation and every person."}
     </p>
-    <span className="mt-6 inline-flex items-center gap-1.5 text-base font-semibold text-wine-700 transition-colors group-hover:text-wine-800">
-      Learn more about us
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" className="transition-transform group-hover:translate-x-1">
-        <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    </span>
+      <span className="mt-6 inline-flex items-center gap-2 rounded-lg bg-wine-700 px-5 py-2.5 text-sm font-semibold text-cream-50 transition-colors group-hover:bg-wine-800">
+  Learn more
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="transition-transform group-hover:translate-x-1">
+    <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+</span>
   </Link>
 </Float>
     </div>
@@ -119,12 +119,15 @@ export default async function HomePage() {
     {home?.pastorsText ?? "They have built a church where faith is real, community runs deep, and every person is welcomed like family. Their vision is simple: a church where you encounter God, find hope in Jesus, and step into the life you were made for."}
   </p>
   <div className="mt-8 flex justify-center">
-    <Link
-      href="/about"
-      className="inline-flex rounded-md bg-wine-700 px-5 py-2.5 text-sm font-semibold text-cream-50 transition-colors hover:bg-wine-800"
-    >
-      {home?.pastorsButtonLabel ?? "Learn more About us"}
-    </Link>
+     <Link
+  href="/about"
+  className="group inline-flex items-center gap-2 rounded-lg bg-wine-700 px-5 py-2.5 text-sm font-semibold text-cream-50 transition-colors hover:bg-wine-800"
+>
+  {home?.pastorsButtonLabel ?? "Learn more"}
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="transition-transform group-hover:translate-x-1">
+    <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+</Link>
   </div>
 </Float>
     </div>

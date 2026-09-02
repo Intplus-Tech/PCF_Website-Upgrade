@@ -17,13 +17,13 @@ export type AboutTabId =
  */
 export const aboutImages = {
   sidebar: {
-    work: "/we-preach-gospel.png",
-    destiny: "/ministries-pics.png",
+    work: "/church-exterior.jpeg",
+    destiny: "/step-into.png",
     values: "/Godmission-pics.png",
     beliefs: "/mediaholy-pics.jpg",
-    story: "/about-banner.png",
+    story: "/our-story-1986.png",
   },
-  workFeature: "/about-begining.png",
+  workFeature: "/church-exterior.jpeg",
   destinyLadder: "/step-into.png",
   valuesFeature: "/Godmission-pics.png",
   pastor: "/pstdavid-pics.png",
