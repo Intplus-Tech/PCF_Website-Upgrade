@@ -382,11 +382,11 @@ export function AboutTabs() {
         size="wide"
         className="grid max-w-[95rem] items-start gap-8 px-4 sm:px-6 lg:grid-cols-[420px_1fr] lg:px-8"
       >
-        <div className="lg:sticky lg:top-24 lg:max-h-[820px] lg:overflow-y-auto lg:pr-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <div className="min-w-0 lg:sticky lg:top-24 lg:max-h-[820px] lg:overflow-y-auto lg:pr-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           <AboutSidebar active={active} onSelect={setActive} />
         </div>
 
-        <div className="flex min-h-[600px] flex-col rounded-2xl bg-[#F5F5F5] p-5 sm:p-8 lg:min-h-[820px] lg:p-12">
+       <div className="flex min-w-0 min-h-[600px] flex-col rounded-2xl bg-[#F5F5F5] p-5 sm:p-8 lg:min-h-[820px] lg:p-12">
           {active === "work" && <WorkView />}
           {active === "destiny" && <DestinyView />}
           {active === "values" && <ValuesView />}
