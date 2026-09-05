@@ -1,42 +1,29 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import type { Ministry } from "@/types";
 
 export function MinistrySidebar({
   ministries,
   activeSlug,
+  onSelect,
 }: {
   ministries: Ministry[];
   activeSlug: string;
+  onSelect: (slug: string) => void;
 }) {
-  const router = useRouter();
-  const [selected, setSelected] = useState(activeSlug);
-
-  const handleClick = (slug: string) => {
-    setSelected(slug);
-    router.push(`/ministries/${slug}`);
-    setTimeout(() => {
-      document.getElementById("ministry-content")?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }, 100);
-  };
-
   return (
     <aside
       className="-mx-4 flex gap-3 overflow-x-auto px-4 pb-2 sm:mx-0 sm:px-0 lg:flex-col lg:gap-4 lg:overflow-visible lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       aria-label="Ministries"
     >
       {ministries.map((m) => {
-        const isSelected = m.slug === selected;
+        const isSelected = m.slug === activeSlug;
         return (
           <button
             key={m.slug}
-            onClick={() => handleClick(m.slug)}
+            type="button"
+            onClick={() => onSelect(m.slug)}
             aria-current={isSelected ? "true" : undefined}
             className={`group relative w-44 shrink-0 overflow-hidden rounded-xl transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-wine-700 focus-visible:ring-offset-2 sm:w-56 lg:w-full ${
               isSelected ? "h-24 lg:h-40" : "h-20 lg:h-28"

@@ -110,15 +110,24 @@ export function Footer() {
           </div>
         </div>
       </Container>
-
-         {/* Copyright bar */}
-          <div style={{ backgroundColor: "#9E9E9E" }} className="py-5 text-center text-sm text-ink/90">
-            <p>
-              @Copyright PCFministries {new Date().getFullYear()}
-              {" · "}
-               <PrivacyPolicyModal />
-            </p>
-          </div>
+                      {/* Copyright bar */}
+      <div style={{ backgroundColor: "#9E9E9E" }} className="py-5 text-center text-sm text-ink/90">
+        <p>
+          @Copyright PCFministries {new Date().getFullYear()}
+          {" · "}
+          <PrivacyPolicyModal />
+          {" · "}
+          
+           <a href="/safeguarding-policy.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline transition-colors hover:text-wine-900"
+          >
+            Safeguarding Policy
+          </a>
+        </p>
+      </div>
+          
     </footer>
   );
 }
