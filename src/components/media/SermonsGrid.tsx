@@ -52,13 +52,13 @@ function ClockIcon() {
 
 /** How many cards are visible at the current breakpoint. */
 function usePerView() {
-  const [perView, setPerView] = useState(4);
+  const [perView, setPerView] = useState(5);
 
   useEffect(() => {
     const sm = window.matchMedia("(min-width: 640px)");
     const lg = window.matchMedia("(min-width: 1024px)");
 
-    const update = () => setPerView(lg.matches ? 4 : sm.matches ? 2 : 1);
+    const update = () => setPerView(lg.matches ? 5 : sm.matches ? 2 : 1);
 
     update();
     sm.addEventListener("change", update);
@@ -147,15 +147,15 @@ export function SermonsGrid({
             const label = serviceLabel(card.date, card.time);
 
             return (
-              <div key={card.id} className="w-full shrink-0 px-3 sm:w-1/2 lg:w-1/4">
+              <div key={card.id} className="w-full shrink-0 px-2 sm:w-1/2 lg:w-1/5">
                 <article className="flex h-full flex-col overflow-hidden rounded-xl bg-white shadow-sm">
-                  <div className="relative aspect-[4/3] w-full overflow-hidden">
+                  <div className="relative aspect-video w-full overflow-hidden">
                     <Image
                       src={card.image || card.eventsImage || FALLBACK_IMAGE}
                       alt={card.title}
                       fill
                       className="object-cover"
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 20vw"
                     />
                     {month && (
                       <span className="absolute right-3 top-3 flex flex-col items-center rounded-md bg-white px-2.5 py-1.5 leading-none shadow-md">
@@ -167,7 +167,7 @@ export function SermonsGrid({
                     )}
                   </div>
 
-                  <div className="flex flex-1 flex-col p-5">
+                  <div className="flex flex-1 flex-col p-4">
                     {(label || card.time) && (
                       <div className="flex flex-wrap items-center justify-between gap-2 text-[10px] font-semibold uppercase tracking-wide text-wine-700">
                         {label && (
@@ -185,17 +185,17 @@ export function SermonsGrid({
                       </div>
                     )}
 
-                    <h3 className="mt-3 font-body text-lg font-extrabold leading-snug tracking-tight text-ink">
+                    <h3 className="mt-2.5 font-body text-base font-extrabold leading-snug tracking-tight text-ink">
                       {card.title}
                     </h3>
 
                     {card.description && (
-                      <p className="mt-3 text-sm leading-relaxed text-muted">
+                      <p className="mt-2 line-clamp-4 text-[13px] leading-relaxed text-muted">
                         {card.description}
                       </p>
                     )}
 
-                    <div className="mt-auto pt-6">
+                    <div className="mt-auto pt-4">
                       <Link
                         href={learnMoreHref}
                         className="inline-flex rounded-md bg-wine-800 px-5 py-2.5 text-xs font-semibold text-cream-50 transition-colors hover:bg-wine-700"
