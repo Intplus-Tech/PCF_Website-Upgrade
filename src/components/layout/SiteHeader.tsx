@@ -89,7 +89,7 @@ export function SiteHeader({ events }: { events: ChurchEvent[] }) {
                 "hidden rounded-xl px-8 py-3.5 text-base font-semibold text-cream-50 transition-colors sm:inline-flex",
                 isActive("/give") ? "bg-wine-500" : "bg-wine-600 hover:bg-wine-500",
               )}>
-              Give
+              Giving
             </Link>
             <button
               className="inline-flex h-11 w-11 items-center justify-center rounded-full text-cream-50 lg:hidden"

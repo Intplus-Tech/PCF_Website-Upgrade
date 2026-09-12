@@ -12,11 +12,9 @@ export const site = {
   description:
     "A welcoming family of faith in the heart of Falkirk. Join us for worship, community, and purpose.",
   address: "West Bridge Street, Falkirk FK1 5RS",
-  phone: "+44 1324 000000",
-  email: "hello@peopleschurchfalkirk.org",
-  // Link for the Donate button — point this at your giving page/provider.
- giveUrl: "https://www.paypal.com/donate?token=TRjTRP9NjVnOimqdPW-k6MvX7aj2Z3xkbvnMuALFWswyq_pPvDMfDaDteTLu2xlalIEt1nHa4_rgcNYD",
-  // Coordinates used by the map embed (Falkirk town centre — adjust as needed).
+   phone: "+44 1324 633100",
+email: "office@pcfministries.org",
+giveUrl: "https://www.paypal.com/donate?token=DjuzKb7LRVj4S5jUXHWPBMj6o3J3zlSX2tl7jBRVAvgOeynlkh05gomEx8wQEunfjFvm_pAG_daD0HmW",
   map: {
     query: "West Bridge Street, Falkirk",
     lat: 56.0019,

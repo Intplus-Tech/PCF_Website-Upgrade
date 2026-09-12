@@ -4,7 +4,9 @@ import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import {
   ENQUIRY_OPTIONS,
+  GIFT_AID,
   HEARD_ABOUT_OPTIONS,
+  JOIN_MINISTRY,
   MINISTRY_OPTIONS,
   field,
   select,
@@ -12,16 +14,18 @@ import {
 
 type Status = "idle" | "sending" | "sent" | "error";
 
-// The only enquiry type that asks which ministry the person is interested in.
-const MINISTRY_ENQUIRY = "Ministry Request";
-
-export function OtherEnquiryForm() {
+export function OtherEnquiryForm({
+  /** Preselects an enquiry type — used by the Gift Aid link on /give. */
+  initialEnquiryType = "",
+}: {
+  initialEnquiryType?: string;
+}) {
   const formRef = useRef<HTMLFormElement>(null);
   const [status, setStatus] = useState<Status>("idle");
   const [note, setNote] = useState("");
 
-  const [enquiryType, setEnquiryType] = useState("");
-  const showMinistryField = enquiryType === MINISTRY_ENQUIRY;
+  const [enquiryType, setEnquiryType] = useState(initialEnquiryType);
+  const showMinistryField = enquiryType === JOIN_MINISTRY;
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -60,7 +64,7 @@ export function OtherEnquiryForm() {
         Other Enquiry
       </h2>
       <p className="mt-2 text-sm text-muted">
-        Enquiry about the ministry, Requesting for testimonial or prayer request
+        Enquiry about the ministry, requesting a testimonial, prayer request or Gift Aid
       </p>
 
       <form ref={formRef} onSubmit={handleSubmit} className="mt-8 space-y-4">
@@ -88,7 +92,7 @@ export function OtherEnquiryForm() {
           ))}
         </select>
 
-        {/* Shown only for a Ministry Request — prayer and testimonial skip this */}
+        {/* Shown only when joining a ministry */}
         {showMinistryField && (
           <select
             name="ministry"
@@ -108,7 +112,11 @@ export function OtherEnquiryForm() {
           name="message"
           required
           rows={5}
-          placeholder="Write message..."
+          placeholder={
+            enquiryType === GIFT_AID
+              ? "Let us know you'd like a Gift Aid form..."
+              : "Write message..."
+          }
           className={field}
           aria-label="Message"
         />

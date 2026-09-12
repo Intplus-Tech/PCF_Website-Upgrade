@@ -20,10 +20,18 @@ export const MINISTRY_OPTIONS = [
   "Puppet Ministry",
 ];
 
+/**
+ * Enquiry types. JOIN_MINISTRY is the only one that reveals the ministry
+ * dropdown — keep the constant and the array entry in step.
+ */
+export const JOIN_MINISTRY = "Join a Ministry";
+export const GIFT_AID = "Gift Aid Request";
+
 export const ENQUIRY_OPTIONS = [
   "Prayer Request",
-  "Ministry Request",
+  JOIN_MINISTRY,
   "Testimonial Request",
+  GIFT_AID,
 ];
 
 export const HEARD_ABOUT_OPTIONS = [

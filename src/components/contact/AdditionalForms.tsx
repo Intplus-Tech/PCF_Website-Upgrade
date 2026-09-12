@@ -2,14 +2,26 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { useSearchParams } from "next/navigation";
 import { Reveal } from "@/components/motion/Reveal";
 import { OtherEnquiryForm } from "@/components/forms/RequestForms";
+import { GIFT_AID } from "@/components/forms/formStyles";
 
 // Card artwork — file lives in /public.
-const CARD_IMAGE = "/additional-form.jpg";
+const CARD_IMAGE = "/addcontact.png";
 
 export function AdditionalForms() {
   const [open, setOpen] = useState(false);
+  const [preset, setPreset] = useState("");
+  const searchParams = useSearchParams();
+
+  // /contact?enquiry=gift-aid opens the modal with Gift Aid preselected.
+  useEffect(() => {
+    if (searchParams.get("enquiry") === "gift-aid") {
+      setPreset(GIFT_AID);
+      setOpen(true);
+    }
+  }, [searchParams]);
 
   // Close on Escape, and stop the page scrolling behind the modal.
   useEffect(() => {
@@ -25,9 +37,14 @@ export function AdditionalForms() {
     };
   }, [open]);
 
+  function close() {
+    setOpen(false);
+    setPreset("");
+  }
+
   return (
     <>
-      <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <div id="enquiry" className="mt-6 grid scroll-mt-28 gap-5 sm:grid-cols-2 lg:grid-cols-3">
         <Reveal className="overflow-hidden rounded-xl">
           <button
             type="button"
@@ -56,7 +73,7 @@ export function AdditionalForms() {
       {open && (
         <div
           className="fixed inset-0 z-[100] flex items-start justify-center overflow-y-auto bg-black/60 p-4 py-10"
-          onClick={() => setOpen(false)}
+          onClick={close}
         >
           <div
             className="relative w-full max-w-2xl rounded-2xl bg-white p-6 shadow-2xl sm:p-10"
@@ -64,7 +81,7 @@ export function AdditionalForms() {
           >
             <button
               type="button"
-              onClick={() => setOpen(false)}
+              onClick={close}
               aria-label="Close"
               className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full text-ink/60 transition-colors hover:bg-ink/5 hover:text-ink"
             >
@@ -73,7 +90,7 @@ export function AdditionalForms() {
               </svg>
             </button>
 
-            <OtherEnquiryForm />
+            <OtherEnquiryForm initialEnquiryType={preset} />
           </div>
         </div>
       )}

@@ -20,7 +20,7 @@ export default async function AboutPage() {
         subtitle={
           header?.subtitle ?? "Learn about who we are and what we believe"
         }
-        image={header?.image ?? "/aboutus-banner.jpg"}
+       image={header?.image ?? "/about-us-new.jpeg"}
         imagePosition="object-[center_40%]"
       />
 

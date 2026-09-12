@@ -1,6 +1,3 @@
-
-
-
 "use client";
 
 import Image from "next/image";
@@ -16,6 +13,12 @@ export function PageHeader({
   imagePosition = "object-center",
   imageFit = "object-cover",
   heightClass = "min-h-[75vh]",
+  /**
+   * Darkening layer over the banner image. Lighter values show more of the
+   * photo; darker ones improve text contrast. Override per page, e.g.
+   * overlayClass="bg-black/25" for an already-dark image.
+   */
+  overlayClass = "bg-black/35",
 }: {
   title: string;
   subtitle?: string;
@@ -24,6 +27,7 @@ export function PageHeader({
   imagePosition?: string;
   imageFit?: string;
   heightClass?: string;
+  overlayClass?: string;
 }) {
   return (
     <section className="relative isolate overflow-hidden text-cream-50">
@@ -37,7 +41,7 @@ export function PageHeader({
             className={`${imageFit} ${imagePosition}`}
             sizes="100vw"
           />
-          <div className="absolute inset-0 bg-black/50" />
+          <div className={`absolute inset-0 ${overlayClass}`} />
         </div>
       )}
       <Container className={`flex ${heightClass} flex-col justify-center pt-40 pb-24 text-center`}>
@@ -48,14 +52,16 @@ export function PageHeader({
             </p>
           </Reveal>
         )}
-          <h1 className="font-body text-6xl font-extrabold tracking-tight sm:text-7xl md:text-8xl">
-  <RevealText text={title} />
-</h1>
-{subtitle && (
-  <Reveal delay={0.4}>
-    <p className="mx-auto mt-6 max-w-3xl text-lg text-cream-100/90 sm:text-xl">{subtitle}</p>
-  </Reveal>
-)}
+        <h1 className="font-body text-4xl font-extrabold tracking-tight [text-shadow:_0_2px_16px_rgb(0_0_0_/_45%)] sm:text-6xl md:text-8xl">
+          <RevealText text={title} />
+        </h1>
+        {subtitle && (
+          <Reveal delay={0.4}>
+            <p className="mx-auto mt-6 max-w-3xl text-base text-cream-100/90 [text-shadow:_0_1px_10px_rgb(0_0_0_/_45%)] sm:text-lg md:text-xl">
+              {subtitle}
+            </p>
+          </Reveal>
+        )}
       </Container>
     </section>
   );

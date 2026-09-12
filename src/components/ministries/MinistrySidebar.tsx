@@ -36,14 +36,14 @@ export function MinistrySidebar({
               className="object-cover"
               sizes="(max-width: 1024px) 224px, 420px"
             />
-            <div
-              className={`absolute inset-0 transition-colors ${
-                isSelected
-                  ? "bg-wine-900/25"
-                  : "bg-wine-900/70 group-hover:bg-wine-900/55"
-              }`}
-            />
-            <span className="absolute inset-0 flex items-center justify-center px-3 text-center text-sm font-semibold text-cream-50 sm:text-base lg:text-lg">
+             <div
+  className={`absolute inset-0 transition-colors ${
+    isSelected
+      ? "bg-wine-900/15"
+      : "bg-wine-900/50 group-hover:bg-wine-900/35"
+  }`}
+/>
+            <span className="absolute inset-0 flex items-center justify-center px-3 text-center text-sm font-semibold text-cream-50 [text-shadow:_0_2px_8px_rgb(0_0_0_/_70%)] sm:text-base lg:text-lg">
               {m.name}
             </span>
           </button>

@@ -178,25 +178,25 @@ export const storyChapters: StoryChapter[] = [
     year: "1986",
     title: "The Beginning",
     text: "The Peoples Church began when Pastor George and Linda McKim moved to Falkirk to pioneer a new ministry. What started with just twelve people quickly grew, moving through several halls before finding a permanent home at Falkirk West Church.",
-    image: "/our-story-1986.png",
+    image: "/the-beginning.jpeg",
   },
   {
     year: "1993",
     title: "Expanding Ministry",
     text: "As the ministry expanded, David Morrison — who had faithfully served from the very beginning — joined the team as Assistant Pastor. His steady leadership, genuine compassion, and commitment to the Gospel became a defining strength within church life.",
-    image: "/our-story-1993.png",
+    image: "/we-preach-gospel.png",
   },
   {
     year: "2006",
     title: "A New Chapter",
     text: "Leadership passed to Pastor David and his wife Elaine, marking the beginning of a new and exciting chapter. Under their guidance, the church continued to grow, adapt, and reach out to the surrounding communities.",
-    image: "/a-new-about.png",
+    image: "/new-chapter.jpeg",
   },
   {
     year: "2010 & beyond",
     title: "Continuing the Journey",
     text: "Significant developments followed, including a welcoming café space in 2010 and modernised Sunday School facilities. Today, The Peoples Church continues to move forward with expectation — united, prayerful, and ready for all that God has yet to do.",
-    image: "/our-story-2010.png",
+    image: "/continuing-journey.jpeg",
   },
 ];
 

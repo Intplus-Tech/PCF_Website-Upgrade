@@ -5,18 +5,17 @@ import { PageHeader } from "@/components/layout/PageHeader";
 import { Reveal } from "@/components/motion/Reveal";
 import { site } from "@/lib/config/site";
 
-export const metadata: Metadata = { title: "Give" };
+export const metadata: Metadata = { title: "Giving" };
 
 // ---------------------------------------------------------------------------
-// Copy + details. Hardcoded (no Sanity fetch on this route). Everything lives
-// here, so moving it to the CMS later is a swap with no JSX changes.
+// Copy + details. Hardcoded (no Sanity fetch on this route).
 // ---------------------------------------------------------------------------
 
 const hero = {
-  title: "Give",
+  title: "Giving",
   subtitle:
     "We believe every good thing comes from God, and giving is an essential part of our worship",
-  image: "/give-banner.jpg",
+  image: "/new-give.png",
 };
 
 const verse = {
@@ -24,16 +23,17 @@ const verse = {
   reference: "2 Corinthians 9:7",
 };
 
+// TODO: church asked for this section to go back to the wording in their
+// original feedback — awaiting that text.
 const purpose = {
   heading: "The Path of Purpose",
   body: "Tithes and offerings are more than simple transactions; they are a profound expression of communal faith and a commitment to our shared journey. Through your generosity, we fuel the engines of community impact, ensuring that the road ahead is illuminated for all who seek guidance and support.",
 };
 
-// TODO: replace with the church's real account details before launch.
 const bankDetails = [
   { label: "Account Name", value: "PCF Ministries" },
-  { label: "Account No.", value: "XXXXXXXX" },
-  { label: "Sort Code", value: "XX-XX-XX" },
+  { label: "Account No.", value: "70457438" },
+  { label: "Sort Code", value: "82-63-12" },
 ];
 
 /* --------------------------------- icons --------------------------------- */
@@ -85,6 +85,7 @@ export default function GivePage() {
         subtitle={hero.subtitle}
         image={hero.image}
         imagePosition="object-[center_30%]"
+        overlayClass="bg-black/25"
       />
 
       {/* Verse + purpose */}
@@ -93,10 +94,7 @@ export default function GivePage() {
           <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
             <Reveal direction="left">
               <blockquote className="relative border-l-4 border-wine-700 bg-[#FAFAFA] py-9 pl-8 pr-6 sm:pl-10">
-                <span
-                  aria-hidden
-                  className="font-display text-4xl font-bold leading-none text-ink/15"
-                >
+                <span aria-hidden className="font-display text-4xl font-bold leading-none text-ink/15">
                   &ldquo;
                 </span>
                 <p className="mt-2 font-display text-2xl italic leading-snug text-wine-700 sm:text-3xl">
@@ -190,7 +188,7 @@ export default function GivePage() {
               </div>
             </Reveal>
 
-            {/* Gift aid */}
+            {/* Gift aid — opens the contact enquiry form with Gift Aid preselected */}
             <Reveal delay={0.25}>
               <div className="flex h-full flex-col rounded-xl border-t-2 border-wine-700 bg-white p-6 text-center shadow-sm sm:p-8">
                 <p className="flex items-center justify-center gap-3 font-display text-xl font-bold text-ink sm:text-2xl">
@@ -203,7 +201,7 @@ export default function GivePage() {
                 </p>
                 <div className="mt-auto pt-7">
                   <Link
-                    href="/contact"
+                    href="/contact?enquiry=gift-aid#enquiry"
                     className="inline-flex w-full items-center justify-center rounded-md border border-wine-700/40 px-6 py-3 text-sm font-semibold uppercase tracking-wide text-wine-700 transition-colors hover:bg-wine-700 hover:text-cream-50"
                   >
                     Request Form

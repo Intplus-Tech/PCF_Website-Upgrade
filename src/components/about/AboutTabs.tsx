@@ -52,12 +52,12 @@ function AboutSidebar({
               sizes="(max-width: 1024px) 224px, 420px"
             />
             <div
-              className={`absolute inset-0 transition-colors ${
-                isActive
-                  ? "bg-wine-900/25"
-                  : "bg-wine-900/70 group-hover:bg-wine-900/55"
-              }`}
-            />
+  className={`absolute inset-0 transition-colors ${
+    isActive
+      ? "bg-wine-900/15"
+      : "bg-wine-900/50 group-hover:bg-wine-900/35"
+  }`}
+/>
             <span className="absolute inset-0 flex items-center justify-center px-3 text-center text-sm font-semibold uppercase tracking-wide text-cream-50 sm:text-base lg:text-lg">
               {tab.label}
             </span>
