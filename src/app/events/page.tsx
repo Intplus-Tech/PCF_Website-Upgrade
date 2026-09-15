@@ -30,6 +30,7 @@ export default async function EventsPage() {
         title={header?.title ?? "Events"}
         subtitle={header?.subtitle ?? "Where every gathering is an opportunity to connect, grow, and belong"}
         image={header?.image ?? "/event-bannersnew.jpg"}
+        overlayClass="bg-black/25"
       />
 
       {/* Event Calendar — alternating image + text rows */}

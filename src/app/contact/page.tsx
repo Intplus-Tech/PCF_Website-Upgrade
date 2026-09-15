@@ -7,6 +7,7 @@ import { AdditionalForms } from "@/components/contact/AdditionalForms";
 import { Reveal } from "@/components/motion/Reveal";
 import { site } from "@/lib/config/site";
 import { getPageHeader } from "@/lib/api";
+import { Suspense } from "react";
 
 export const metadata: Metadata = { title: "Contact Us" };
 
@@ -116,7 +117,9 @@ export default async function ContactPage() {
               </h2>
             </Reveal>
 
-            <AdditionalForms />
+              <Suspense fallback={null}>
+                <AdditionalForms />
+              </Suspense>
           </div>
         </Container>
       </section>

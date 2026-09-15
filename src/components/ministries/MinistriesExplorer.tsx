@@ -7,6 +7,19 @@ import { MinistrySidebar } from "@/components/ministries/MinistrySidebar";
 import { Reveal } from "@/components/motion/Reveal";
 import type { Ministry } from "@/types";
 
+/**
+ * Sanity text fields keep line breaks, but HTML collapses them — so a
+ * description typed as several paragraphs renders as one block. Split on blank
+ * lines (or single newlines) and render each as its own <p>.
+ */
+function toParagraphs(text: string): string[] {
+  if (!text) return [];
+  return text
+    .split(/\n\s*\n|\n/)
+    .map((t) => t.trim())
+    .filter(Boolean);
+}
+
 function CheckIcon() {
   return (
     <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-wine-700 text-cream-50">
@@ -74,7 +87,7 @@ export function MinistriesExplorer({
           forcing the grid track wider than the viewport. On desktop the sidebar
           is sticky and scrolls with the page — no nested scroll area.
         */}
-       <div className="min-w-0 lg:sticky lg:top-24 lg:h-[820px] lg:overflow-y-auto lg:overscroll-contain lg:pr-3 lg:[scrollbar-color:rgb(110_20_35_/_0.4)_transparent] lg:[scrollbar-width:thin] lg:[&::-webkit-scrollbar-thumb]:rounded-full lg:[&::-webkit-scrollbar-thumb]:bg-wine-700/40 lg:[&::-webkit-scrollbar-thumb:hover]:bg-wine-700/60 lg:[&::-webkit-scrollbar-track]:bg-ink/5 lg:[&::-webkit-scrollbar]:w-2">
+        <div className="min-w-0 lg:sticky lg:top-24 lg:h-[820px] lg:overflow-y-auto lg:overscroll-contain lg:pr-3 lg:[scrollbar-color:rgb(110_20_35_/_0.4)_transparent] lg:[scrollbar-width:thin] lg:[&::-webkit-scrollbar-thumb]:rounded-full lg:[&::-webkit-scrollbar-thumb]:bg-wine-700/40 lg:[&::-webkit-scrollbar-thumb:hover]:bg-wine-700/60 lg:[&::-webkit-scrollbar-track]:bg-ink/5 lg:[&::-webkit-scrollbar]:w-2">
           <MinistrySidebar
             ministries={ministries}
             activeSlug={activeSlug}
@@ -95,9 +108,11 @@ export function MinistriesExplorer({
           </Reveal>
 
           <Reveal delay={0.15}>
-            <p className="mt-4 text-base leading-relaxed text-muted sm:mt-5 sm:text-lg lg:text-2xl">
-              {ministry.description}
-            </p>
+            <div className="mt-4 space-y-4 text-base leading-relaxed text-muted sm:mt-5 sm:text-lg lg:text-xl">
+              {toParagraphs(ministry.description).map((para, i) => (
+                <p key={i}>{para}</p>
+              ))}
+            </div>
           </Reveal>
 
           {ministry.infoPills && (
@@ -183,20 +198,36 @@ export function MinistriesExplorer({
           {ministry.layout === "expect" && ministry.team && ministry.team.length > 0 && (
             <Reveal>
               <div className="mt-8">
-                <h3 className="mb-4 text-lg font-bold text-ink">Team Members</h3>
-                <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-                  {ministry.team.map((src, i) => (
-                    <div key={i} className="shine relative aspect-square overflow-hidden rounded-lg">
-                      <Image
-                        src={src}
-                        alt={`Team member ${i + 1}`}
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                      />
-                    </div>
-                  ))}
-                </div>
+                <h3 className="mb-4 text-lg font-bold text-ink">
+                  {ministry.team.length === 1 ? "Team Leader" : "Team Members"}
+                </h3>
+
+                {ministry.team.length === 1 ? (
+                  /* Single leader portrait — not stretched across a grid */
+                  <div className="shine relative aspect-[4/5] w-full max-w-[220px] overflow-hidden rounded-xl">
+                    <Image
+                      src={ministry.team[0]}
+                      alt={`${ministry.name} team leader`}
+                      fill
+                      className="object-cover"
+                      sizes="220px"
+                    />
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+                    {ministry.team.map((src, i) => (
+                      <div key={i} className="shine relative aspect-square overflow-hidden rounded-lg">
+                        <Image
+                          src={src}
+                          alt={`Team member ${i + 1}`}
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
             </Reveal>
           )}

@@ -12,11 +12,11 @@ export const pageHeader = defineType({
       description: "Which page this header belongs to",
       options: {
         list: [
-          { title: "Events", value: "events" },
           { title: "About", value: "about" },
-          { title: "Media", value: "media" },
           { title: "Ministries", value: "ministries" },
-          { title: "Visit", value: "visit" },
+          { title: "Events", value: "events" },
+          { title: "Media", value: "media" },
+          { title: "Giving", value: "give" },
           { title: "Contact", value: "contact" },
         ],
       },
@@ -34,6 +34,8 @@ export const pageHeader = defineType({
       name: "image",
       title: "Banner Image",
       type: "image",
+      description:
+        "Use a bright, well-lit photo. Dark images make the white heading hard to read.",
       options: { hotspot: true },
     }),
   ],

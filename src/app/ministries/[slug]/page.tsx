@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { MinistriesExplorer } from "@/components/ministries/MinistriesExplorer";
 import { getMinistries, getMinistry, getPageHeader } from "@/lib/api";
+import { VisitSection } from "@/components/sections/VisitSection";
 
 type Params = { slug: string };
 
@@ -26,13 +27,15 @@ export default async function MinistryDetailPage({ params }: { params: Promise<P
 
   return (
     <>
-      <PageHeader
+        <PageHeader
         title={header?.title ?? "Ministries"}
         subtitle={header?.subtitle ?? "Our ministries gives you the opportunity to get involved and make a difference."}
         image={header?.image ?? "/ministries-bannersnew.jpg"}
-      />
+        overlayClass="bg-black/25"
+        />
 
       <MinistriesExplorer ministries={ministries} initialSlug={slug} />
+      <VisitSection />
     </>
   );
 }

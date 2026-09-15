@@ -5,6 +5,7 @@ import { Reveal } from "@/components/motion/Reveal";
 import { MemoriesCarousel } from "@/components/media/MemoriesCarousel";
 import { SermonsGrid } from "@/components/media/SermonsGrid";
 import { getInvolvedCards, getMemories, getPageHeader } from "@/lib/api";
+import { VisitSection } from "@/components/sections/VisitSection";
 
 export const metadata: Metadata = { title: "Media" };
 
@@ -25,6 +26,7 @@ export default async function MediaPage() {
         }
         image={header?.image ?? "/media-pics.png"}
         imagePosition="object-center"
+        overlayClass="bg-black/25"
       />
 
       <div style={{ backgroundColor: "#F5F5F5" }}>
@@ -58,6 +60,7 @@ export default async function MediaPage() {
           </Container>
         </section>
       </div>
+      <VisitSection />
     </>
   );
 }
