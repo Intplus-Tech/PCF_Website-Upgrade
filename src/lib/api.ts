@@ -19,6 +19,10 @@ function mapMinistry(doc: any): Ministry {
     description: doc.description ?? "",
     meetingTime: doc.meetingTime ?? "",
     leader: doc.leader ?? "",
+        leaderRole: doc.leaderRole ?? "",
+    leaderImage: doc.leaderImage
+      ? urlFor(doc.leaderImage).width(400).url()
+      : undefined,
     image: doc.image ? urlFor(doc.image).width(1200).url() : "",
     highlights: doc.highlights ?? [],
     layout: doc.layout,
@@ -94,12 +98,16 @@ export async function getEvents(): Promise<ChurchEvent[]> {
   }
 }
 
-export async function getMemories(): Promise<string[]> {
+ export async function getMemories(): Promise<string[]> {
   try {
     const docs = await client.fetch(
       `*[_type == "memory"] | order(order asc){ image }`,
     );
-    return docs.map((d: any) => urlFor(d.image).width(1000).url());
+    // height + fit("crop") makes Sanity crop to each image's hotspot,
+    // rather than the browser cropping blindly from the centre.
+    return docs.map((d: any) =>
+      urlFor(d.image).width(1000).height(1000).fit("crop").url()
+    );
   } catch (err) {
     console.error("getMemories failed:", err);
     return [];

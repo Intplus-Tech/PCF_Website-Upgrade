@@ -11,6 +11,8 @@ export type Ministry = {
   description: string;
   meetingTime: string;
   leader: string;
+  leaderRole?: string;
+  leaderImage?: string;
   image: string;
   highlights: string[];
   layout?: "checklist" | "expect" | "cards";

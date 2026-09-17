@@ -5,20 +5,27 @@ import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { Reveal } from "@/components/motion/Reveal";
 import { OtherEnquiryForm } from "@/components/forms/RequestForms";
-import { GIFT_AID } from "@/components/forms/formStyles";
+import { GIFT_AID, JOIN_MINISTRY } from "@/components/forms/formStyles";
 
 // Card artwork — file lives in /public.
-const CARD_IMAGE = "/addcontact.png";
+const CARD_IMAGE = "/church-exterior.jpeg";
 
 export function AdditionalForms() {
   const [open, setOpen] = useState(false);
   const [preset, setPreset] = useState("");
+  const [presetMinistry, setPresetMinistry] = useState("");
   const searchParams = useSearchParams();
 
-  // /contact?enquiry=gift-aid opens the modal with Gift Aid preselected.
+  // /contact?enquiry=gift-aid           → Gift Aid preselected
+  // /contact?enquiry=join-ministry&ministry=X → Join a Ministry, ministry X
   useEffect(() => {
-    if (searchParams.get("enquiry") === "gift-aid") {
+    const enquiry = searchParams.get("enquiry");
+    if (enquiry === "gift-aid") {
       setPreset(GIFT_AID);
+      setOpen(true);
+    } else if (enquiry === "join-ministry") {
+      setPreset(JOIN_MINISTRY);
+      setPresetMinistry(searchParams.get("ministry") ?? "");
       setOpen(true);
     }
   }, [searchParams]);
@@ -40,6 +47,7 @@ export function AdditionalForms() {
   function close() {
     setOpen(false);
     setPreset("");
+    setPresetMinistry("");
   }
 
   return (
@@ -51,14 +59,14 @@ export function AdditionalForms() {
             onClick={() => setOpen(true)}
             className="group relative block h-40 w-full appearance-none overflow-hidden rounded-xl border-0 bg-transparent p-0 leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-wine-700 focus-visible:ring-offset-2 sm:h-48"
           >
-            <Image
-              src={CARD_IMAGE}
-              alt=""
-              fill
-              className="rounded-xl object-cover transition-transform duration-500 group-hover:scale-105"
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            />
-            <span className="absolute inset-0 flex flex-col items-center justify-center gap-1 text-center">
+           <Image
+                src={CARD_IMAGE}
+                alt=""
+                fill
+                className="rounded-xl object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              />
+              <span className="absolute inset-0 flex flex-col items-center justify-center gap-1 text-center rounded-xl bg-gradient-to-t from-wine-900/55 via-wine-900/25 to-wine-900/10 ">
               <span className="font-display text-xl font-bold text-cream-50 sm:text-2xl">
                 Other Requests
               </span>
@@ -90,7 +98,10 @@ export function AdditionalForms() {
               </svg>
             </button>
 
-            <OtherEnquiryForm initialEnquiryType={preset} />
+            <OtherEnquiryForm
+              initialEnquiryType={preset}
+              initialMinistry={presetMinistry}
+            />
           </div>
         </div>
       )}

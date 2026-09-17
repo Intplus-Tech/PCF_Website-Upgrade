@@ -15,16 +15,20 @@ import {
 type Status = "idle" | "sending" | "sent" | "error";
 
 export function OtherEnquiryForm({
-  /** Preselects an enquiry type — used by the Gift Aid link on /give. */
+  /** Preselects an enquiry type — used by the Gift Aid and Join Ministry links. */
   initialEnquiryType = "",
+  /** Preselects a ministry — used by the Join Ministry buttons. */
+  initialMinistry = "",
 }: {
   initialEnquiryType?: string;
+  initialMinistry?: string;
 }) {
   const formRef = useRef<HTMLFormElement>(null);
   const [status, setStatus] = useState<Status>("idle");
   const [note, setNote] = useState("");
 
   const [enquiryType, setEnquiryType] = useState(initialEnquiryType);
+  const [ministry, setMinistry] = useState(initialMinistry);
   const showMinistryField = enquiryType === JOIN_MINISTRY;
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -51,6 +55,7 @@ export function OtherEnquiryForm({
       setNote("Thank you — your enquiry has been sent. We'll be in touch soon.");
       formRef.current?.reset();
       setEnquiryType("");
+      setMinistry("");
     } catch (err) {
       setStatus("error");
       setNote("Sorry, something went wrong. Please try again or email us directly.");
@@ -97,7 +102,8 @@ export function OtherEnquiryForm({
           <select
             name="ministry"
             required
-            defaultValue=""
+            value={ministry}
+            onChange={(e) => setMinistry(e.target.value)}
             className={select}
             aria-label="Which ministry are you interested in?"
           >

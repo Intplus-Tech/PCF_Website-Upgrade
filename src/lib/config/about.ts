@@ -21,7 +21,7 @@ export const aboutImages = {
     destiny: "/step-into.png",
     values: "/Godmission-pics.png",
     beliefs: "/mediaholy-pics.jpg",
-    story: "/our-story-1986.png",
+        story: "/copy-beginning.jpg",
   },
   workFeature: "/church-exterior.jpeg",
   destinyLadder: "/step-into.png",
@@ -184,19 +184,19 @@ export const storyChapters: StoryChapter[] = [
     year: "1993",
     title: "Expanding Ministry",
     text: "As the ministry expanded, David Morrison — who had faithfully served from the very beginning — joined the team as Assistant Pastor. His steady leadership, genuine compassion, and commitment to the Gospel became a defining strength within church life.",
-    image: "/we-preach-gospel.png",
+        image: "/expanding-ministry.jpg",   // 1993 Expanding Ministry
   },
   {
     year: "2006",
     title: "A New Chapter",
     text: "Leadership passed to Pastor David and his wife Elaine, marking the beginning of a new and exciting chapter. Under their guidance, the church continued to grow, adapt, and reach out to the surrounding communities.",
-    image: "/the-beginning.jpeg",
+    image: "/a-new-chapter.png",
   },
   {
     year: "2010 & beyond",
     title: "Continuing the Journey",
     text: "Significant developments followed, including a welcoming café space in 2010 and modernised Sunday School facilities. Today, The Peoples Church continues to move forward with expectation — united, prayerful, and ready for all that God has yet to do.",
-    image: "/continuing-journey.jpg",
+       image: "/continuingthe-Journey.png",   // 2010 & beyond
   },
 ];
 

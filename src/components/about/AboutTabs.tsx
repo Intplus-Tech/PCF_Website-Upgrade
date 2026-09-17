@@ -265,7 +265,7 @@ function BeliefsView() {
 
         {/* Selectable list */}
         <Reveal direction="right">
-          <div className="max-h-[560px] overflow-y-auto rounded-xl bg-cream-50 p-2 shadow-sm [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+         <div className="max-h-[560px] overflow-y-auto overscroll-contain rounded-xl bg-cream-50 p-2 pr-3 shadow-sm [scrollbar-color:rgb(110_20_35_/_0.4)_transparent] [scrollbar-width:thin] [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-wine-700/40 [&::-webkit-scrollbar-thumb:hover]:bg-wine-700/60 [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-track]:bg-ink/5 [&::-webkit-scrollbar]:w-2">
             {beliefs.map((b, i) => {
               const isActive = i === selected;
               return (

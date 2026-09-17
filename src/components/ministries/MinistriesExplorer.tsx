@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Container } from "@/components/layout/Container";
 import { MinistrySidebar } from "@/components/ministries/MinistrySidebar";
 import { Reveal } from "@/components/motion/Reveal";
@@ -131,6 +132,23 @@ export function MinistriesExplorer({
             </Reveal>
           )}
 
+          {/* Join this ministry — opens the contact enquiry form preselected */}
+          <Reveal delay={0.3}>
+            <div className="mt-7">
+              <Link
+                href={`/contact?enquiry=join-ministry&ministry=${encodeURIComponent(
+                  ministry.name
+                )}#enquiry`}
+                className="group inline-flex items-center gap-2 rounded-lg bg-wine-700 px-6 py-3 text-sm font-semibold text-cream-50 transition-colors hover:bg-wine-800"
+              >
+                Join {ministry.name}
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="transition-transform group-hover:translate-x-1">
+                  <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </Link>
+            </div>
+          </Reveal>
+
           {/* Layout A: checklist */}
           {ministry.layout === "checklist" && (
             <Reveal delay={0.1}>
@@ -194,26 +212,47 @@ export function MinistriesExplorer({
             </Reveal>
           )}
 
-          {/* Team members */}
-          {ministry.layout === "expect" && ministry.team && ministry.team.length > 0 && (
+          {/* Ministry leader — photo, name and the ministries they oversee */}
+          {ministry.leaderImage && (
             <Reveal>
               <div className="mt-8">
                 <h3 className="mb-4 text-lg font-bold text-ink">
-                  {ministry.team.length === 1 ? "Team Leader" : "Team Members"}
+                  Ministry Leader
                 </h3>
-
-                {ministry.team.length === 1 ? (
-                  /* Single leader portrait — not stretched across a grid */
-                  <div className="shine relative aspect-[4/5] w-full max-w-[220px] overflow-hidden rounded-xl">
+                <div className="flex items-center gap-5 rounded-xl bg-cream-50 p-5 shadow-sm sm:gap-6 sm:p-6">
+                  <div className="shine relative h-24 w-24 shrink-0 overflow-hidden rounded-full sm:h-28 sm:w-28">
                     <Image
-                      src={ministry.team[0]}
-                      alt={`${ministry.name} team leader`}
+                      src={ministry.leaderImage}
+                      alt={ministry.leader || `${ministry.name} leader`}
                       fill
-                      className="object-cover"
-                      sizes="220px"
+                      className="object-cover object-top"
+                      sizes="112px"
                     />
                   </div>
-                ) : (
+                  <div className="min-w-0">
+                    {ministry.leader && (
+                      <p className="font-body text-lg font-bold text-ink sm:text-xl">
+                        {ministry.leader}
+                      </p>
+                    )}
+                    {ministry.leaderRole && (
+                      <p className="mt-1 text-sm text-muted sm:text-base">
+                        {ministry.leaderRole}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </Reveal>
+          )}
+
+          {/* Team photos — only when no leader is set */}
+          {!ministry.leaderImage &&
+            ministry.team &&
+            ministry.team.length > 0 && (
+              <Reveal>
+                <div className="mt-8">
+                  <h3 className="mb-4 text-lg font-bold text-ink">Team Members</h3>
                   <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
                     {ministry.team.map((src, i) => (
                       <div key={i} className="shine relative aspect-square overflow-hidden rounded-lg">
@@ -227,10 +266,9 @@ export function MinistriesExplorer({
                       </div>
                     ))}
                   </div>
-                )}
-              </div>
-            </Reveal>
-          )}
+                </div>
+              </Reveal>
+            )}
 
           {/* Single feature image */}
           {ministry.gallery && ministry.gallery.length === 1 && (

@@ -52,6 +52,23 @@ export const ministry = defineType({
       title: "Leader",
       type: "string",
     }),
+       
+        defineField({
+      name: "leaderRole",
+      title: "Leader Role",
+      type: "string",
+      description:
+        "Which ministries they lead, e.g. 'Prayer Team & Evangelism'. Shown under their name.",
+    }),
+    defineField({
+      name: "leaderImage",
+      title: "Leader Photo",
+      type: "image",
+      description:
+        "A photo of the ministry leader. Shown instead of the team photo grid.",
+      options: { hotspot: true },
+    }),
+    
     defineField({
       name: "layout",
       title: "Layout style",

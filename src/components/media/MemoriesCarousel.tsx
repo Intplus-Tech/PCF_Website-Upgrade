@@ -37,17 +37,17 @@ export function MemoriesCarousel({ memories }: { memories: string[] }) {
         {slide.map((src, i) => (
           <div
             key={`${index}-${i}`}
-            className={`shine relative h-52 overflow-hidden rounded-xl sm:h-auto ${
+           className={`shine relative h-52 overflow-hidden rounded-xl  sm:h-auto ${
               slot[i] ?? "sm:col-span-1"
             }`}
           >
             <Image
-              src={src || FALLBACK_IMAGE}
-              alt={`Church memory ${i + 1}`}
-              fill
-              className="object-cover"
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 40vw"
-            />
+                  src={src || FALLBACK_IMAGE}
+                  alt={`Church memory ${i + 1}`}
+                  fill
+                 className="object-cover object-[center_45%]"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 40vw"
+                />
           </div>
         ))}
       </div>

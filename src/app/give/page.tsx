@@ -15,7 +15,7 @@ const hero = {
   title: "Giving",
   subtitle:
     "We believe every good thing comes from God, and giving is an essential part of our worship",
-  image: "/new-give.png",
+    image: "/givingnew-banner.png",
 };
 
 const verse = {
@@ -26,8 +26,11 @@ const verse = {
 // TODO: church asked for this section to go back to the wording in their
 // original feedback — awaiting that text.
 const purpose = {
-  heading: "The Path of Purpose",
-  body: "Tithes and offerings are more than simple transactions; they are a profound expression of communal faith and a commitment to our shared journey. Through your generosity, we fuel the engines of community impact, ensuring that the road ahead is illuminated for all who seek guidance and support.",
+  heading: "Why We Give",
+  paragraphs: [
+    "We believe every good thing comes from God, and giving is an essential part of our worship. Through tithes and offerings, we honour Him, support the work of the church, and help extend His love to our community and beyond.",
+    "Your generosity enables ministry, outreach, discipleship, and practical support for those in need.",
+  ],
 };
 
 const bankDetails = [
@@ -111,10 +114,12 @@ export default function GivePage() {
                 <h2 className="font-display text-4xl font-bold tracking-tight text-wine-700 sm:text-5xl">
                   {purpose.heading}
                 </h2>
-                <p className="mt-5 text-base leading-relaxed text-ink sm:text-lg">
-                  {purpose.body}
-                </p>
+                 <div className="mt-5 space-y-4 text-base leading-relaxed text-ink sm:text-lg">
+                {purpose.paragraphs.map((p, i) => (
+                  <p key={i}>{p}</p>
+                ))}
               </div>
+           </div>
             </Reveal>
           </div>
         </Container>

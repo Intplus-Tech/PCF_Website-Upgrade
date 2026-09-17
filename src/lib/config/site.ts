@@ -12,7 +12,7 @@ export const site = {
   description:
     "A welcoming family of faith in the heart of Falkirk. Join us for worship, community, and purpose.",
   address: "West Bridge Street, Falkirk FK1 5RS",
-   phone: "+44 1324 633100",
+   phone: "01324 633100",
 email: "office@pcfministries.org",
 giveUrl: "https://www.paypal.com/donate?token=DjuzKb7LRVj4S5jUXHWPBMj6o3J3zlSX2tl7jBRVAvgOeynlkh05gomEx8wQEunfjFvm_pAG_daD0HmW",
   map: {

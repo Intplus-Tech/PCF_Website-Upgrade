@@ -149,12 +149,12 @@ export function SermonsGrid({
             return (
               <div key={card.id} className="w-full shrink-0 px-3 sm:w-1/2 lg:w-1/4">
                 <article className="flex h-full flex-col overflow-hidden rounded-xl bg-white shadow-sm">
-                  <div className="relative aspect-[4/3] w-full overflow-hidden">
+                  <div className="relative aspect-[4/5] w-full overflow-hidden bg-white">
                     <Image
                       src={card.image || card.eventsImage || FALLBACK_IMAGE}
                       alt={card.title}
                       fill
-                      className="object-cover"
+                      className="object-contain"
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                     />
                     {month && (

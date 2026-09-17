@@ -58,18 +58,18 @@ export default async function HomePage() {
           <Container size="full">
             <div className="relative">
               <Reveal direction="left">
-                <div className="relative aspect-[4/3] w-full overflow-hidden shadow-md lg:mr-auto lg:aspect-[759/680] lg:w-[68%]">
+                <div className="relative aspect-[4/3] w-full overflow-hidden shadow-md lg:mr-auto lg:aspect-[759/680] lg:w-[58%]">
                   <Image
                     src={home?.missionImage ?? "/Godmission-pics.png"}
                     alt="Hands resting on a Bible in prayer"
                     fill
                     className="object-cover"
-                    sizes="(max-width: 1024px) 100vw, 68vw"
+                    sizes="(max-width: 1024px) 100vw, 65vw"
                   />
                 </div>
               </Reveal>
 
-              <Float className="relative z-10 mx-3 -mt-12 sm:mx-4 sm:-mt-20 lg:absolute lg:right-0 lg:top-[75%] lg:mx-0 lg:mt-0 lg:w-[40%] lg:-translate-y-1/2">
+            <Float className="relative z-10 mx-3 -mt-12 sm:mx-4 sm:-mt-20 lg:absolute lg:right-0 lg:top-[75%] lg:mx-0 lg:mt-0 lg:w-[45%] lg:-translate-y-1/2">
                 <Link
                   href="/about"
                   className="group block border border-wine-700/10 bg-cream-50 p-6 shadow-xl transition-all hover:border-wine-700/30 hover:shadow-2xl sm:p-8 lg:min-h-[520px] lg:p-12"
@@ -98,18 +98,18 @@ export default async function HomePage() {
           <Container size="full">
             <div className="relative">
               <Reveal direction="right">
-                <div className="relative aspect-[4/3] w-full overflow-hidden shadow-md lg:ml-auto lg:aspect-[759/680] lg:w-[68%]">
+                <div className="relative aspect-[4/3] w-full overflow-hidden shadow-md lg:ml-auto lg:aspect-[759/680] lg:w-[58%]">
                   <Image
                     src={home?.pastorsImage ?? "/Meetdavid-pics.jpg"}
-                    alt="Open Bible on a table"
+                    alt="Pastors David and Elaine Morrison"
                     fill
                     className="object-cover"
-                    sizes="(max-width: 1024px) 100vw, 68vw"
+                    sizes="(max-width: 1024px) 100vw, 65vw"
                   />
                 </div>
               </Reveal>
 
-              <Float className="relative z-10 mx-3 -mt-12 border border-wine-700/10 bg-cream-50 p-6 shadow-xl sm:mx-4 sm:-mt-20 sm:p-8 lg:absolute lg:left-0 lg:top-[45%] lg:mx-0 lg:mt-0 lg:min-h-[520px] lg:w-[40%] lg:-translate-y-1/2 lg:p-12">
+            <Float className="relative z-10 mx-3 -mt-12 border border-wine-700/10 bg-cream-50 p-6 shadow-xl sm:mx-4 sm:-mt-20 sm:p-8 lg:absolute lg:left-0 lg:top-[45%] lg:mx-0 lg:mt-0 lg:min-h-[520px] lg:w-[45%] lg:-translate-y-1/2 lg:p-12">
                 <span className="block h-0.5 w-10 bg-ink/70" />
                 <h2 className="mt-5 font-body text-2xl font-bold leading-tight tracking-tight text-ink sm:mt-6 sm:text-[32px] sm:tracking-[-1.05px] lg:text-[41.96px] lg:leading-[52.45px]">
                   {home?.pastorsHeading ?? "Meet David & Elaine Morrison our beloved pastors"}
