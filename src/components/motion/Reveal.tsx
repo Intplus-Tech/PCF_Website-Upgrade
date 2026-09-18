@@ -18,11 +18,13 @@ export function Reveal({
   const reduce = useReducedMotion();
   if (reduce) return <div className={className}>{children}</div>;
 
+  // Kept small: a larger offset pushes elements past the viewport edge
+  // before they animate in, which creates a horizontal scrollbar.
   const offset =
     direction === "left"
-      ? { x: -80, y: 0 }
+      ? { x: -40, y: 0 }
       : direction === "right"
-      ? { x: 80, y: 0 }
+      ? { x: 40, y: 0 }
       : { x: 0, y };
 
   return (

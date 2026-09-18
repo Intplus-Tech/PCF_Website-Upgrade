@@ -56,7 +56,7 @@ export default async function ContactPage() {
             <Reveal direction="left">
               <div className="rounded-2xl bg-white p-6 shadow-sm sm:p-8 lg:p-10">
                 <h2 className="font-body text-2xl font-extrabold tracking-tight text-wine-700 sm:text-3xl">
-                  Get In Touch
+                  We’d love to hear from you—get in touch and let’s grow together in faith.
                 </h2>
                 <div className="mt-6">
                   <ContactFormFull />

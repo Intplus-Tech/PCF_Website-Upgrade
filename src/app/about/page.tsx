@@ -20,7 +20,7 @@ export default async function AboutPage() {
         subtitle={
           header?.subtitle ?? "Learn about who we are and what we believe"
         }
-        image={header?.image ?? "/about-us-banner.png"}
+        image={header?.image ?? "/about-us-recent.png"}
         imagePosition="object-[center_35%]"
         overlayClass="bg-black/20"
       />
@@ -28,24 +28,25 @@ export default async function AboutPage() {
       {/* Sidebar + content views */}
       <AboutTabs />
 
-      {/* Senior pastor — photo left, live text right */}
-      <section className="bg-wine-900 py-14 lg:py-20">
+               {/* Senior pastor — photo left, live text right */}
+      <section className="bg-wine-900 py-10 lg:py-14">
         <Container size="wide">
-           <div className="grid items-end gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-14">
-              <Reveal direction="left">
-                  <div className="relative mx-auto aspect-[4/5] w-full max-w-sm lg:mx-0 lg:max-w-none">
-                    <Image
-                      src="/new-pastorsphoto.png"
-                      alt="Pastor David Morrison"
-                      fill
-                      className="object-contain object-bottom"
-                      sizes="(max-width: 1024px) 90vw, 35vw"
-                    />
-                  </div>
-              </Reveal>
+         <div className="grid items-end gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-12">
+            <Reveal direction="left">
+              <div className="relative h-[480px] w-full sm:h-[580px] lg:h-[760px]">
+                <Image
+                  src="/new-pastorsphoto.png"
+                  alt="Pastor David Morrison"
+                  fill
+                  priority
+                  className="object-contain object-bottom"
+                 sizes="(max-width: 1024px) 90vw, 55vw"
+                />
+              </div>
+            </Reveal>
 
             <Reveal direction="right">
-              <div className="text-cream-50">
+              <div className="pb-4 text-cream-50 lg:pb-10">
                 <h2 className="font-body text-2xl font-extrabold tracking-tight sm:text-3xl">
                   {seniorPastor.heading}
                 </h2>
@@ -53,13 +54,13 @@ export default async function AboutPage() {
                 {seniorPastor.paragraphs.map((p, i) => (
                   <p
                     key={i}
-                    className="mt-5 text-sm leading-relaxed text-cream-100/90 sm:text-base"
+                    className="mt-4 text-sm leading-relaxed text-cream-100/90 sm:text-[15px]"
                   >
                     {p}
                   </p>
                 ))}
 
-                <blockquote className="mt-8 border-l-2 border-cream-50/40 pl-5 text-base italic text-cream-100/90 sm:text-lg">
+                <blockquote className="mt-7 border-l-2 border-cream-50/40 pl-5 text-base italic text-cream-100/90 sm:text-lg">
                   &ldquo;{seniorPastor.quote}&rdquo;
                 </blockquote>
               </div>
@@ -67,7 +68,6 @@ export default async function AboutPage() {
           </div>
         </Container>
       </section>
-
       {/* Closing */}
       <section className="py-20 lg:py-28">
         <Container size="wide" className="text-center">

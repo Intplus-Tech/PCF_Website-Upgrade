@@ -219,7 +219,7 @@ export default function GivePage() {
       </section>
 
       {/* Additional giving options */}
-      <section className="bg-white py-12 lg:py-16">
+      {/* <section className="bg-white py-12 lg:py-16">
         <Container size="wide">
           <Reveal>
             <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
@@ -247,7 +247,7 @@ export default function GivePage() {
             </div>
           </Reveal>
         </Container>
-      </section>
+      </section> */}
     </>
   );
 }
