@@ -14,7 +14,7 @@ export const site = {
   address: "West Bridge Street, Falkirk FK1 5RS",
    phone: "01324 633100",
 email: "office@pcfministries.org",
-giveUrl: "https://www.paypal.com/donate?token=DjuzKb7LRVj4S5jUXHWPBMj6o3J3zlSX2tl7jBRVAvgOeynlkh05gomEx8wQEunfjFvm_pAG_daD0HmW",
+   giveUrl: "https://www.paypal.com/donate/?hosted_button_id=M22L84XR5GFB4",
   map: {
     query: "West Bridge Street, Falkirk",
     lat: 56.0019,
