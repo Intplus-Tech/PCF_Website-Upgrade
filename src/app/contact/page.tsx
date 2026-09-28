@@ -9,6 +9,10 @@ import { site } from "@/lib/config/site";
 import { getPageHeader } from "@/lib/api";
 import { Suspense } from "react";
 
+// Refetch Sanity content at most once a minute, so published changes
+// appear without waiting for a redeploy.
+export const revalidate = 60;
+
 export const metadata: Metadata = { title: "Contact Us" };
 
 const addressParts = ["West Bridge St", "Falkirk", "Scotland", "FK1 5RJ"];

@@ -9,6 +9,10 @@ import { Float } from "@/components/motion/Float";
 import { Reveal } from "@/components/motion/Reveal";
 import { RotatingHeadline } from "@/components/motion/RotatingHeadline";
 
+// Refetch Sanity content at most once a minute, so published changes
+// appear without waiting for a redeploy.
+export const revalidate = 60;
+
 export default async function HomePage() {
   const [home, cards] = await Promise.all([
     getHomepage(),

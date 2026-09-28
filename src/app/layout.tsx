@@ -6,6 +6,10 @@ import { Footer } from "@/components/layout/Footer";
 import { site } from "@/lib/config/site";
 import { getEvents } from "@/lib/api";
 
+// Refetch Sanity content at most once a minute, so published changes
+// appear without waiting for a redeploy.
+export const revalidate = 60;
+
 const fraunces = Fraunces({
   subsets: ["latin"],
   variable: "--font-fraunces",

@@ -7,6 +7,10 @@ import { SermonsGrid } from "@/components/media/SermonsGrid";
 import { getInvolvedCards, getMemories, getPageHeader } from "@/lib/api";
 import { VisitSection } from "@/components/sections/VisitSection";
 
+// Refetch Sanity content at most once a minute, so published changes
+// appear without waiting for a redeploy.
+export const revalidate = 60;
+
 export const metadata: Metadata = { title: "Media" };
 
 export default async function MediaPage() {

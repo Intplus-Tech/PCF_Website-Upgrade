@@ -5,6 +5,10 @@ import { MinistriesExplorer } from "@/components/ministries/MinistriesExplorer";
 import { getMinistries, getMinistry, getPageHeader } from "@/lib/api";
 import { VisitSection } from "@/components/sections/VisitSection";
 
+// Refetch Sanity content at most once a minute, so published changes
+// appear without waiting for a redeploy.
+export const revalidate = 60;
+
 type Params = { slug: string };
 
 export async function generateStaticParams() {

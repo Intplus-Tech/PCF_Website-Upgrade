@@ -8,6 +8,10 @@ import { VisitSection } from "@/components/sections/VisitSection";
 import { seniorPastor } from "@/lib/config/about";
 import { getPageHeader } from "@/lib/api";
 
+// Refetch Sanity content at most once a minute, so published changes
+// appear without waiting for a redeploy.
+export const revalidate = 60;
+
 export const metadata: Metadata = { title: "About Us" };
 
 export default async function AboutPage() {
